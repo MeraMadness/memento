@@ -1,0 +1,27 @@
+# files with texts to translate (run scripts/update-po.sh after changing texts)
+src/ui/add_page.c
+src/ui/apps_page.c
+src/ui/art_dialog.c
+src/ui/cheats_dialog.c
+src/ui/common.c
+src/ui/connect_page.c
+src/ui/cover_dialog.c
+src/ui/i18n.c
+src/ui/jobs.c
+src/ui/library_page.c
+src/ui/main.c
+src/ui/settings_dialog.c
+src/ui/settings_page.c
+src/ui/topbar.c
+src/ui/transfers.c
+src/ui/verify.c
+src/ui/saves_page.c
+src/core/redump.c
+src/core/art.c
+src/core/backend.c
+src/core/cheats.c
+src/core/gamecfg.c
+src/core/ops.c
+src/core/tools.c
+src/core/vcd.c
+src/core/ziso.c

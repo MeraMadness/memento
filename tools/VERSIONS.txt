@@ -1,0 +1,2 @@
+hdl-dump 32c296c69cf9c263fcbe035004aa28c345b3b279 https://github.com/ps2homebrew/hdl-dump.git
+pfsshell 8c92467b3d715c3698f1f8ce63a8a07e214d6c73 https://github.com/ps2homebrew/pfsshell.git

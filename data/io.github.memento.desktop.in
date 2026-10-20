@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=Application
+Name=Memento
+GenericName=Game manager for the PS2
+GenericName[it]=Gestore di giochi per la PS2
+GenericName[es]=Gestor de juegos para la PS2
+GenericName[fr]=Gestionnaire de jeux pour la PS2
+GenericName[de]=Spieleverwaltung für die PS2
+GenericName[pt_BR]=Gerenciador de jogos para o PS2
+Comment=Install and manage games on a PS2 hard disk or SSD
+Comment[it]=Installa e gestisci i giochi su un hard disk o SSD della PS2
+Comment[es]=Instala y gestiona juegos en un disco duro o SSD de la PS2
+Comment[fr]=Installez et gérez les jeux sur un disque dur ou un SSD de PS2
+Comment[de]=Spiele auf einer PS2-Festplatte oder SSD installieren und verwalten
+Comment[pt_BR]=Instale e gerencie jogos em um disco rígido ou SSD do PS2
+Exec=@BINDIR@/memento
+Icon=io.github.memento
+Terminal=false
+Categories=Utility;GTK;
+Keywords=PS2;PlayStation;OPL;HDL;games;ISO;ZSO;memory card;
+StartupNotify=true
+StartupWMClass=io.github.memento

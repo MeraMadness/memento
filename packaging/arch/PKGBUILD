@@ -1,0 +1,42 @@
+# Maintainer: meramadness
+# NOT TESTED on Arch (written on Gentoo): build it in a clean chroot (extra-x86_64-build) and fix what it says.
+pkgname=memento
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Manage the games on a PS2 hard disk or SSD (OPL and POPStarter)'
+arch=('x86_64')
+url='https://github.com/meramadness/memento'
+license=('GPL-3.0-or-later' 'OFL-1.1' 'MIT' 'GPL-2.0-only')
+depends=('libadwaita' 'curl' 'gdk-pixbuf2' 'lz4' 'zlib' 'fontconfig' 'polkit' 'coreutils')
+makedepends=('meson' 'gettext' 'git')
+_hdl_dump_commit=32c296c69cf9c263fcbe035004aa28c345b3b279
+_pfsshell_commit=8c92467b3d715c3698f1f8ce63a8a07e214d6c73
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz"
+        "hdl-dump::git+https://github.com/ps2homebrew/hdl-dump.git#commit=$_hdl_dump_commit"
+        "pfsshell::git+https://github.com/ps2homebrew/pfsshell.git#commit=$_pfsshell_commit")
+sha256sums=('SKIP' 'SKIP' 'SKIP') # set the first one with updpkgsums once the release tarball exists
+
+prepare() {
+  # pfsshell needs its submodules (ps2sdk and others)
+  cd "$srcdir/pfsshell"
+  git submodule update --init --recursive
+}
+
+build() {
+  mkdir -p "$srcdir/tools"
+  # the two disk tools, from the pinned commits
+  make -C "$srcdir/hdl-dump" RELEASE=yes IIN_OPTICAL_MMAP=no
+  cp "$srcdir/hdl-dump/hdl_dump" "$srcdir/tools/"
+  arch-meson "$srcdir/pfsshell-build" "$srcdir/pfsshell"
+  meson compile -C "$srcdir/pfsshell-build"
+  cp "$srcdir/pfsshell-build/pfsshell" "$srcdir/tools/"
+
+  arch-meson "$srcdir/build" "$srcdir/$pkgname-$pkgver" -Dtools_dir="$srcdir/tools" -Dpolkit_policy=enabled
+  meson compile -C "$srcdir/build"
+}
+
+package() {
+  meson install -C "$srcdir/build" --destdir "$pkgdir"
+  install -Dm644 "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "$srcdir/$pkgname-$pkgver/NOTICE.md" "$pkgdir/usr/share/licenses/$pkgname/NOTICE.md"
+}

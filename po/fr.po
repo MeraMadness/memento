@@ -1,0 +1,2245 @@
+# French translation of ps2gm.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ps2gm package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ps2gm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 20:07+0200\n"
+"PO-Revision-Date: 2026-10-20 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/ui/add_page.c:17
+msgid "Your choice"
+msgstr "Votre choix"
+
+#: src/ui/add_page.c:17
+msgid "Automatic: the usual cover is downloaded"
+msgstr "Automatique : la jaquette habituelle est téléchargée"
+
+#: src/ui/add_page.c:74 src/ui/add_page.c:1020 src/ui/add_page.c:1058
+#: src/ui/apps_page.c:332 src/ui/art_dialog.c:223 src/ui/cheats_dialog.c:226
+#: src/ui/cover_dialog.c:424
+msgid "Choose..."
+msgstr "Choisir…"
+
+#: src/ui/add_page.c:76
+msgid "Cover"
+msgstr "Jaquette"
+
+#: src/ui/add_page.c:85
+msgid "Back to the automatic cover"
+msgstr "Revenir à la jaquette automatique"
+
+#: src/ui/add_page.c:143 src/ui/add_page.c:1042
+msgid ""
+"Makes the game much smaller on the PS2 disk, but OPL needs ZSO support: try "
+"one game first. Takes a few minutes and some free space on this computer."
+msgstr "Rend le jeu beaucoup plus petit sur le disque de la PS2, mais OPL doit prendre en charge ZSO : essayez d'abord avec un jeu. Prend quelques minutes et un peu d'espace libre sur cet ordinateur."
+
+#: src/ui/add_page.c:162
+#, c-format
+msgid ""
+"Estimate for this game: only about %d%% smaller (%s). Probably not worth it."
+msgstr "Estimation pour ce jeu : seulement environ %d %% de moins (%s). Cela n'en vaut probablement pas la peine."
+
+#: src/ui/add_page.c:164
+#, c-format
+msgid "Estimate for this game: it would be about %d%% smaller (%s less)."
+msgstr "Estimation pour ce jeu : environ %d %% plus petit (%s de moins)."
+
+#: src/ui/add_page.c:182
+msgid "Estimating how much it would save..."
+msgstr "Estimation du gain en cours…"
+
+#: src/ui/add_page.c:203 src/ui/add_page.c:1024
+msgid "Choose an ISO file first"
+msgstr "Choisissez d'abord un fichier ISO"
+
+#: src/ui/add_page.c:213
+msgid "Only plain .iso images can be checked"
+msgstr "Seules les images .iso simples peuvent être vérifiées"
+
+#: src/ui/add_page.c:244 src/ui/add_page.c:600
+msgid "Not a PS2 game image"
+msgstr "Ce n'est pas l'image d'un jeu PS2"
+
+#: src/ui/add_page.c:295
+msgid ""
+"Choose PS2 game images (several at once are installed one after the other)"
+msgstr "Choisissez des images de jeux PS2 (plusieurs à la fois sont installées l'une après l'autre)"
+
+#: src/ui/add_page.c:296
+msgid "Disc images (.iso, .zso)"
+msgstr "Images de disque (.iso, .zso)"
+
+#: src/ui/add_page.c:393
+msgid "Installed"
+msgstr "Installé"
+
+#: src/ui/add_page.c:395
+msgid "An installation did not work, see Transfers"
+msgstr "Une installation a échoué, voir Transferts"
+
+#: src/ui/add_page.c:457 src/ui/add_page.c:1052
+msgid "Install on the PS2 disk"
+msgstr "Installer sur le disque de la PS2"
+
+#: src/ui/add_page.c:507 src/ui/transfers.c:332
+msgid "Remove from the list"
+msgstr "Retirer de la liste"
+
+#: src/ui/add_page.c:521
+#, c-format
+msgid "%u game · %s in total · %s free on the disk"
+msgid_plural "%u games · %s in total · %s free on the disk"
+msgstr[0] "%u jeu · %s au total · %s libres sur le disque"
+msgstr[1] "%u jeux · %s au total · %s libres sur le disque"
+
+#: src/ui/add_page.c:523
+msgid ""
+"Not enough room for all of them: the last ones will fail when their turn "
+"comes."
+msgstr "Pas assez de place pour tous : les derniers échoueront quand viendra leur tour."
+
+#: src/ui/add_page.c:540
+msgid "It applies to every .iso of the list."
+msgstr "S'applique à chaque .iso de la liste."
+
+#: src/ui/add_page.c:541
+#, c-format
+msgid "Install %u game"
+msgid_plural "Install %u games"
+msgstr[0] "Installer %u jeu"
+msgstr[1] "Installer %u jeux"
+
+#: src/ui/add_page.c:545
+msgid "Several images chosen"
+msgstr "Plusieurs images choisies"
+
+#: src/ui/add_page.c:613
+msgid "Already on the PS2 disk"
+msgstr "Déjà sur le disque PS2"
+
+#: src/ui/add_page.c:618
+msgid "Same game as another file in the list"
+msgstr "Le même jeu qu'un autre fichier de la liste"
+
+#: src/ui/add_page.c:659
+#, c-format
+msgid "%u game added to Transfers"
+msgid_plural "%u games added to Transfers"
+msgstr[0] "%u jeu ajouté aux Transferts"
+msgstr[1] "%u jeux ajoutés aux Transferts"
+
+#: src/ui/add_page.c:696
+msgid "Game ID not found in this image"
+msgstr "ID du jeu introuvable dans cette image"
+
+#: src/ui/add_page.c:733
+msgid "That disc image cannot be used"
+msgstr "Cette image de disque ne peut pas être utilisée"
+
+#: src/ui/add_page.c:758
+#, c-format
+msgid "%u disc selected"
+msgid_plural "%u discs selected"
+msgstr[0] "%u disque sélectionné"
+msgstr[1] "%u disques sélectionnés"
+
+#: src/ui/add_page.c:758 src/ui/add_page.c:1058
+msgid "Choose the .cue file of each disc"
+msgstr "Choisissez le fichier .cue de chaque disque"
+
+#: src/ui/add_page.c:812
+msgid ""
+"Choose the PS1 disc images (.cue). Select all discs of a multi-disc game"
+msgstr "Choisissez les images de disque PS1 (.cue). Sélectionnez tous les disques d'un jeu à plusieurs disques"
+
+#: src/ui/add_page.c:813
+msgid "CUE sheets (.cue)"
+msgstr "Fichiers CUE (.cue)"
+
+#: src/ui/add_page.c:899
+msgid "That is not an .iso or .zso file"
+msgstr "Ce n'est pas un fichier .iso ou .zso"
+
+#: src/ui/add_page.c:899
+msgid "Drop the .iso or .zso disc image of a PS2 game here."
+msgstr "Déposez ici l'image de disque .iso ou .zso d'un jeu PS2."
+
+#: src/ui/add_page.c:928
+msgid "No .cue file"
+msgstr "Aucun fichier .cue"
+
+#: src/ui/add_page.c:928
+msgid ""
+"Drop the .cue file of each disc of a PS1 game here (all discs together for a "
+"multi-disc game)."
+msgstr "Déposez ici le fichier .cue de chaque disque d'un jeu PS1 (tous les disques ensemble pour un jeu à plusieurs disques)."
+
+#: src/ui/add_page.c:1012
+msgid "Add games"
+msgstr "Ajouter des jeux"
+
+#: src/ui/add_page.c:1012
+msgid ""
+"Install a game on the PS2 disk. You can also drop the files onto a card."
+msgstr "Installez un jeu sur le disque de la PS2. Vous pouvez aussi déposer les fichiers sur une carte."
+
+#: src/ui/add_page.c:1020
+msgid "Disc image"
+msgstr "Image de disque"
+
+#: src/ui/add_page.c:1020
+msgid "Choose an .iso or .zso file"
+msgstr "Choisissez un fichier .iso ou .zso"
+
+#: src/ui/add_page.c:1023
+msgid "Game"
+msgstr "Jeu"
+
+#: src/ui/add_page.c:1029 src/ui/add_page.c:1063
+msgid "Title"
+msgstr "Titre"
+
+#: src/ui/add_page.c:1033
+msgid "Keep it compressed on the disk"
+msgstr "Garder compressé sur le disque"
+
+#: src/ui/add_page.c:1035
+msgid ""
+"Saves space on the PS2 disk, but OPL needs ZSO support (recent versions have "
+"it). Off: the game is unpacked here and installed as a normal ISO."
+msgstr "Économise de la place sur le disque de la PS2, mais OPL doit prendre en charge ZSO (les versions récentes le font). Désactivé : le jeu est décompressé ici et installé comme une ISO normale."
+
+#: src/ui/add_page.c:1040
+msgid "Compress it to ZSO while installing"
+msgstr "Compresser en ZSO pendant l'installation"
+
+#: src/ui/add_page.c:1046 src/ui/add_page.c:1067
+msgid "Download covers and art"
+msgstr "Télécharger les jaquettes et les images"
+
+#: src/ui/add_page.c:1050
+msgid "Games to install"
+msgstr "Jeux à installer"
+
+#: src/ui/add_page.c:1054
+msgid "PS2 game"
+msgstr "Jeu PS2"
+
+#: src/ui/add_page.c:1054
+msgid ""
+"A disc image (.iso, or a compressed .zso). Drop it here or choose it below."
+msgstr "Une image de disque (.iso, ou un .zso compressé). Déposez-la ici ou choisissez-la ci-dessous."
+
+#: src/ui/add_page.c:1055
+msgid "Copies the whole game; a DVD takes several minutes."
+msgstr "Copie tout le jeu ; un DVD prend plusieurs minutes."
+
+#: src/ui/add_page.c:1058
+msgid "Disc images"
+msgstr "Images de disque"
+
+#: src/ui/add_page.c:1071
+msgid "Discs found"
+msgstr "Disques trouvés"
+
+#: src/ui/add_page.c:1073
+msgid "Convert and install"
+msgstr "Convertir et installer"
+
+#: src/ui/add_page.c:1075
+msgid "PS1 game"
+msgstr "Jeu PS1"
+
+#: src/ui/add_page.c:1075
+msgid ""
+"BIN/CUE images. Several discs of one game: select all their .cue files "
+"together."
+msgstr "Images BIN/CUE. Plusieurs disques d'un même jeu : sélectionnez ensemble tous leurs fichiers .cue."
+
+#: src/ui/add_page.c:1077
+msgid "Makes the POPStarter image (.VCD) and copies it to the PS2 disk."
+msgstr "Crée l'image pour POPStarter (.VCD) et la copie sur le disque de la PS2."
+
+#: src/ui/add_page.c:1080
+msgid "Back to the library"
+msgstr "Retour à la bibliothèque"
+
+#: src/ui/apps_page.c:40
+msgid "Copying the program to the PS2 disk"
+msgstr "Copie du programme sur le disque de la PS2"
+
+#: src/ui/apps_page.c:49 src/ui/library_page.c:914
+msgid "Removing"
+msgstr "Suppression"
+
+#: src/ui/apps_page.c:58
+msgid "Renaming"
+msgstr "Renommage"
+
+#: src/ui/apps_page.c:70 src/ui/apps_page.c:105
+msgid "Adding the program"
+msgstr "Ajout du programme"
+
+#: src/ui/apps_page.c:83
+msgid "Not a PS2 program"
+msgstr "Ce n'est pas un programme PS2"
+
+#: src/ui/apps_page.c:92
+#, c-format
+msgid "A program called %s is already on the disk."
+msgstr "Un programme nommé %s est déjà sur le disque."
+
+#: src/ui/apps_page.c:93
+msgid "Replace it?"
+msgstr "Le remplacer ?"
+
+#: src/ui/apps_page.c:94
+#, c-format
+msgid "Replace, keep the old one as %s"
+msgstr "Remplacer, garder l'ancien sous le nom %s"
+
+#: src/ui/apps_page.c:96 src/ui/apps_page.c:136 src/ui/apps_page.c:185
+#: src/ui/library_page.c:151 src/ui/library_page.c:562 src/ui/transfers.c:330
+#: src/ui/saves_page.c:369
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/ui/apps_page.c:96 src/ui/art_dialog.c:208
+msgid "Replace"
+msgstr "Remplacer"
+
+#: src/ui/apps_page.c:111
+msgid "Removing the program"
+msgstr "Suppression du programme"
+
+#: src/ui/apps_page.c:116
+msgid "Renaming the program"
+msgstr "Renommage du programme"
+
+#: src/ui/apps_page.c:132 src/ui/library_page.c:144
+#, c-format
+msgid "\"%s\" will be deleted from the PS2 disk. This cannot be undone."
+msgstr "« %s » sera supprimé du disque de la PS2. Cette action est irréversible."
+
+#: src/ui/apps_page.c:133
+msgid "Remove this program?"
+msgstr "Supprimer ce programme ?"
+
+#: src/ui/apps_page.c:136 src/ui/cheats_dialog.c:239 src/ui/library_page.c:151
+#: src/ui/library_page.c:1139
+msgid "Remove"
+msgstr "Supprimer"
+
+#: src/ui/apps_page.c:176
+msgid "Rename this program"
+msgstr "Renommer ce programme"
+
+#: src/ui/apps_page.c:176
+msgid "The name shown in the Apps tab of OPL. It must end in .ELF."
+msgstr "Le nom affiché dans l'onglet Apps d'OPL. Il doit se terminer par .ELF."
+
+#: src/ui/apps_page.c:185 src/ui/apps_page.c:233
+msgid "Rename"
+msgstr "Renommer"
+
+#: src/ui/apps_page.c:224
+msgid "No programs on the disk yet."
+msgstr "Aucun programme sur le disque pour l'instant."
+
+#: src/ui/apps_page.c:234
+msgid "Remove from the disk"
+msgstr "Supprimer du disque"
+
+#: src/ui/apps_page.c:267
+msgid "Choose a PS2 program"
+msgstr "Choisir un programme PS2"
+
+#: src/ui/apps_page.c:268
+msgid "PS2 programs (.ELF)"
+msgstr "Programmes PS2 (.ELF)"
+
+#: src/ui/apps_page.c:313 src/ui/topbar.c:13
+msgid "Homebrew"
+msgstr "Homebrew"
+
+#: src/ui/apps_page.c:313
+msgid "Homebrew programs on the PS2 disk. They show up in the Apps tab of OPL."
+msgstr "Programmes homebrew sur le disque de la PS2. Ils apparaissent dans l'onglet Apps d'OPL."
+
+#: src/ui/apps_page.c:314
+msgid "Add a program"
+msgstr "Ajouter un programme"
+
+#: src/ui/apps_page.c:314
+msgid ""
+"A PS2 program (.ELF). Drop it here or choose it. If it is already on the "
+"disk you can keep the old version."
+msgstr "Un programme PS2 (.ELF). Déposez-le ici ou choisissez-le. S'il est déjà sur le disque, vous pouvez garder l'ancienne version."
+
+#: src/ui/apps_page.c:345 src/ui/library_page.c:1009
+msgid "On the disk"
+msgstr "Sur le disque"
+
+#: src/ui/art_dialog.c:48
+msgid "Changing the picture"
+msgstr "Changement de l'image"
+
+#: src/ui/art_dialog.c:143
+msgid "Choose a picture"
+msgstr "Choisir une image"
+
+#: src/ui/art_dialog.c:144 src/ui/cover_dialog.c:227
+msgid "Pictures (PNG, JPG, BMP)"
+msgstr "Images (PNG, JPG, BMP)"
+
+#: src/ui/art_dialog.c:161 src/ui/cover_dialog.c:290
+msgid "Not a web address"
+msgstr "Ce n'est pas une adresse web"
+
+#: src/ui/art_dialog.c:161 src/ui/cover_dialog.c:290
+msgid "The address of the picture must start with http:// or https://"
+msgstr "L'adresse de l'image doit commencer par http:// ou https://"
+
+#: src/ui/art_dialog.c:197 src/core/art.c:186
+msgid "Front cover"
+msgstr "Jaquette avant"
+
+#: src/ui/art_dialog.c:198
+msgid "Choose from several covers"
+msgstr "Choisir parmi plusieurs jaquettes"
+
+#: src/ui/art_dialog.c:198
+msgid "Flat and 3D box art found online, or add your own"
+msgstr "Jaquettes plates et boîtiers 3D trouvés en ligne, ou ajoutez les vôtres"
+
+#: src/ui/art_dialog.c:198
+msgid "Carousel..."
+msgstr "Carrousel…"
+
+#: src/ui/art_dialog.c:204
+msgid "All pictures"
+msgstr "Toutes les images"
+
+#: src/ui/art_dialog.c:205
+msgid "Download what is missing"
+msgstr "Télécharger ce qui manque"
+
+#: src/ui/art_dialog.c:205
+msgid "Fills the gaps and keeps what is on the disk"
+msgstr "Comble les manques et conserve ce qui est déjà sur le disque"
+
+#: src/ui/art_dialog.c:205 src/ui/art_dialog.c:220
+msgid "Download"
+msgstr "Télécharger"
+
+#: src/ui/art_dialog.c:208
+msgid "Download everything again"
+msgstr "Tout télécharger à nouveau"
+
+#: src/ui/art_dialog.c:208
+msgid "Replaces the pictures on the disk, also the ones you chose"
+msgstr "Remplace les images du disque, y compris celles que vous avez choisies"
+
+#: src/ui/art_dialog.c:212
+msgid "Change one picture"
+msgstr "Changer une image"
+
+#: src/ui/art_dialog.c:217
+msgid "Picture"
+msgstr "Image"
+
+#: src/ui/art_dialog.c:220
+msgid "From the internet"
+msgstr "Depuis internet"
+
+#: src/ui/art_dialog.c:220
+msgid "The usual source, again"
+msgstr "La source habituelle, à nouveau"
+
+#: src/ui/art_dialog.c:223
+msgid "From a file on this computer"
+msgstr "Depuis un fichier de cet ordinateur"
+
+#: src/ui/art_dialog.c:223
+msgid "PNG, JPG or BMP; it is resized for the PS2"
+msgstr "PNG, JPG ou BMP ; elle est redimensionnée pour la PS2"
+
+#: src/ui/art_dialog.c:227
+msgid "From a web address (press Enter)"
+msgstr "Depuis une adresse web (appuyez sur Entrée)"
+
+#: src/ui/art_dialog.c:238
+#, c-format
+msgid "Art: %s"
+msgstr "Images : %s"
+
+#: src/ui/cheats_dialog.c:36
+#, c-format
+msgid "%u cheat"
+msgid_plural "%u cheats"
+msgstr[0] "%u cheat"
+msgstr[1] "%u cheats"
+
+#: src/ui/cheats_dialog.c:41
+#, c-format
+msgid "%u code line"
+msgid_plural "%u code lines"
+msgstr[0] "%u ligne de code"
+msgstr[1] "%u lignes de code"
+
+#: src/ui/cheats_dialog.c:54
+msgid "Empty. Paste cheats here or load a file."
+msgstr "Vide. Collez ici les cheats ou chargez un fichier."
+
+#: src/ui/cheats_dialog.c:59
+#, c-format
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: src/ui/cheats_dialog.c:94 src/ui/cheats_dialog.c:118
+msgid "Saving the cheats"
+msgstr "Enregistrement des cheats"
+
+#: src/ui/cheats_dialog.c:94 src/ui/cheats_dialog.c:129
+msgid "Removing the cheats"
+msgstr "Suppression des cheats"
+
+#: src/ui/cheats_dialog.c:107
+msgid "These cheats cannot be saved"
+msgstr "Ces cheats ne peuvent pas être enregistrés"
+
+#: src/ui/cheats_dialog.c:151
+msgid "That is not a text file"
+msgstr "Ce n'est pas un fichier texte"
+
+#: src/ui/cheats_dialog.c:151
+msgid ""
+"Cheat lists are plain text. Save the list as a text (.txt or .cht) file and "
+"try again."
+msgstr "Les listes de cheats sont du texte brut. Enregistrez la liste en fichier texte (.txt ou .cht) et réessayez."
+
+#: src/ui/cheats_dialog.c:153
+msgid "Cannot read that file"
+msgstr "Impossible de lire ce fichier"
+
+#: src/ui/cheats_dialog.c:167
+msgid "Choose a cheat list"
+msgstr "Choisir une liste de cheats"
+
+#: src/ui/cheats_dialog.c:168
+msgid "Cheat lists (.cht, .txt)"
+msgstr "Listes de cheats (.cht, .txt)"
+
+#: src/ui/cheats_dialog.c:207
+msgid ""
+"One cheat per block: a line with its <b>name</b>, then its code lines, like\n"
+"<tt>Infinite Health\n"
+"10B8DAFA 00003F00</tt>\n"
+"Lines starting with <tt>//</tt> or <tt>#</tt> are notes. Cheat lists in this "
+"format are shared on the internet for most games; the app does not download "
+"them."
+msgstr "Un cheat par bloc : une ligne avec son <b>nom</b>, puis ses lignes de code, par exemple\n<tt>Infinite Health\n10B8DAFA 00003F00</tt>\nLes lignes commençant par <tt>//</tt> ou <tt>#</tt> sont des notes. Les listes de cheats de ce format sont partagées sur internet pour la plupart des jeux ; l'application ne les télécharge pas."
+
+#: src/ui/cheats_dialog.c:223 src/ui/verify.c:158
+msgid "Check"
+msgstr "Vérification"
+
+#: src/ui/cheats_dialog.c:226
+msgid "Load from a file"
+msgstr "Charger depuis un fichier"
+
+#: src/ui/cheats_dialog.c:226
+msgid "A .cht or .txt cheat list"
+msgstr "Une liste de cheats .cht ou .txt"
+
+#: src/ui/cheats_dialog.c:230
+msgid "Turn the cheats on for this game"
+msgstr "Activer les cheats pour ce jeu"
+
+#: src/ui/cheats_dialog.c:231
+msgid "Sets the game's OPL settings: cheat engine on, all cheats active"
+msgstr "Règle les paramètres OPL du jeu : moteur de cheats activé, tous les cheats actifs"
+
+#: src/ui/cheats_dialog.c:234 src/ui/settings_dialog.c:196
+msgid "Save"
+msgstr "Enregistrer"
+
+#: src/ui/cheats_dialog.c:234
+msgid "Writes the list to the disk (+OPL/CHT)"
+msgstr "Écrit la liste sur le disque (+OPL/CHT)"
+
+#: src/ui/cheats_dialog.c:234 src/ui/settings_dialog.c:196
+msgid "Save to the disk"
+msgstr "Enregistrer sur le disque"
+
+#: src/ui/cheats_dialog.c:239
+msgid "Deletes the cheat list from the disk and switches the cheats off"
+msgstr "Supprime la liste de cheats du disque et désactive les cheats"
+
+#: src/ui/cheats_dialog.c:239
+msgid "Remove cheats"
+msgstr "Supprimer les cheats"
+
+#: src/ui/cheats_dialog.c:267
+#, c-format
+msgid "Cheats: %s"
+msgstr "Cheats : %s"
+
+#: src/ui/cheats_dialog.c:282
+msgid "Reading the cheats from the disk"
+msgstr "Lecture des cheats depuis le disque"
+
+#: src/ui/cheats_dialog.c:292
+msgid "Reading the cheats"
+msgstr "Lecture des cheats"
+
+#: src/ui/common.c:38
+msgid "OK"
+msgstr "OK"
+
+#: src/ui/connect_page.c:73 src/ui/connect_page.c:78 src/ui/connect_page.c:317
+#: src/ui/connect_page.c:353
+msgid "Disk"
+msgstr "Disque"
+
+#: src/ui/connect_page.c:94
+msgid "No disks found. Plug in the PS2 drive, then press Refresh"
+msgstr "Aucun disque trouvé. Branchez le disque de la PS2, puis appuyez sur Actualiser"
+
+#: src/ui/connect_page.c:96
+#, c-format
+msgid "Disk image: %s"
+msgstr "Image de disque : %s"
+
+#: src/ui/connect_page.c:100
+msgid "Disk image"
+msgstr "Image de disque"
+
+#: src/ui/connect_page.c:134 src/ui/connect_page.c:171 src/ui/topbar.c:32
+msgid "PS2 disk"
+msgstr "Disque PS2"
+
+#: src/ui/connect_page.c:142
+#, c-format
+msgid "%s used, %s free"
+msgstr "%s utilisés, %s libres"
+
+#: src/ui/connect_page.c:171
+#, c-format
+msgid "Connected: %s"
+msgstr "Connecté : %s"
+
+#: src/ui/connect_page.c:172
+#, c-format
+msgid "%s used of %s, %s free. %u game on the disk."
+msgid_plural "%s used of %s, %s free. %u games on the disk."
+msgstr[0] "%s utilisés sur %s, %s libres. %u jeu sur le disque."
+msgstr[1] "%s utilisés sur %s, %s libres. %u jeux sur le disque."
+
+#: src/ui/connect_page.c:183 src/ui/connect_page.c:309
+msgid "Connect your PS2 drive"
+msgstr "Connectez le disque de votre PS2"
+
+#: src/ui/connect_page.c:185 src/ui/connect_page.c:311
+msgid ""
+"Plug the PS2 hard drive or SSD into this computer, choose it below, and "
+"press Connect. You will be asked for your administrator password once."
+msgstr "Branchez le disque dur ou le SSD de la PS2 à cet ordinateur, choisissez-le ci-dessous et appuyez sur Connecter. Le mot de passe administrateur ne vous sera demandé qu'une fois."
+
+#: src/ui/connect_page.c:207
+msgid "Waiting for the administrator password"
+msgstr "En attente du mot de passe administrateur"
+
+#: src/ui/connect_page.c:207
+msgid "Opening the disk"
+msgstr "Ouverture du disque"
+
+#: src/ui/connect_page.c:239
+msgid "No disk selected"
+msgstr "Aucun disque sélectionné"
+
+#: src/ui/connect_page.c:239
+msgid ""
+"Plug in the PS2 hard drive (or SSD) and press Refresh, or choose a disk "
+"image file."
+msgstr "Branchez le disque dur (ou SSD) de la PS2 et appuyez sur Actualiser, ou choisissez un fichier d'image de disque."
+
+#: src/ui/connect_page.c:244
+msgid "Connecting to the PS2 disk"
+msgstr "Connexion au disque de la PS2"
+
+#: src/ui/connect_page.c:252 src/ui/jobs.c:106
+msgid "Wait for the transfers to finish first"
+msgstr "Attendez la fin des transferts"
+
+#: src/ui/connect_page.c:290
+msgid "Choose a PS2 disk image file"
+msgstr "Choisir un fichier d'image du disque PS2"
+
+#: src/ui/connect_page.c:298
+msgid "Connect"
+msgstr "Connecter"
+
+#: src/ui/connect_page.c:320
+msgid "Not listed?"
+msgstr "Pas dans la liste ?"
+
+#: src/ui/connect_page.c:320
+msgid "Look again, or use a disk image file (for tests and backups)"
+msgstr "Cherchez à nouveau, ou utilisez un fichier d'image de disque (pour les essais et les sauvegardes)"
+
+#: src/ui/connect_page.c:320
+msgid "Refresh"
+msgstr "Actualiser"
+
+#: src/ui/connect_page.c:322
+msgid "Choose image..."
+msgstr "Choisir une image…"
+
+#: src/ui/connect_page.c:341 src/ui/topbar.c:84
+msgid "Read the disk again"
+msgstr "Relire le disque"
+
+#: src/ui/connect_page.c:343
+msgid "Disconnect"
+msgstr "Déconnecter"
+
+#: src/ui/connect_page.c:353
+msgid "Device"
+msgstr "Périphérique"
+
+#: src/ui/connect_page.c:353
+msgid "Capacity"
+msgstr "Capacité"
+
+#: src/ui/connect_page.c:353
+msgid "Space"
+msgstr "Espace"
+
+#: src/ui/connect_page.c:353
+msgid "PS2 games"
+msgstr "Jeux PS2"
+
+#: src/ui/connect_page.c:353
+msgid "PS1 games"
+msgstr "Jeux PS1"
+
+#: src/ui/connect_page.c:353
+msgid "Programs"
+msgstr "Programmes"
+
+#: src/ui/cover_dialog.c:81
+#, c-format
+msgid "%s  (%u of %u)"
+msgstr "%s  (%u sur %u)"
+
+#: src/ui/cover_dialog.c:209
+msgid "That is not a picture"
+msgstr "Ce n'est pas une image"
+
+#: src/ui/cover_dialog.c:209
+msgid "Choose a PNG, JPG or BMP image."
+msgstr "Choisissez une image PNG, JPG ou BMP."
+
+#: src/ui/cover_dialog.c:226
+msgid "Choose a cover picture"
+msgstr "Choisir l'image d'une jaquette"
+
+#: src/ui/cover_dialog.c:271
+msgid "From the web address"
+msgstr "Depuis l'adresse web"
+
+#: src/ui/cover_dialog.c:272
+msgid "No picture there"
+msgstr "Aucune image à cet endroit"
+
+#: src/ui/cover_dialog.c:272
+msgid ""
+"Nothing that looks like a picture could be downloaded from that address."
+msgstr "Rien qui ressemble à une image n'a pu être téléchargé depuis cette adresse."
+
+#: src/ui/cover_dialog.c:329
+msgid "Cannot keep that picture"
+msgstr "Impossible de conserver cette image"
+
+#: src/ui/cover_dialog.c:404
+msgid "Looking for covers online..."
+msgstr "Recherche de jaquettes en ligne…"
+
+#: src/ui/cover_dialog.c:406
+msgid "No cover found online"
+msgstr "Aucune jaquette trouvée en ligne"
+
+#: src/ui/cover_dialog.c:407
+msgid "Add a picture of your own below."
+msgstr "Ajoutez ci-dessous une image de votre choix."
+
+#: src/ui/cover_dialog.c:420
+msgid "Keep the whole picture"
+msgstr "Garder l'image entière"
+
+#: src/ui/cover_dialog.c:421
+msgid ""
+"Off: the picture is cut to the shape of the cover frame. On: it is only made "
+"smaller."
+msgstr "Désactivé : l'image est découpée à la forme du cadre de la jaquette. Activé : elle est seulement réduite."
+
+#: src/ui/cover_dialog.c:424
+msgid "Add a picture from a file"
+msgstr "Ajouter une image depuis un fichier"
+
+#: src/ui/cover_dialog.c:424
+msgid "PNG, JPG or BMP"
+msgstr "PNG, JPG ou BMP"
+
+#: src/ui/cover_dialog.c:428
+msgid "Add a picture from a web address (press Enter)"
+msgstr "Ajouter une image depuis une adresse web (appuyez sur Entrée)"
+
+#: src/ui/cover_dialog.c:433
+msgid "Use this cover"
+msgstr "Utiliser cette jaquette"
+
+#: src/ui/cover_dialog.c:456
+#, c-format
+msgid "Cover: %s"
+msgstr "Jaquette : %s"
+
+#: src/ui/i18n.c:18
+msgid "Automatic (like the system)"
+msgstr "Automatique (comme le système)"
+
+#: src/ui/i18n.c:86
+msgid "The language will change the next time you start the program."
+msgstr "La langue changera au prochain démarrage du programme."
+
+#: src/ui/i18n.c:103 src/ui/settings_page.c:34
+msgid "Language"
+msgstr "Langue"
+
+#: src/ui/i18n.c:104
+msgid "Takes effect the next time you start the program."
+msgstr "Prend effet au prochain démarrage du programme."
+
+#: src/ui/jobs.c:83 src/ui/transfers.c:265
+msgid "That did not work"
+msgstr "Cela n'a pas fonctionné"
+
+#: src/ui/jobs.c:87
+msgid "Done, with a few notes"
+msgstr "Terminé, avec quelques remarques"
+
+#: src/ui/jobs.c:121 src/ui/verify.c:148
+msgid "Starting..."
+msgstr "Démarrage…"
+
+#: src/ui/library_page.c:52
+msgid "Reading the disk"
+msgstr "Lecture du disque"
+
+#: src/ui/library_page.c:77
+msgid "Reading the pictures"
+msgstr "Lecture des images"
+
+#: src/ui/library_page.c:106
+msgid "Reading the PS2 disk"
+msgstr "Lecture du disque de la PS2"
+
+#: src/ui/library_page.c:143
+#, c-format
+msgid ""
+"\"%s\" will be deleted from the PS2 disk. This cannot be undone.\n"
+"Its memory card and saves are kept."
+msgstr "« %s » sera supprimé du disque de la PS2. Cette action est irréversible.\nSa carte mémoire et ses sauvegardes sont conservées."
+
+#: src/ui/library_page.c:146
+msgid "Remove this game?"
+msgstr "Supprimer ce jeu ?"
+
+#: src/ui/library_page.c:400
+msgid "Nothing matches"
+msgstr "Aucun résultat"
+
+#: src/ui/library_page.c:400
+msgid "No games yet"
+msgstr "Aucun jeu pour l'instant"
+
+#: src/ui/library_page.c:401
+msgid "Change the search or the filter."
+msgstr "Modifiez la recherche ou le filtre."
+
+#: src/ui/library_page.c:401
+msgid "Use Add game to install your first one."
+msgstr "Utilisez Ajouter un jeu pour installer le premier."
+
+#: src/ui/library_page.c:411
+msgid "No game ID in the file name"
+msgstr "Aucun ID de jeu dans le nom du fichier"
+
+#: src/ui/library_page.c:413
+msgid "Unknown"
+msgstr "Inconnue"
+
+#: src/ui/library_page.c:414
+msgid "POPStarter image"
+msgstr "Image POPStarter"
+
+#: src/ui/library_page.c:417
+msgid "cheats"
+msgstr "cheats"
+
+#: src/ui/library_page.c:419
+msgid "no cover"
+msgstr "sans jaquette"
+
+#: src/ui/library_page.c:421
+msgid "no background"
+msgstr "sans arrière-plan"
+
+#: src/ui/library_page.c:544 src/ui/library_page.c:575
+msgid "Sharing the memory card"
+msgstr "Partage de la carte mémoire"
+
+#: src/ui/library_page.c:558
+msgid "Share one memory card?"
+msgstr "Partager une seule carte mémoire ?"
+
+#: src/ui/library_page.c:559
+msgid ""
+"All the discs of this game will use the memory card of the first disc, so a "
+"save made on one disc is there on the others.\n"
+"\n"
+"Saves already on the other discs' own cards are not merged: they stay on the "
+"disk, but the game stops using them."
+msgstr "Tous les disques de ce jeu utiliseront la carte mémoire du premier disque : une sauvegarde faite sur un disque sera donc aussi présente sur les autres.\n\nLes sauvegardes déjà présentes sur les cartes mémoire des autres disques ne sont pas fusionnées : elles restent sur le disque, mais le jeu cesse de les utiliser."
+
+#: src/ui/library_page.c:562
+msgid "Share"
+msgstr "Partager"
+
+#: src/ui/library_page.c:688
+#, c-format
+msgid "%u title"
+msgid_plural "%u titles"
+msgstr[0] "%u titre"
+msgstr[1] "%u titres"
+
+#: src/ui/library_page.c:922 src/ui/saves_page.c:268 src/core/ops.c:760
+#: src/core/ops.c:839 src/core/ops.c:1010
+msgid "Done"
+msgstr "Terminé"
+
+#: src/ui/library_page.c:933 src/ui/library_page.c:942
+msgid "Removing the game"
+msgstr "Suppression du jeu"
+
+#: src/ui/library_page.c:960 src/core/ops.c:829 src/core/ops.c:1005
+msgid "Downloading the art"
+msgstr "Téléchargement des images"
+
+#: src/ui/library_page.c:1004
+msgid "Game library"
+msgstr "Bibliothèque de jeux"
+
+#: src/ui/library_page.c:1026
+msgid "Add game"
+msgstr "Ajouter un jeu"
+
+#: src/ui/library_page.c:1037
+msgid "Search games or serial..."
+msgstr "Rechercher un jeu ou un numéro de série…"
+
+#: src/ui/library_page.c:1042
+msgid "All platforms"
+msgstr "Toutes les plateformes"
+
+#: src/ui/library_page.c:1043
+msgid "All games"
+msgstr "Tous les jeux"
+
+#: src/ui/library_page.c:1043
+msgid "With cheats"
+msgstr "Avec cheats"
+
+#: src/ui/library_page.c:1043
+msgid "Missing cover"
+msgstr "Sans jaquette"
+
+#: src/ui/library_page.c:1044
+msgid "Name A-Z"
+msgstr "Nom A-Z"
+
+#: src/ui/library_page.c:1044
+msgid "Name Z-A"
+msgstr "Nom Z-A"
+
+#: src/ui/library_page.c:1044
+msgid "Largest first"
+msgstr "Les plus gros d'abord"
+
+#: src/ui/library_page.c:1044
+msgid "Smallest first"
+msgstr "Les plus petits d'abord"
+
+#: src/ui/library_page.c:1049
+msgid "Covers"
+msgstr "Jaquettes"
+
+#: src/ui/library_page.c:1050
+msgid "List"
+msgstr "Liste"
+
+#: src/ui/library_page.c:1092
+msgid "No game matches the search or the filters."
+msgstr "Aucun jeu ne correspond à la recherche ou aux filtres."
+
+#: src/ui/library_page.c:1130
+msgid "Platform"
+msgstr "Plateforme"
+
+#: src/ui/library_page.c:1131
+msgid "Region"
+msgstr "Région"
+
+#: src/ui/library_page.c:1132
+msgid "Disc"
+msgstr "Disque"
+
+#: src/ui/library_page.c:1133
+msgid "Size"
+msgstr "Taille"
+
+#: src/ui/library_page.c:1134
+msgid "Game settings"
+msgstr "Réglages du jeu"
+
+#: src/ui/library_page.c:1135
+msgid "Pictures..."
+msgstr "Images…"
+
+#: src/ui/library_page.c:1136
+msgid "Cheats..."
+msgstr "Cheats…"
+
+#: src/ui/library_page.c:1137
+msgid "Share memory card"
+msgstr "Partager la carte mémoire"
+
+#: src/ui/library_page.c:1138
+msgid "Make all the discs of this game use one memory card"
+msgstr "Fait utiliser une seule carte mémoire à tous les disques de ce jeu"
+
+#: src/ui/main.c:34
+msgid "Still working"
+msgstr "Toujours en cours"
+
+#: src/ui/main.c:35
+msgid ""
+"An operation is still running. Closing now could leave a game half installed "
+"on the PS2 disk."
+msgstr "Une opération est toujours en cours. Fermer maintenant pourrait laisser un jeu à moitié installé sur le disque de la PS2."
+
+#: src/ui/main.c:37
+msgid "Keep waiting"
+msgstr "Continuer à attendre"
+
+#: src/ui/main.c:37
+msgid "Close anyway"
+msgstr "Fermer quand même"
+
+#: src/ui/settings_dialog.c:11
+msgid "Accurate reads"
+msgstr "Lectures précises"
+
+#: src/ui/settings_dialog.c:11
+msgid "For games that stutter, freeze or show errors while loading data."
+msgstr "Pour les jeux qui saccadent, se figent ou affichent des erreurs pendant le chargement des données."
+
+#: src/ui/settings_dialog.c:12
+msgid "Alternative data read method"
+msgstr "Méthode de lecture des données alternative"
+
+#: src/ui/settings_dialog.c:12
+msgid ""
+"A slower, synchronous way of reading. Fixes some games that fail to load."
+msgstr "Une lecture plus lente et synchrone. Corrige certains jeux qui ne se chargent pas."
+
+#: src/ui/settings_dialog.c:13
+msgid "Unhook syscalls"
+msgstr "Retirer les hooks des syscalls"
+
+#: src/ui/settings_dialog.c:13
+msgid "For games that hang right at the start."
+msgstr "Pour les jeux qui plantent dès le début."
+
+#: src/ui/settings_dialog.c:14
+msgid "Skip videos"
+msgstr "Ignorer les vidéos"
+
+#: src/ui/settings_dialog.c:14
+msgid ""
+"Skips intro and in-game videos. For games that freeze while a video plays."
+msgstr "Ignore les vidéos d'introduction et celles du jeu. Pour les jeux qui se figent pendant une vidéo."
+
+#: src/ui/settings_dialog.c:15
+msgid "Emulate DVD-DL"
+msgstr "Émuler un DVD double couche"
+
+#: src/ui/settings_dialog.c:15
+msgid "For dual-layer games that fail when they read their second layer."
+msgstr "Pour les jeux double couche qui échouent en lisant leur seconde couche."
+
+#: src/ui/settings_dialog.c:16
+msgid "Disable in-game reset"
+msgstr "Désactiver la réinitialisation en jeu"
+
+#: src/ui/settings_dialog.c:16
+msgid ""
+"Turns off the button combination that returns to OPL, for games that use it "
+"themselves."
+msgstr "Désactive la combinaison de boutons qui revient à OPL, pour les jeux qui l'utilisent eux-mêmes."
+
+#: src/ui/settings_dialog.c:61 src/ui/settings_dialog.c:89
+msgid "Saving the settings"
+msgstr "Enregistrement des réglages"
+
+#: src/ui/settings_dialog.c:102
+msgid "Resetting the settings"
+msgstr "Réinitialisation des réglages"
+
+#: src/ui/settings_dialog.c:147
+msgid "Compatibility"
+msgstr "Compatibilité"
+
+#: src/ui/settings_dialog.c:148
+msgid "Try these one at a time when a game does not start or misbehaves."
+msgstr "Essayez-les une par une quand un jeu ne démarre pas ou se comporte mal."
+
+#: src/ui/settings_dialog.c:157
+msgid "Disk speed"
+msgstr "Vitesse du disque"
+
+#: src/ui/settings_dialog.c:159
+#, c-format
+msgid "%s (default)"
+msgstr "%s (par défaut)"
+
+#: src/ui/settings_dialog.c:165
+msgid "Transfer mode (DMA)"
+msgstr "Mode de transfert (DMA)"
+
+#: src/ui/settings_dialog.c:166
+msgid "A slower mode can fix read errors on some games or disks."
+msgstr "Un mode plus lent peut corriger des erreurs de lecture avec certains jeux ou disques."
+
+#: src/ui/settings_dialog.c:173
+msgid "Video"
+msgstr "Vidéo"
+
+#: src/ui/settings_dialog.c:177
+msgid "Force a video mode"
+msgstr "Forcer un mode vidéo"
+
+#: src/ui/settings_dialog.c:178
+msgid ""
+"Makes this game output the mode below (for example a progressive 480p "
+"picture). Not every game or screen likes it."
+msgstr "Fait utiliser à ce jeu le mode ci-dessous (par exemple une image progressive en 480p). Tous les jeux et tous les écrans ne l'apprécient pas."
+
+#: src/ui/settings_dialog.c:181
+msgid "Video mode"
+msgstr "Mode vidéo"
+
+#: src/ui/settings_dialog.c:189
+msgid "Advanced"
+msgstr "Avancé"
+
+#: src/ui/settings_dialog.c:191
+msgid "Alternative startup file"
+msgstr "Fichier de démarrage alternatif"
+
+#: src/ui/settings_dialog.c:194
+msgid ""
+"Only for games that need a different file to start. Leave it empty normally."
+msgstr "Uniquement pour les jeux qui ont besoin d'un autre fichier pour démarrer. Laissez vide en temps normal."
+
+#: src/ui/settings_dialog.c:196
+msgid "Writes the settings to the game's config file on the disk"
+msgstr "Écrit les réglages dans le fichier de configuration du jeu sur le disque"
+
+#: src/ui/settings_dialog.c:200
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: src/ui/settings_dialog.c:200
+msgid "Removes these settings: OPL goes back to its own defaults for this game"
+msgstr "Supprime ces réglages : OPL revient à ses valeurs par défaut pour ce jeu"
+
+#: src/ui/settings_dialog.c:200
+msgid "Reset to defaults"
+msgstr "Rétablir les valeurs par défaut"
+
+#: src/ui/settings_dialog.c:213
+#, c-format
+msgid "Settings: %s"
+msgstr "Réglages : %s"
+
+#: src/ui/settings_dialog.c:228
+msgid "Reading the settings from the disk"
+msgstr "Lecture des réglages depuis le disque"
+
+#: src/ui/settings_dialog.c:240
+msgid "Reading the settings"
+msgstr "Lecture des réglages"
+
+#: src/ui/settings_page.c:22 src/ui/topbar.c:15
+msgid "Settings"
+msgstr "Réglages"
+
+#: src/ui/settings_page.c:22
+msgid "How Memento looks and speaks."
+msgstr "L'apparence et la langue de Memento."
+
+#: src/ui/settings_page.c:37
+msgid "About"
+msgstr "À propos"
+
+#: src/ui/settings_page.c:38
+msgid "Version"
+msgstr "Version"
+
+#: src/ui/settings_page.c:39
+msgid "Colors"
+msgstr "Couleurs"
+
+#: src/ui/settings_page.c:40
+msgid "Headings font"
+msgstr "Police des titres"
+
+#: src/ui/settings_page.c:41
+msgid "Hash lists"
+msgstr "Listes de hachages"
+
+#: src/ui/settings_page.c:41
+msgid ""
+"Redump (redump.org): only the checksums of good dumps are used, to check "
+"images."
+msgstr "Redump (redump.org) : seules les sommes de contrôle des bons dumps sont utilisées, pour vérifier les images."
+
+#: src/ui/settings_page.c:42
+msgid "Disk tools"
+msgstr "Outils de disque"
+
+#: src/ui/topbar.c:10
+msgid "Library"
+msgstr "Bibliothèque"
+
+#: src/ui/topbar.c:11 src/ui/transfers.c:472
+msgid "Transfers"
+msgstr "Transferts"
+
+#: src/ui/topbar.c:12 src/ui/saves_page.c:625
+msgid "Saves"
+msgstr "Sauvegardes"
+
+#: src/ui/topbar.c:14
+msgid "Devices"
+msgstr "Périphériques"
+
+#: src/ui/topbar.c:42 src/ui/topbar.c:166
+msgid "No disk connected"
+msgstr "Aucun disque connecté"
+
+#: src/ui/topbar.c:52
+msgid "PS2 library manager"
+msgstr "Gestionnaire de bibliothèque PS2"
+
+#: src/ui/topbar.c:172
+msgid "Disk ready"
+msgstr "Disque prêt"
+
+#: src/ui/topbar.c:175
+#, c-format
+msgid "%u PS2 · %u PS1 · %u programs"
+msgstr "%u PS2 · %u PS1 · %u programmes"
+
+#: src/ui/topbar.c:178
+#, c-format
+msgid "Last read: %s"
+msgstr "Dernière lecture : %s"
+
+#: src/ui/transfers.c:87
+#, c-format
+msgid "Installing %s: %d%% (+%u waiting)"
+msgstr "Installation de %s : %d%% (+%u en attente)"
+
+#: src/ui/transfers.c:87
+#, c-format
+msgid "Installing %s: %d%%"
+msgstr "Installation de %s : %d%%"
+
+#: src/ui/transfers.c:92
+#, c-format
+msgid "%u waiting"
+msgstr "%u en attente"
+
+#: src/ui/transfers.c:100 src/core/ops.c:797 src/core/ops.c:884
+msgid "Checking the disk"
+msgstr "Vérification du disque"
+
+#: src/ui/transfers.c:100 src/core/ziso.c:309
+msgid "Unpacking"
+msgstr "Décompression"
+
+#: src/ui/transfers.c:100 src/core/ziso.c:632
+msgid "Compressing"
+msgstr "Compression"
+
+#: src/ui/transfers.c:101 src/core/ziso.c:757
+msgid "Preparing"
+msgstr "Préparation"
+
+#: src/ui/transfers.c:101 src/core/vcd.c:361
+msgid "Writing VCD"
+msgstr "Écriture du VCD"
+
+#: src/ui/transfers.c:165
+#, c-format
+msgid "%u game installed."
+msgid_plural "%u games installed."
+msgstr[0] "%u jeu installé."
+msgstr[1] "%u jeux installés."
+
+#: src/ui/transfers.c:167
+#, c-format
+msgid "%u installed, %u did not work."
+msgstr "%u installés, %u ont échoué."
+
+#: src/ui/transfers.c:168
+msgid "Transfers finished"
+msgstr "Transferts terminés"
+
+#: src/ui/transfers.c:253
+msgid "Cancelling..."
+msgstr "Annulation..."
+
+#: src/ui/transfers.c:269
+msgid "A few notes"
+msgstr "Quelques remarques"
+
+#: src/ui/transfers.c:329
+msgid "Details"
+msgstr "Détails"
+
+#: src/ui/transfers.c:373
+msgid "Waiting in the queue"
+msgstr "En file d'attente"
+
+#: src/ui/transfers.c:376
+#, c-format
+msgid "Done at %s, with a few notes"
+msgstr "Terminé à %s, avec quelques remarques"
+
+#: src/ui/transfers.c:376
+#, c-format
+msgid "Done at %s"
+msgstr "Terminé à %s"
+
+#: src/ui/transfers.c:379 src/core/redump.c:272 src/core/tools.c:402
+#: src/core/vcd.c:364 src/core/ziso.c:310 src/core/ziso.c:633
+#: src/core/ziso.c:758
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: src/ui/transfers.c:382
+#, c-format
+msgid "Did not work: %s"
+msgstr "Échec : %s"
+
+#: src/ui/transfers.c:393
+#, c-format
+msgid "%u active"
+msgstr "%u actifs"
+
+#: src/ui/transfers.c:394
+#, c-format
+msgid "%u finished"
+msgstr "%u terminés"
+
+#: src/ui/transfers.c:474
+msgid "In the background"
+msgstr "En arrière-plan"
+
+#: src/ui/transfers.c:489
+msgid "Clear finished"
+msgstr "Effacer les terminés"
+
+#: src/ui/transfers.c:516
+msgid "No transfers yet"
+msgstr "Aucun transfert pour l'instant"
+
+#: src/ui/transfers.c:516
+msgid ""
+"Games you install show their progress here. You can keep using Memento "
+"meanwhile."
+msgstr "Les jeux que vous installez affichent ici leur progression. Vous pouvez continuer à utiliser Memento pendant ce temps."
+
+#: src/ui/verify.c:44
+#, c-format
+msgid "Checking file %d of %d: %d%%"
+msgstr "Vérification du fichier %d sur %d : %d%%"
+
+#: src/ui/verify.c:45
+#, c-format
+msgid "Checking the image: %d%%"
+msgstr "Vérification de l'image : %d%%"
+
+#: src/ui/verify.c:81
+#, c-format
+msgid "Could not download the Redump list: %s"
+msgstr "Impossible de télécharger la liste Redump : %s"
+
+#: src/ui/verify.c:105
+#, c-format
+msgid "Good dump, all %u files match: %s"
+msgstr "Bon dump, les %u fichiers correspondent : %s"
+
+#: src/ui/verify.c:105
+#, c-format
+msgid "Good dump: %s"
+msgstr "Bon dump : %s"
+
+#: src/ui/verify.c:107
+#, c-format
+msgid ""
+"Only %u of %u files match the Redump list (%s). The others are another dump "
+"or damaged."
+msgstr "Seulement %u fichiers sur %u correspondent à la liste Redump (%s). Les autres sont un autre dump ou sont endommagés."
+
+#: src/ui/verify.c:109
+msgid ""
+"Not in the Redump list. It may be another version of the game, a modified "
+"image, a damaged one, or a game Redump does not have."
+msgstr "Absent de la liste Redump. Ce peut être une autre version du jeu, une image modifiée ou endommagée, ou un jeu que Redump n'a pas."
+
+#: src/ui/verify.c:163
+msgid "Check the image"
+msgstr "Vérifier l'image"
+
+#: src/ui/verify.c:165 src/ui/verify.c:182
+msgid "Compares it with the Redump list of good dumps"
+msgstr "La compare à la liste Redump des bons dumps"
+
+#: src/ui/verify.c:205
+msgid "Not downloaded yet"
+msgstr "Pas encore téléchargée"
+
+#: src/ui/verify.c:230
+msgid "The Redump list could not be downloaded"
+msgstr "La liste Redump n'a pas pu être téléchargée"
+
+#: src/ui/verify.c:232
+msgid "Redump list updated"
+msgstr "Liste Redump mise à jour"
+
+#: src/ui/verify.c:249
+msgid "Downloading..."
+msgstr "Téléchargement..."
+
+#: src/ui/verify.c:258
+msgid "Download or update"
+msgstr "Télécharger ou mettre à jour"
+
+#: src/ui/verify.c:272
+msgid "Redump lists"
+msgstr "Listes Redump"
+
+#: src/ui/verify.c:274
+msgid ""
+"Hashes of good disc dumps from redump.org, used to check an image before "
+"installing it. Downloaded once, then used offline."
+msgstr "Hachages de bons dumps de redump.org, utilisés pour vérifier une image avant de l'installer. Téléchargés une fois, puis utilisés hors ligne."
+
+#: src/ui/saves_page.c:43
+msgid "The card file could not be read or written"
+msgstr "Le fichier de la carte n'a pas pu être lu ou écrit"
+
+#: src/ui/saves_page.c:44
+msgid "That is not a PS2 memory card image"
+msgstr "Ce n'est pas une image de carte mémoire PS2"
+
+#: src/ui/saves_page.c:45
+msgid ""
+"That card image has ECC data; only raw images (like the ones OPL makes) are "
+"supported"
+msgstr "Cette carte contient des données ECC ; seules les images brutes (comme celles créées par OPL) sont prises en charge"
+
+#: src/ui/saves_page.c:46
+msgid "The save is not on the card"
+msgstr "La sauvegarde n'est pas sur la carte"
+
+#: src/ui/saves_page.c:47
+msgid "A save with that name is already on the card"
+msgstr "Une sauvegarde portant ce nom est déjà sur la carte"
+
+#: src/ui/saves_page.c:48
+msgid "There is not enough room on the card"
+msgstr "Il n'y a pas assez de place sur la carte"
+
+#: src/ui/saves_page.c:49
+msgid "That is not a usable .psu save file"
+msgstr "Ce n'est pas un fichier de sauvegarde .psu utilisable"
+
+#: src/ui/saves_page.c:50
+msgid "The card is read only"
+msgstr "La carte est en lecture seule"
+
+#: src/ui/saves_page.c:51
+msgid "The card could not be changed"
+msgstr "La carte n'a pas pu être modifiée"
+
+#: src/ui/saves_page.c:139
+#, c-format
+msgid "%s card · %s free · %u save"
+msgid_plural "%s card · %s free · %u saves"
+msgstr[0] "Carte de %s · %s libres · %u sauvegarde"
+msgstr[1] "Carte de %s · %s libres · %u sauvegardes"
+
+#: src/ui/saves_page.c:149
+#, c-format
+msgid "%s · %u KB · %u file"
+msgid_plural "%s · %u KB · %u files"
+msgstr[0] "%s · %u Ko · %u fichier"
+msgstr[1] "%s · %u Ko · %u fichiers"
+
+#: src/ui/saves_page.c:154
+msgid "Export as .psu"
+msgstr "Exporter en .psu"
+
+#: src/ui/saves_page.c:155
+msgid "Delete from the card"
+msgstr "Supprimer de la carte"
+
+#: src/ui/saves_page.c:280
+msgid "Importing saves"
+msgstr "Importation des sauvegardes"
+
+#: src/ui/saves_page.c:280
+msgid "Deleting the save"
+msgstr "Suppression de la sauvegarde"
+
+#: src/ui/saves_page.c:330
+msgid "Choose the saves to put on the card (.psu)"
+msgstr "Choisissez les sauvegardes à mettre sur la carte (.psu)"
+
+#: src/ui/saves_page.c:331
+msgid "PS2 saves (.psu)"
+msgstr "Sauvegardes PS2 (.psu)"
+
+#: src/ui/saves_page.c:367
+#, c-format
+msgid "%s will be removed from the card. A backup of the card is kept first."
+msgstr "%s sera retiré de la carte. Une copie de secours de la carte est conservée d'abord."
+
+#: src/ui/saves_page.c:368
+msgid "Delete this save?"
+msgstr "Supprimer cette sauvegarde ?"
+
+#: src/ui/saves_page.c:369
+msgid "Delete"
+msgstr "Supprimer"
+
+#: src/ui/saves_page.c:398
+msgid "Save exported"
+msgstr "Sauvegarde exportée"
+
+#: src/ui/saves_page.c:400
+msgid "The save could not be exported"
+msgstr "La sauvegarde n'a pas pu être exportée"
+
+#: src/ui/saves_page.c:415
+msgid "Export the save"
+msgstr "Exporter la sauvegarde"
+
+#: src/ui/saves_page.c:432
+msgid "Card copied"
+msgstr "Carte copiée"
+
+#: src/ui/saves_page.c:434
+msgid "The card could not be copied"
+msgstr "La carte n'a pas pu être copiée"
+
+#: src/ui/saves_page.c:450
+msgid "Save a copy of the card"
+msgstr "Enregistrer une copie de la carte"
+
+#: src/ui/saves_page.c:530
+msgid "Reading the memory card"
+msgstr "Lecture de la carte mémoire"
+
+#: src/ui/saves_page.c:575
+msgid "Choose a memory card file"
+msgstr "Choisissez un fichier de carte mémoire"
+
+#: src/ui/saves_page.c:576
+msgid "Memory cards (.bin)"
+msgstr "Cartes mémoire (.bin)"
+
+#: src/ui/saves_page.c:594
+msgid "Choose a card on the disk..."
+msgstr "Choisissez une carte du disque..."
+
+#: src/ui/saves_page.c:594 src/ui/saves_page.c:644
+msgid "No cards on the disk"
+msgstr "Aucune carte sur le disque"
+
+#: src/ui/saves_page.c:625
+msgid "Game saves on your virtual memory cards."
+msgstr "Les sauvegardes de jeu de vos cartes mémoire virtuelles."
+
+#: src/ui/saves_page.c:627
+msgid "Open a card file..."
+msgstr "Ouvrir un fichier de carte..."
+
+#: src/ui/saves_page.c:628
+msgid "Memory cards"
+msgstr "Cartes mémoire"
+
+#: src/ui/saves_page.c:642
+msgid "Card"
+msgstr "Carte"
+
+#: src/ui/saves_page.c:650
+msgid "Another card file"
+msgstr "Un autre fichier de carte"
+
+#: src/ui/saves_page.c:651
+msgid "For example a card on a USB stick connected to this computer"
+msgstr "Par exemple une carte sur une clé USB branchée à cet ordinateur"
+
+#: src/ui/saves_page.c:663
+msgid "Import saves..."
+msgstr "Importer des sauvegardes..."
+
+#: src/ui/saves_page.c:667
+msgid "Save a copy of the card..."
+msgstr "Enregistrer une copie de la carte..."
+
+#: src/ui/saves_page.c:671
+msgid "Backups"
+msgstr "Copies de secours"
+
+#: src/ui/saves_page.c:672
+msgid "Before every change a copy of the card is kept here (the last five)"
+msgstr "Avant chaque modification, une copie de la carte est gardée ici (les cinq dernières)"
+
+#: src/ui/saves_page.c:685
+msgid "This card has no saves yet."
+msgstr "Cette carte n'a pas encore de sauvegardes."
+
+#: src/core/redump.c:122 src/core/redump.c:175
+msgid "That is not a usable Redump list"
+msgstr "Ce n'est pas une liste Redump utilisable"
+
+#: src/core/redump.c:184
+msgid "Could not save the Redump list"
+msgstr "Impossible d'enregistrer la liste Redump"
+
+#: src/core/redump.c:244
+#, c-format
+msgid "%u images, downloaded %s"
+msgstr "%u images, téléchargée le %s"
+
+#: src/core/redump.c:264 src/core/redump.c:277 src/core/ziso.c:592
+#: src/core/ziso.c:814
+#, c-format
+msgid "Cannot read %s"
+msgstr "Impossible de lire %s"
+
+#: src/core/redump.c:271
+msgid "Checking the image"
+msgstr "Vérification de l'image"
+
+#: src/core/art.c:65
+#, c-format
+msgid "Download failed (%s): %s"
+msgstr "Échec du téléchargement (%s) : %s"
+
+#: src/core/art.c:187
+msgid "Back cover"
+msgstr "Jaquette arrière"
+
+#: src/core/art.c:188
+msgid "Background"
+msgstr "Arrière-plan"
+
+#: src/core/art.c:189
+msgid "Logo"
+msgstr "Logo"
+
+#: src/core/art.c:190
+msgid "Disc icon"
+msgstr "Icône du disque"
+
+#: src/core/art.c:191
+msgid "Screenshot 1"
+msgstr "Capture d'écran 1"
+
+#: src/core/art.c:192
+msgid "Screenshot 2"
+msgstr "Capture d'écran 2"
+
+#: src/core/art.c:223 src/core/art.c:337
+#, c-format
+msgid "Unknown kind of picture: %s"
+msgstr "Type d'image inconnu : %s"
+
+#: src/core/art.c:230
+msgid "That is not a picture I can read (use PNG, JPG or BMP)"
+msgstr "Ce n'est pas une image que je peux lire (utilisez PNG, JPG ou BMP)"
+
+#: src/core/art.c:253
+msgid "That picture is too small"
+msgstr "Cette image est trop petite"
+
+#: src/core/art.c:295
+msgid "That file is too big for a picture"
+msgstr "Ce fichier est trop gros pour une image"
+
+#: src/core/art.c:311
+msgid "The address must start with http:// or https://"
+msgstr "L'adresse doit commencer par http:// ou https://"
+
+#: src/core/art.c:317
+msgid "Nothing to download at that address"
+msgstr "Rien à télécharger à cette adresse"
+
+#: src/core/art.c:364
+#, c-format
+msgid "No %s picture was found online for %s"
+msgstr "Aucune image « %s » trouvée en ligne pour %s"
+
+#: src/core/art.c:420
+msgid "Flat cover"
+msgstr "Jaquette plate"
+
+#: src/core/art.c:423
+msgid "3D box art"
+msgstr "Boîtier 3D"
+
+#: src/core/art.c:428
+msgid "OPL Manager archive"
+msgstr "Archive d'OPL Manager"
+
+#: src/core/backend.c:51 src/core/backend.c:124
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: src/core/backend.c:62
+#, c-format
+msgid ""
+"The disk helper did not start%s%s.\n"
+"\n"
+"If no password window appeared, this desktop session has no polkit "
+"authentication agent. Alternative: give your user access to the disk once "
+"with\n"
+"    sudo setfacl -m u:%s:rw %s\n"
+"and press Connect again (no password is needed after that)."
+msgstr "L'assistant du disque ne s'est pas lancé%s%s.\n\nSi aucune fenêtre de mot de passe n'est apparue, cette session de bureau n'a pas d'agent d'authentification polkit. Solution : donnez une fois à votre utilisateur l'accès au disque avec\n    sudo setfacl -m u:%s:rw %s\net appuyez à nouveau sur Connecter (plus aucun mot de passe ne sera demandé ensuite)."
+
+#: src/core/backend.c:67
+#, c-format
+msgid "The disk helper did not start%s%s"
+msgstr "L'assistant du disque ne s'est pas lancé%s%s"
+
+#: src/core/backend.c:115
+msgid "The disk helper stopped unexpectedly"
+msgstr "L'assistant du disque s'est arrêté de façon inattendue"
+
+#: src/core/backend.c:323 src/core/backend.c:340
+#, c-format
+msgid "%s/%s is not on the disk"
+msgstr "%s/%s n'est pas sur le disque"
+
+#: src/core/cheats.c:34
+#, c-format
+msgid "That cheat list is too big (%u KB, the limit is %u KB)"
+msgstr "Cette liste de cheats est trop grande (%u Ko, la limite est de %u Ko)"
+
+#: src/core/cheats.c:47
+#, c-format
+msgid "Line %d is too long (OPL reads at most %d characters per line)"
+msgstr "La ligne %d est trop longue (OPL lit au maximum %d caractères par ligne)"
+
+#: src/core/cheats.c:76
+#, c-format
+msgid "The cheat name on line %d is too long (at most %d characters)"
+msgstr "Le nom du cheat à la ligne %d est trop long (%d caractères au maximum)"
+
+#: src/core/cheats.c:91
+msgid ""
+"No cheat found. Each cheat is a line with its name followed by lines of "
+"codes like 10B8DAFA 00003F00 (codes before the first name are ignored)"
+msgstr "Aucun cheat trouvé. Chaque cheat est une ligne avec son nom suivie de lignes de codes comme 10B8DAFA 00003F00 (les codes avant le premier nom sont ignorés)"
+
+#: src/core/cheats.c:92
+msgid ""
+"No cheat found. Each cheat is a line with its name followed by lines of "
+"codes like 10B8DAFA 00003F00"
+msgstr "Aucun cheat trouvé. Chaque cheat est une ligne avec son nom suivie de lignes de codes comme 10B8DAFA 00003F00"
+
+#: src/core/cheats.c:96
+#, c-format
+msgid "Too many cheats (%u): OPL reads at most %d per game"
+msgstr "Trop de cheats (%u) : OPL en lit au maximum %d par jeu"
+
+#: src/core/gamecfg.c:160
+msgid "The alternative startup file has characters that are not allowed"
+msgstr "Le fichier de démarrage alternatif contient des caractères non autorisés"
+
+#: src/core/ops.c:101
+#, c-format
+msgid "Cannot create %s"
+msgstr "Impossible de créer %s"
+
+#: src/core/ops.c:107
+#, c-format
+msgid "Cannot create a work folder in %s"
+msgstr "Impossible de créer un dossier de travail dans %s"
+
+#: src/core/ops.c:186
+#, c-format
+msgid "Art for %s could not be downloaded: %s"
+msgstr "Les images de %s n'ont pas pu être téléchargées : %s"
+
+#: src/core/ops.c:196
+#, c-format
+msgid "No art was found for %s"
+msgstr "Aucune image trouvée pour %s"
+
+#: src/core/ops.c:198
+#, c-format
+msgid ""
+"Art for %s was not copied: not enough free space on the +OPL partition (%lu "
+"MB free, %lu MB needed)"
+msgstr "Les images de %s n'ont pas été copiées : pas assez d'espace libre sur la partition +OPL (%lu Mo libres, %lu Mo nécessaires)"
+
+#: src/core/ops.c:201
+#, c-format
+msgid "Art for %s could not be copied: %s"
+msgstr "Les images de %s n'ont pas pu être copiées : %s"
+
+#: src/core/ops.c:218
+#, c-format
+msgid "The info file for %s could not be copied: %s"
+msgstr "Le fichier d'informations de %s n'a pas pu être copié : %s"
+
+#: src/core/ops.c:263
+msgid "A shared memory card needs 2 to 4 discs"
+msgstr "Une carte mémoire partagée nécessite de 2 à 4 disques"
+
+#: src/core/ops.c:268
+msgid "Bad disc name"
+msgstr "Nom de disque non valide"
+
+#: src/core/ops.c:274
+msgid "The name of the first disc is too long for POPStarter's VMCDIR.TXT"
+msgstr "Le nom du premier disque est trop long pour le VMCDIR.TXT de POPStarter"
+
+#: src/core/ops.c:350 src/core/ops.c:367 src/core/ops.c:387 src/core/ops.c:520
+#: src/core/ops.c:570
+msgid "Bad game ID"
+msgstr "ID de jeu non valide"
+
+#: src/core/ops.c:424 src/core/ops.c:449
+msgid "Bad memory card name"
+msgstr "Nom de carte mémoire non valide"
+
+#: src/core/ops.c:459
+#, c-format
+msgid "The card %s is not on the disk any more"
+msgstr "La carte %s n'est plus sur le disque"
+
+#: src/core/ops.c:481
+msgid ""
+"The card was not copied completely to the disk; the old card was not touched"
+msgstr "La carte n'a pas été copiée entièrement sur le disque ; l'ancienne carte n'a pas été touchée"
+
+#: src/core/ops.c:488
+#, c-format
+msgid "The new card is on the disk as %s but could not take the place of %s"
+msgstr "La nouvelle carte est sur le disque sous le nom %s mais n'a pas pu prendre la place de %s"
+
+#: src/core/ops.c:661
+msgid "Bad characters in the name of the program"
+msgstr "Caractères non valides dans le nom du programme"
+
+#: src/core/ops.c:687
+#, c-format
+msgid "The old %s could not be put back and is saved as %s"
+msgstr "L'ancien %s n'a pas pu être remis en place et est enregistré sous le nom %s"
+
+#: src/core/ops.c:691
+#, c-format
+msgid "The old version was kept as %s"
+msgstr "L'ancienne version a été conservée sous le nom %s"
+
+#: src/core/ops.c:701
+msgid "Only programs (.elf) can be removed here"
+msgstr "Seuls les programmes (.elf) peuvent être supprimés ici"
+
+#: src/core/ops.c:710
+msgid "The new name must end in .elf and have no special characters"
+msgstr "Le nouveau nom doit se terminer par .elf et ne pas contenir de caractères spéciaux"
+
+#: src/core/ops.c:725
+msgid "Bad game ID or kind of picture"
+msgstr "ID de jeu ou type d'image non valide"
+
+#: src/core/ops.c:737
+msgid "Preparing the picture"
+msgstr "Préparation de l'image"
+
+#: src/core/ops.c:737
+msgid "Downloading the picture"
+msgstr "Téléchargement de l'image"
+
+#: src/core/ops.c:748
+#, c-format
+msgid ""
+"Not enough free space on the +OPL partition for this picture (%lu MB free)"
+msgstr "Pas assez d'espace libre sur la partition +OPL pour cette image (%lu Mo libres)"
+
+#: src/core/ops.c:752
+msgid "Copying to the PS2 disk"
+msgstr "Copie sur le disque de la PS2"
+
+#: src/core/ops.c:783 src/core/ops.c:822 src/core/tools.c:400
+msgid "Installing to the PS2 disk"
+msgstr "Installation sur le disque de la PS2"
+
+#: src/core/ops.c:802 src/core/ops.c:881
+msgid "The game needs a title"
+msgstr "Le jeu a besoin d'un titre"
+
+#: src/core/ops.c:809
+#, c-format
+msgid "%s (%s) is already installed"
+msgstr "%s (%s) est déjà installé"
+
+#: src/core/ops.c:814
+#, c-format
+msgid "Not enough free space on the PS2 disk (%lu MB free, %lu MB needed)"
+msgstr "Pas assez d'espace libre sur le disque de la PS2 (%lu Mo libres, %lu Mo nécessaires)"
+
+#: src/core/ops.c:877
+msgid "A game can have 1 to 4 discs"
+msgstr "Un jeu peut avoir de 1 à 4 disques"
+
+#: src/core/ops.c:895
+msgid "The title is too long (POPStarter limits the file name)"
+msgstr "Le titre est trop long (POPStarter limite le nom du fichier)"
+
+#: src/core/ops.c:901
+#, c-format
+msgid "%s is already installed"
+msgstr "%s est déjà installé"
+
+#: src/core/ops.c:909
+msgid "Cannot read the disc images"
+msgstr "Impossible de lire les images de disque"
+
+#: src/core/ops.c:914
+#, c-format
+msgid ""
+"Not enough free space in the PS1 partition (__.POPS): %lu MB free, %lu MB "
+"needed"
+msgstr "Pas assez d'espace libre dans la partition PS1 (__.POPS) : %lu Mo libres, %lu Mo nécessaires"
+
+#: src/core/ops.c:933
+msgid "Copying to the PS2 disk (this takes a few minutes)"
+msgstr "Copie sur le disque de la PS2 (cela prend quelques minutes)"
+
+#: src/core/tools.c:23
+#, c-format
+msgid "%s cannot be found"
+msgstr "%s est introuvable"
+
+#: src/core/tools.c:33
+#, c-format
+msgid "%s is not owned by root or can be changed by other users"
+msgstr "%s n'appartient pas à root ou peut être modifié par d'autres utilisateurs"
+
+#: src/core/tools.c:66
+#, c-format
+msgid "hdl_dump and pfsshell were not found in %s"
+msgstr "hdl_dump et pfsshell sont introuvables dans %s"
+
+#: src/core/tools.c:227
+msgid "Bad device name"
+msgstr "Nom de périphérique non valide"
+
+#: src/core/tools.c:231
+#, c-format
+msgid "hdl_dump failed (%d): %s"
+msgstr "hdl_dump a échoué (%d) : %s"
+
+#: src/core/tools.c:287
+msgid "Cannot read the disk size from hdl_dump"
+msgstr "Impossible de lire la taille du disque avec hdl_dump"
+
+#: src/core/tools.c:331 src/core/ziso.c:342
+#, c-format
+msgid "Not a PlayStation 2 disc image: %s"
+msgstr "Ce n'est pas une image de disque PlayStation 2 : %s"
+
+#: src/core/tools.c:358
+msgid "Bad characters in the title or path"
+msgstr "Caractères non valides dans le titre ou le chemin"
+
+#: src/core/tools.c:414
+#, c-format
+msgid "hdl_dump failed: %s"
+msgstr "hdl_dump a échoué : %s"
+
+#: src/core/tools.c:439
+msgid "hdl_dump toc failed"
+msgstr "hdl_dump toc a échoué"
+
+#: src/core/tools.c:494
+#, c-format
+msgid "Partition %s not found"
+msgstr "Partition %s introuvable"
+
+#: src/core/tools.c:515
+msgid "Bad characters in the game name"
+msgstr "Caractères non valides dans le nom du jeu"
+
+#: src/core/tools.c:545
+#, c-format
+msgid "No installed game matches %s \"%s\""
+msgstr "Aucun jeu installé ne correspond à %s « %s »"
+
+#: src/core/tools.c:545
+#, c-format
+msgid "Several installed games match %s \"%s\"; nothing was deleted"
+msgstr "Plusieurs jeux installés correspondent à %s « %s » ; rien n'a été supprimé"
+
+#: src/core/tools.c:571
+#, c-format
+msgid "The partition %s could not be removed"
+msgstr "La partition %s n'a pas pu être supprimée"
+
+#: src/core/tools.c:632
+msgid "Bad device or partition name"
+msgstr "Nom de périphérique ou de partition non valide"
+
+#: src/core/tools.c:702 src/core/tools.c:727 src/core/tools.c:820
+msgid "Bad folder name"
+msgstr "Nom de dossier non valide"
+
+#: src/core/tools.c:710 src/core/tools.c:835 src/core/tools.c:926
+#: src/core/tools.c:1009
+#, c-format
+msgid "Folder %s/%s does not exist"
+msgstr "Le dossier %s/%s n'existe pas"
+
+#: src/core/tools.c:737
+#, c-format
+msgid "Cannot use file %s"
+msgstr "Impossible d'utiliser le fichier %s"
+
+#: src/core/tools.c:753
+#, c-format
+msgid "Cannot create or enter %s/%s"
+msgstr "Impossible de créer ou d'ouvrir %s/%s"
+
+#: src/core/tools.c:793
+#, c-format
+msgid ""
+"%s was not written completely to %s (disk full?). The files of this copy "
+"were removed again."
+msgstr "%s n'a pas été entièrement écrit sur %s (disque plein ?). Les fichiers de cette copie ont été supprimés."
+
+#: src/core/tools.c:825 src/core/tools.c:910 src/core/tools.c:1001
+msgid "Bad file name"
+msgstr "Nom de fichier non valide"
+
+#: src/core/tools.c:893
+#, c-format
+msgid "Cannot read the free space of %s"
+msgstr "Impossible de lire l'espace libre de %s"
+
+#: src/core/tools.c:918
+#, c-format
+msgid "A file named %s is already there"
+msgstr "Un fichier nommé %s existe déjà"
+
+#: src/core/tools.c:942
+#, c-format
+msgid "Could not rename %s"
+msgstr "Impossible de renommer %s"
+
+#: src/core/tools.c:973 src/core/vcd.c:341 src/core/ziso.c:144
+#: src/core/ziso.c:185 src/core/ziso.c:535 src/core/ziso.c:731
+#: src/core/ziso.c:798
+#, c-format
+msgid "Cannot open %s: %s"
+msgstr "Impossible d'ouvrir %s : %s"
+
+#: src/core/tools.c:981
+msgid "That is not a PS2 program (a PS2 .ELF file)"
+msgstr "Ce n'est pas un programme PS2 (un fichier .ELF pour PS2)"
+
+#: src/core/tools.c:985
+msgid "That file is too big to be a PS2 program"
+msgstr "Ce fichier est trop gros pour être un programme PS2"
+
+#: src/core/tools.c:1019
+#, c-format
+msgid "Could not remove %s"
+msgstr "Impossible de supprimer %s"
+
+#: src/core/vcd.c:142
+#, c-format
+msgid "Invalid FILE line: %s"
+msgstr "Ligne FILE non valide : %s"
+
+#: src/core/vcd.c:158
+#, c-format
+msgid "Invalid TRACK line: %s"
+msgstr "Ligne TRACK non valide : %s"
+
+#: src/core/vcd.c:164
+#, c-format
+msgid "Unknown track type: %s"
+msgstr "Type de piste inconnu : %s"
+
+#: src/core/vcd.c:175
+#, c-format
+msgid "Invalid INDEX line: %s"
+msgstr "Ligne INDEX non valide : %s"
+
+#: src/core/vcd.c:187
+msgid "The CUE file has no FILE entries"
+msgstr "Le fichier CUE ne contient aucune entrée FILE"
+
+#: src/core/vcd.c:195
+msgid "First track INDEX 01 must be 00:00:00"
+msgstr "L'INDEX 01 de la première piste doit être 00:00:00"
+
+#: src/core/vcd.c:200
+msgid "The first track must be MODE2/2352 (a raw PS1 disc image)"
+msgstr "La première piste doit être MODE2/2352 (une image brute de disque PS1)"
+
+#: src/core/vcd.c:209
+#, c-format
+msgid "FILE %s has no TRACK"
+msgstr "FILE %s n'a aucun TRACK"
+
+#: src/core/vcd.c:213
+#, c-format
+msgid "Cannot find %s"
+msgstr "%s est introuvable"
+
+#: src/core/vcd.c:346
+#, c-format
+msgid "Cannot seek in %s"
+msgstr "Impossible de se déplacer dans %s"
+
+#: src/core/vcd.c:356 src/core/vcd.c:432 src/core/vcd.c:462 src/core/ziso.c:303
+#: src/core/ziso.c:316 src/core/ziso.c:322 src/core/ziso.c:569
+#: src/core/ziso.c:626 src/core/ziso.c:693 src/core/ziso.c:702
+#: src/core/ziso.c:751 src/core/ziso.c:768 src/core/ziso.c:774
+#: src/core/ziso.c:777
+msgid "Write failed (disk full?)"
+msgstr "Échec de l'écriture (disque plein ?)"
+
+#: src/core/vcd.c:425 src/core/ziso.c:294 src/core/ziso.c:561
+#: src/core/ziso.c:746
+#, c-format
+msgid "Cannot create %s: %s"
+msgstr "Impossible de créer %s : %s"
+
+#: src/core/vcd.c:467
+#, c-format
+msgid "Cannot rename %s: %s"
+msgstr "Impossible de renommer %s : %s"
+
+#: src/core/ziso.c:110
+msgid "Not a ZSO file"
+msgstr "Ce n'est pas un fichier ZSO"
+
+#: src/core/ziso.c:120
+msgid "This ZSO file has a header I do not understand"
+msgstr "Ce fichier ZSO a un en-tête que je ne comprends pas"
+
+#: src/core/ziso.c:125
+msgid "This ZSO file is incomplete or damaged"
+msgstr "Ce fichier ZSO est incomplet ou endommagé"
+
+#: src/core/ziso.c:154
+msgid "This ZSO file is damaged"
+msgstr "Ce fichier ZSO est endommagé"
+
+#: src/core/ziso.c:199 src/core/ziso.c:386 src/core/ziso.c:561
+msgid "Not enough memory"
+msgstr "Mémoire insuffisante"
+
+#: src/core/ziso.c:285
+#, c-format
+msgid ""
+"Not enough free space on this computer to unpack the game (%lu MB needed, "
+"%lu MB free)"
+msgstr "Pas assez d'espace libre sur cet ordinateur pour décompresser le jeu (%lu Mo nécessaires, %lu Mo libres)"
+
+#: src/core/ziso.c:363
+msgid "no ISO 9660 disc inside"
+msgstr "aucun disque ISO 9660 à l'intérieur"
+
+#: src/core/ziso.c:380
+msgid "no root folder"
+msgstr "pas de dossier racine"
+
+#: src/core/ziso.c:408
+msgid "no SYSTEM.CNF"
+msgstr "pas de SYSTEM.CNF"
+
+#: src/core/ziso.c:426
+msgid "no BOOT2 line in SYSTEM.CNF"
+msgstr "pas de ligne BOOT2 dans SYSTEM.CNF"
+
+#: src/core/ziso.c:539 src/core/ziso.c:802
+msgid "That is not a disc image made of whole 2048-byte sectors"
+msgstr "Ce n'est pas une image de disque composée de secteurs entiers de 2048 octets"
+
+#: src/core/ziso.c:544
+msgid "That disc image is too big for the ZSO format"
+msgstr "Cette image de disque est trop grande pour le format ZSO"
+
+#: src/core/ziso.c:550
+#, c-format
+msgid ""
+"Not enough free space on this computer to compress the game (%lu MB needed, "
+"%lu MB free)"
+msgstr "Pas assez d'espace libre sur cet ordinateur pour compresser le jeu (%lu Mo nécessaires, %lu Mo libres)"
+
+#: src/core/ziso.c:738
+#, c-format
+msgid ""
+"Not enough free space on this computer to prepare the game (%lu MB needed, "
+"%lu MB free)"
+msgstr "Pas assez d'espace libre sur cet ordinateur pour préparer le jeu (%lu Mo nécessaires, %lu Mo libres)"

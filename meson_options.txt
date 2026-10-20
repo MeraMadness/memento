@@ -1,0 +1,6 @@
+option('polkit_policy', type: 'feature', value: 'auto',
+  description: 'Install the polkit rule that names Memento in the password window (auto: only when the prefix is under /usr)')
+option('stdbuf', type: 'string', value: '',
+  description: 'Full path of stdbuf (coreutils), for systems where it is not in /usr/bin (NixOS)')
+option('tools_dir', type: 'string', value: '',
+  description: 'Folder with the built hdl_dump and pfsshell programs to install (default: tools/bin of this source tree)')

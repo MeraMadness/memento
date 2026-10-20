@@ -1,0 +1,9 @@
+build/
+build-install/
+build-system/
+tools/bin/
+tools/test/
+docs/opl-ref/
+__pycache__/
+*.pyc
+*.o
