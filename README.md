@@ -4,6 +4,8 @@ A desktop app (GTK4 / libadwaita, written in C) to manage the games on a **PS2 h
 OPL / POPStarter way of playing: install and remove PS2 and PS1 games, covers and art, cheats, per-game settings,
 homebrew, and a check of your disc images against the Redump lists.
 
+![The Memento library: cover grid and the details of the selected game](docs/screenshots/library.png)
+
 > Files, folders and commands inside the project are still called `ps2gm`; the program is Memento (the name is one
 > line, `APP_NAME` in `src/ui/app.h`).
 
