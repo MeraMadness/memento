@@ -14,7 +14,8 @@ ps2gm/
       redump.c         Redump hash lists: download, zip/DAT reading, MD5 of an image, lookup
       ziso.c           ZSO files: read the game out of one, unpack, compress (all cores), pad for hdl_dump
       cheats.c         check a cheat list the way OPL reads it; set keys in a game's .cfg
-      mcfs.c           memory card images: list, import/export .psu, delete (shared with ../savemgr, keep both in step)
+      mcfs.c           memory card images: list, import/export .psu, delete
+      folderfs.c       folder mode: an SD card / USB drive as the "disk" (the same functions as for PFS, on plain files)
       backend.c        talks to the helper program, reads the library (games, art, free space)
       ops.c            the real actions: install PS2/PS1 game, remove, update art
     helper/helper.c    the only program that runs as administrator (pkexec); a fixed list of commands

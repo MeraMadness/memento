@@ -11,6 +11,12 @@ Memento contains no games and does not help find any. You need your own, legally
 
 ## What it does
 
+- **SD cards and USB drives (MX4SIO, USB)**: besides a PS2 hard disk or SSD, Memento can work on a mounted drive that has OPL's folder
+  layout (`DVD/`, `CD/`, `ART/`, `CFG/`, `CHT/`, `VMC/`, `POPS/`, `APPS/`): choose it on the Devices tab (drives mounted under
+  `/run/media` that look like one are listed, or press **Choose folder...**). Everything works as on the disk (install, remove, art,
+  cheats, settings, memory cards, PS1 games, homebrew) on plain files, with no administrator password. Games are named the way OPL
+  expects (`SLUS_123.45.Title.iso`, `.zso` too). A FAT32 card cannot hold a file of 4 GiB or more (Memento says so; use a `.zso` or
+  an exFAT card); OPL's split `ul.cfg` format is not supported. Not tried on a real MX4SIO yet.
 - **Library**: the covers (or a list) of what is on the disk, with search, filters (platform, with cheats, missing cover),
   sorting, and a details panel for the selected game: platform, region, disc, size, game settings, pictures, cheats, remove.
 - **Add game**: install a PS2 `.iso` or `.zso` (HDL game for OPL), or PS1 BIN/CUE (converted to a POPStarter `.VCD`;
@@ -36,13 +42,21 @@ Memento contains no games and does not help find any. You need your own, legally
   A card of the disk is copied to this computer, changed there and put back safely (written beside the old card, checked by
   size, then it replaces it), and a backup of the card is kept before every change (the last five, in
   `~/.local/share/ps2gm/vmc-backups`). Only raw cards without ECC are supported, like the ones OPL creates. The card code
-  (`src/core/mcfs.c`) is shared with the console app `../savemgr`.
+  is in `src/core/mcfs.c` (portable C, tested on the PC with synthetic cards).
+- **PS1 fixes**: for a PS1 game, edit the `CHEATS.TXT` that POPStarter reads from the game's folder in `__common/POPS`: switches for
+  a few documented workarounds (`$CACHE1`, `$SUBCDSTATUS`, `$CODECACHE_ADDON_0`, `$UNDO_GAME_FIXES`) and a box for any other
+  line (other `$` settings, raw cheat codes). These settings come from the community's POPStarter documentation, so test one
+  change at a time. The same dialog copies `TROJAN_#.BIN` / `PATCH_#.BIN` fix files (from a fix pack you have) into the game's
+  folder and removes them again; nothing is downloaded.
+- **Removing a PS1 game** also removes the launcher file POPStarter made for it. A tick box in the question also deletes its memory card,
+  settings and fix files (the saves on the card are lost); it is off by default, and a folder that another disc uses as its shared
+  card, or that holds anything unknown, is never deleted.
 - **Homebrew**: the programs on the `APPS` partition (as in OPL's Apps tab): add an `.ELF` (checked to really be one),
   update one while keeping the old version as `NAME-OLD.ELF`, rename, remove.
 - **Devices / Settings**: connect or disconnect the disk and see what is on it; language; the Redump lists; credits.
 
 Works with the standard layout only: `+OPL/ART`, `+OPL/CFG`, `+OPL/CHT`, `__.POPS/<ID>.<Title>.VCD`,
-`__common/POPS/<VCD name>/`, `APPS`. The PS1 tab needs an OPL build that lists `__.POPS` (see `../opl-ps1`).
+`__common/POPS/<VCD name>/`, `APPS`. To start PS1 games from OPL's own menu you need an OPL build that lists `__.POPS`; otherwise start POPStarter another way (for example from a launcher such as wLaunchELF).
 
 ## Languages
 

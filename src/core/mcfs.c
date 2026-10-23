@@ -1,4 +1,4 @@
-/* Shared with ../savemgr (the console app): the same file is tested on the PC and runs on the PS2. If you fix one, fix both. */
+/* Portable memory card code (no PS2 headers): it also builds for the console, where the same file is used in a PS2 save manager. */
 /*
  * mcfs - PS2 memory card image access. Layout reference: the mymc tool by Ross Ridge.
  *

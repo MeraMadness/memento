@@ -3,6 +3,7 @@
 #include <glib/gstdio.h>
 
 #include "ops.h"
+#include "ps1fix.h"
 #include "tools.h"
 
 #define OPL_MARGIN_MB 3
@@ -393,6 +394,148 @@ gboolean ops_reset_settings(OpsContext *c, const char *id, GError **error)
     g_free(old);
     ok = write_game_cfg(c, id, merged, error);
     g_free(merged);
+    return ok;
+}
+
+/* ---- PS1 fixes (CHEATS.TXT) ---------------------------------------------------------------------- */
+
+/* "SLPS_020.38.Racing Lagoon.VCD" -> "SLPS_020.38.Racing Lagoon": the name of the game's folder in __common/POPS */
+static char *pops_folder_of(const char *vcd_name, GError **error)
+{
+    gsize len = strlen(vcd_name);
+
+    if (len < 5 || g_ascii_strcasecmp(vcd_name + len - 4, ".VCD") != 0 || !ps2gm_arg_ok(vcd_name) || strchr(vcd_name, '/')) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_BAD_ARG, _("Bad game name"));
+        return NULL;
+    }
+    return g_strndup(vcd_name, len - 4);
+}
+
+gboolean ops_get_ps1_fixes(OpsContext *c, const char *vcd_name, char **text, GError **error)
+{
+    char *folder = pops_folder_of(vcd_name, error);
+    gboolean ok;
+
+    *text = NULL;
+    if (folder == NULL)
+        return FALSE;
+    ok = backend_read_pops_text(c->backend, folder, text, error);
+    g_free(folder);
+    return ok;
+}
+
+gboolean ops_set_ps1_fixes(OpsContext *c, const char *vcd_name, const char *text, GError **error)
+{
+    char *folder = pops_folder_of(vcd_name, error), *dir, *work = NULL, *path = NULL, *existing = NULL;
+    GPtrArray *one = g_ptr_array_new();
+    gboolean ok = FALSE;
+
+    if (folder == NULL)
+        goto out;
+    dir = g_strdup_printf("POPS/%s", folder);
+    if (text == NULL) { /* remove the file, if there is one */
+        if (!backend_read_pops_text(c->backend, folder, &existing, error))
+            goto done;
+        ok = existing == NULL || backend_run(c->backend, (char *[]){"REMOVE_FILE", "__common", dir, "CHEATS.TXT", NULL}, NULL, NULL, error);
+        goto done;
+    }
+    work = make_work_dir(c, error);
+    if (work == NULL)
+        goto done;
+    path = g_build_filename(work, "CHEATS.TXT", NULL);
+    if (!g_file_set_contents(path, text, -1, error))
+        goto done;
+    g_ptr_array_add(one, path);
+    ok = put_files(c, "__common", dir, one, error);
+done:
+    g_free(dir);
+out:
+    g_ptr_array_free(one, TRUE);
+    if (work != NULL) {
+        remove_tree(work);
+        g_free(work);
+    }
+    g_free(path);
+    g_free(existing);
+    g_free(folder);
+    return ok;
+}
+
+gboolean ops_list_fix_files(OpsContext *c, const char *vcd_name, GPtrArray **files, GError **error)
+{
+    char *folder = pops_folder_of(vcd_name, error);
+    gboolean ok;
+
+    *files = NULL;
+    if (folder == NULL)
+        return FALSE;
+    ok = backend_list_fix_files(c->backend, folder, files, error);
+    g_free(folder);
+    return ok;
+}
+
+gboolean ops_add_fix_file(OpsContext *c, const char *vcd_name, const char *local_path, GError **error)
+{
+    char *folder = pops_folder_of(vcd_name, error), *base = g_path_get_basename(local_path), *dir = NULL, *work = NULL, *staged = NULL;
+    GPtrArray *one = g_ptr_array_new();
+    guint64 size = file_size(local_path);
+    gboolean ok = FALSE;
+    GFile *from = NULL, *to = NULL;
+
+    if (folder == NULL)
+        goto out;
+    if (!ps1fix_is_fix_file_name(base)) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, _("%s is not a fix file: its name must be like TROJAN_2.BIN or PATCH_4.BIN"), base);
+        goto out;
+    }
+    if (size == 0 || size > 2 * 1024 * 1024) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, _("%s does not look like a fix file (empty or very large)"), base);
+        goto out;
+    }
+    dir = g_strdup_printf("POPS/%s", folder);
+    work = make_work_dir(c, error);
+    if (work == NULL)
+        goto out;
+    staged = g_build_filename(work, base, NULL);
+    from = g_file_new_for_path(local_path);
+    to = g_file_new_for_path(staged);
+    if (!g_file_copy(from, to, G_FILE_COPY_OVERWRITE, NULL, NULL, NULL, error))
+        goto out;
+    g_ptr_array_add(one, staged);
+    ok = put_files(c, "__common", dir, one, error);
+out:
+    g_ptr_array_free(one, TRUE);
+    if (work != NULL) {
+        remove_tree(work);
+        g_free(work);
+    }
+    if (from)
+        g_object_unref(from);
+    if (to)
+        g_object_unref(to);
+    g_free(staged);
+    g_free(dir);
+    g_free(base);
+    g_free(folder);
+    return ok;
+}
+
+gboolean ops_remove_fix_file(OpsContext *c, const char *vcd_name, const char *name, GError **error)
+{
+    char *folder = pops_folder_of(vcd_name, error), *dir;
+    gboolean ok;
+
+    if (folder == NULL)
+        return FALSE;
+    if (!ps1fix_is_fix_file_name(name)) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, _("%s is not a fix file"), name);
+        g_free(folder);
+        return FALSE;
+    }
+    dir = g_strdup_printf("POPS/%s", folder);
+    ok = backend_run(c->backend, (char *[]){"REMOVE_FILE", "__common", dir, (char *)name, NULL}, NULL, NULL, error);
+    g_free(dir);
+    g_free(folder);
     return ok;
 }
 
@@ -1029,9 +1172,67 @@ gboolean ops_remove_ps2(OpsContext *c, const char *id, const char *title, GError
     return backend_run(c->backend, cmd, NULL, NULL, error);
 }
 
-gboolean ops_remove_ps1(OpsContext *c, const char *vcd_name, GError **error)
+/* does another game of the disk take its memory card from this folder (its VMCDIR.TXT names it)? */
+static gboolean pops_folder_shared(OpsContext *c, const Library *lib, const char *folder, const char *vcd_name)
+{
+    guint i;
+
+    for (i = 0; i < lib->vcds->len; i++) {
+        LibFile *f = g_ptr_array_index(lib->vcds, i);
+        char *other, *text = NULL;
+        gboolean same = FALSE;
+
+        if (!g_strcmp0(f->name, vcd_name))
+            continue;
+        other = pops_folder_of(f->name, NULL);
+        if (other != NULL && backend_read_pops_file(c->backend, other, "VMCDIR.TXT", &text, NULL) && text != NULL)
+            same = !g_strcmp0(g_strstrip(text), folder);
+        g_free(text);
+        g_free(other);
+        if (same)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+gboolean ops_remove_ps1(OpsContext *c, const char *vcd_name, gboolean with_folder, GPtrArray *notes, GError **error)
 {
     char *cmd[] = {"REMOVE_FILE", "__.POPS", "", (char *)vcd_name, NULL};
+    char *folder;
+    GError *err = NULL;
 
-    return backend_run(c->backend, cmd, NULL, NULL, error);
+    if (!backend_run(c->backend, cmd, NULL, NULL, error))
+        return FALSE;
+    folder = pops_folder_of(vcd_name, NULL);
+    if (folder == NULL)
+        return TRUE;
+    /* the launcher file is made again the next time the game is started, so nothing is lost with it */
+    {
+        char *rm[] = {"REMOVE_LAUNCHER", folder, NULL};
+
+        if (!backend_run(c->backend, rm, NULL, NULL, &err)) {
+            if (notes != NULL)
+                g_ptr_array_add(notes, g_strdup_printf(_("The launcher file of the game could not be removed: %s"), err->message));
+            g_clear_error(&err);
+        }
+    }
+    if (with_folder) {
+        Library *lib = backend_library(c->backend, NULL);
+
+        if (lib != NULL && pops_folder_shared(c, lib, folder, vcd_name)) {
+            if (notes != NULL)
+                g_ptr_array_add(notes, g_strdup(_("The memory card folder was kept: another disc of this game uses its card.")));
+        } else {
+            char *rm[] = {"REMOVE_POPS_DIR", folder, NULL};
+
+            if (!backend_run(c->backend, rm, NULL, NULL, &err)) {
+                if (notes != NULL)
+                    g_ptr_array_add(notes, g_strdup_printf(_("The game's folder was kept: %s"), err->message));
+                g_clear_error(&err);
+            }
+        }
+        library_free(lib);
+    }
+    g_free(folder);
+    return TRUE;
 }

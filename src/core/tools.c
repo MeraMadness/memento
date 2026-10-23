@@ -6,6 +6,7 @@
 #include <glib/gstdio.h>
 
 #include "tools.h"
+#include "folderfs.h"
 
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -217,6 +218,8 @@ void hdl_iso_info_clear(HdlIsoInfo *i)
 
 GPtrArray *hdl_list_games(const Ps2gmTools *t, const char *device, GError **error)
 {
+    if (folder_is(device))
+        return folder_list_games(device, error);
     const char *argv[] = {t->hdl_dump, "hdl_toc", device, NULL};
     gchar *out = NULL, **lines;
     int status = 0, i;
@@ -262,6 +265,8 @@ GPtrArray *hdl_list_games(const Ps2gmTools *t, const char *device, GError **erro
 gboolean hdl_disk_space(const Ps2gmTools *t, const char *device, guint64 *total_mb, guint64 *used_mb,
                         guint64 *free_mb, GError **error)
 {
+    if (folder_is(device))
+        return folder_space(device, total_mb, used_mb, free_mb, error);
     const char *argv[] = {t->hdl_dump, "toc", device, NULL};
     gchar *out = NULL;
     int status = 0;
@@ -337,6 +342,8 @@ gboolean hdl_install(const Ps2gmTools *t, const char *device, const char *media,
                      const char *iso, const char *id, Ps2gmProgress progress, gpointer user_data,
                      GError **error)
 {
+    if (folder_is(device))
+        return folder_install(device, media, title, iso, id, progress, user_data, error);
     const char *cmd = !g_strcmp0(media, "CD") ? "inject_cd" : "inject_dvd";
     /*
      * hdl_dump installs "<name>.zso" instead of "<name>.iso" when such a file sits next to it, and a ZSO that is not
@@ -460,6 +467,13 @@ gboolean hdl_partition_size(const Ps2gmTools *t, const char *device, const char 
                             guint64 *size_mb, GError **error)
 {
     const char *argv[] = {t->hdl_dump, "toc", device, NULL};
+
+    if (folder_is(device)) { /* one file system: the whole drive */
+        guint64 used, free_mb;
+
+        *parts = 1;
+        return folder_space(device, size_mb, &used, &free_mb, error);
+    }
     gchar *out = NULL, **lines;
     int status = 0, i;
     GRegex *re = g_regex_new("^0x[0-9A-Fa-f]{4}\\s+[0-9A-Fa-f]+[.:*]*\\s+(\\d+)\\s+(\\d+)MB\\s+(\\S.*?)\\s*$", 0, 0, NULL);
@@ -501,6 +515,8 @@ gboolean hdl_partition_size(const Ps2gmTools *t, const char *device, const char 
 gboolean hdl_remove_game(const Ps2gmTools *t, const char *device, const char *id, const char *title,
                          GError **error)
 {
+    if (folder_is(device))
+        return folder_remove_game(device, id, title, error);
     GPtrArray *names = hdl_partition_names(t, device, error);
     GRegex *re = g_regex_new("^(\\S+): \\[(.*)\\], (?:CD|DVD)", G_REGEX_MULTILINE, 0, NULL);
     gchar *found = NULL;
@@ -693,6 +709,8 @@ static GPtrArray *parse_ls(const char *out)
 GPtrArray *pfs_list(const Ps2gmTools *t, const char *device, const char *partition, const char *dir,
                     GError **error)
 {
+    if (folder_is(device))
+        return folder_list(device, partition, dir, error);
     GString *body = g_string_new(NULL);
     gchar *out = NULL;
     GPtrArray *list = NULL;
@@ -717,6 +735,8 @@ GPtrArray *pfs_list(const Ps2gmTools *t, const char *device, const char *partiti
 gboolean pfs_put(const Ps2gmTools *t, const char *device, const char *partition, const char *remote_dir,
                  char *const *local_files, GError **error)
 {
+    if (folder_is(device))
+        return folder_put(device, partition, remote_dir, local_files, error);
     GString *body = g_string_new(NULL);
     gchar *out = NULL;
     gboolean ok = FALSE;
@@ -811,6 +831,8 @@ out:
 gboolean pfs_get(const Ps2gmTools *t, const char *device, const char *partition, const char *remote_dir,
                  char *const *names, const char *local_dir, GError **error)
 {
+    if (folder_is(device))
+        return folder_get(device, partition, remote_dir, names, local_dir, error);
     GString *body = g_string_new(NULL);
     gchar *out = NULL;
     gboolean ok = FALSE;
@@ -857,6 +879,12 @@ gboolean pfs_space(const Ps2gmTools *t, const char *device, const char *partitio
                    guint64 *free_mb, GError **error)
 {
     gchar *out = NULL, **lines;
+
+    if (folder_is(device)) {
+        guint64 used;
+
+        return folder_space(device, size_mb, &used, free_mb, error);
+    }
     GRegex *re = g_regex_new("(\\S+)\\s+([\\d.]+)(KiB|MiB|GiB|TiB)\\s+([\\d.]+)(KiB|MiB|GiB|TiB)\\s+([\\d.]+)(KiB|MiB|GiB|TiB)\\s+\\d+%", 0, 0, NULL);
     gboolean ok = FALSE;
     int i;
@@ -900,6 +928,8 @@ gboolean pfs_space(const Ps2gmTools *t, const char *device, const char *partitio
 gboolean pfs_rename(const Ps2gmTools *t, const char *device, const char *partition, const char *remote_dir,
                     const char *from, const char *to, GError **error)
 {
+    if (folder_is(device))
+        return folder_rename(device, partition, remote_dir, from, to, error);
     GString *body = g_string_new(NULL);
     gchar *out = NULL;
     gboolean ok = FALSE, has_from = FALSE, has_to = FALSE;
@@ -991,6 +1021,8 @@ gboolean ps2gm_elf_check(const char *path, GError **error)
 gboolean pfs_remove(const Ps2gmTools *t, const char *device, const char *partition,
                     const char *remote_dir, const char *name, GError **error)
 {
+    if (folder_is(device))
+        return folder_remove(device, partition, remote_dir, name, error);
     GString *body = g_string_new(NULL);
     gchar *out = NULL;
     gboolean ok = FALSE;
@@ -1017,6 +1049,43 @@ gboolean pfs_remove(const Ps2gmTools *t, const char *device, const char *partiti
     g_ptr_array_free(list, TRUE);
     if (!ok)
         g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, _("Could not remove %s"), name);
+out:
+    g_string_free(body, TRUE);
+    g_free(out);
+    return ok;
+}
+
+gboolean pfs_rmdir(const Ps2gmTools *t, const char *device, const char *partition,
+                    const char *remote_dir, const char *name, GError **error)
+{
+    if (folder_is(device))
+        return folder_rmdir(device, partition, remote_dir, name, error);
+    GString *body = g_string_new(NULL);
+    gchar *out = NULL;
+    gboolean ok = FALSE;
+    GPtrArray *list;
+    guint j;
+
+    if (!ps2gm_remote_path_ok(remote_dir) || !ps2gm_arg_ok(name)) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, _("Bad file name"));
+        goto out;
+    }
+    script_enter(body, remote_dir, FALSE);
+    g_string_append_printf(body, "pwd\nrmdir \"%s\"\nls -l\n", name);
+    if (!run_pfs(t, device, partition, body->str, &out, error))
+        goto out;
+    if (!pwd_is(out, remote_dir)) {
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, _("Folder %s/%s does not exist"), partition, remote_dir ? remote_dir : "");
+        goto out;
+    }
+    list = parse_ls(out);
+    ok = TRUE;
+    for (j = 0; j < list->len; j++)
+        if (!strcmp(((PfsEntry *)g_ptr_array_index(list, j))->name, name))
+            ok = FALSE;
+    g_ptr_array_free(list, TRUE);
+    if (!ok)
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, _("Could not remove the folder %s"), name);
 out:
     g_string_free(body, TRUE);
     g_free(out);

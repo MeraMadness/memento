@@ -31,6 +31,8 @@ core_sources = files(
   'src/core/gamecfg.c',
   'src/core/ziso.c',
   'src/core/mcfs.c',
+  'src/core/ps1fix.c',
+  'src/core/folderfs.c',
   'src/core/redump.c',
   'src/core/backend.c',
   'src/core/ops.c',
@@ -62,6 +64,10 @@ test_ops = executable('test_ops', 'tests/test_ops.c', dependencies: core_dep)
 # the ZSO tests make their reference files with liblz4's plain compressor, apart from the code under test
 test_ziso = executable('test_ziso', 'tests/test_ziso.c', dependencies: core_dep)
 
+test_folder = executable('test_folder', 'tests/test_folder.c', dependencies: core_dep)
+
+test_ps1fix = executable('test_ps1fix', 'tests/test_ps1fix.c', dependencies: core_dep)
+
 test_vmc = executable('test_vmc', 'tests/test_vmc.c', dependencies: core_dep)
 
 test_redump = executable('test_redump', 'tests/test_redump.c', dependencies: [core_dep, zlib])
@@ -78,6 +84,7 @@ ui_sources = files(
   'src/ui/art_dialog.c',
   'src/ui/cover_dialog.c',
   'src/ui/cheats_dialog.c',
+  'src/ui/ps1fix_dialog.c',
   'src/ui/settings_dialog.c',
   'src/ui/topbar.c',
   'src/ui/transfers.c',

@@ -3,6 +3,9 @@ src/ui/add_page.c
 src/ui/apps_page.c
 src/ui/art_dialog.c
 src/ui/cheats_dialog.c
+src/ui/ps1fix_dialog.c
+src/core/ps1fix.c
+src/core/folderfs.c
 src/ui/common.c
 src/ui/connect_page.c
 src/ui/cover_dialog.c

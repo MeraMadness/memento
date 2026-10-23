@@ -30,7 +30,9 @@
 #include <fcntl.h>
 #include <glib/gstdio.h>
 
+#include "folderfs.h"
 #include "tools.h"
+#include "ps1fix.h"
 
 static Ps2gmTools tools;
 static const char *device;
@@ -78,6 +80,14 @@ static gboolean location_allowed(const char *partition, const char *dir)
     return FALSE;
 }
 
+/* the only files that go into a PS1 game's folder in __common/POPS: what Memento writes for multi-disc games and the
+ * settings POPStarter reads (CHEATS.TXT and the TROJAN_#.BIN / PATCH_#.BIN fix files) */
+static gboolean pops_file_ok(const char *name)
+{
+    return ps2gm_arg_ok(name) && !strchr(name, '/') &&
+           (!strcmp(name, "VMCDIR.TXT") || !strcmp(name, "DISCS.TXT") || !strcmp(name, "CHEATS.TXT") || ps1fix_is_fix_file_name(name));
+}
+
 /* a virtual memory card: a plain .bin name, no folders */
 static gboolean is_vmc_name(const char *name)
 {
@@ -101,6 +111,13 @@ static gboolean looks_like_vmc(const char *path)
 /* A PS2 (APA) disk has "APA" at byte 4 of its first sector. Anything else is refused. */
 static gboolean device_is_ps2_disk(const char *path, GError **error)
 {
+    if (folder_is(path)) { /* a mounted drive (SD card, USB stick): it must be writable, nothing else is checked */
+        if (access(path, R_OK | W_OK) != 0) {
+            g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, "%s cannot be read and written by this user", path);
+            return FALSE;
+        }
+        return TRUE;
+    }
     guint8 sector[512];
     int fd = g_open(path, O_RDONLY, 0);
     gssize n;
@@ -141,6 +158,26 @@ static guint64 list_dir(const char *kind, const char *partition, const char *dir
     return total;
 }
 
+/* the .VCD files of POPS (a drive's POPS folder also holds POPStarter's own files); returns their total size */
+static guint64 list_vcds(void)
+{
+    GPtrArray *l = pfs_list(&tools, device, "__.POPS", "", NULL);
+    guint64 total = 0;
+    guint i;
+
+    for (i = 0; l && i < l->len; i++) {
+        PfsEntry *e = g_ptr_array_index(l, i);
+
+        if (!e->is_dir && g_str_has_suffix(e->name, ".VCD")) {
+            say("VCD\t%s\t%" G_GUINT64_FORMAT, e->name, e->size);
+            total += e->size;
+        }
+    }
+    if (l)
+        g_ptr_array_free(l, TRUE);
+    return total;
+}
+
 static void cmd_library(void)
 {
     GError *err = NULL;
@@ -173,8 +210,13 @@ static void cmd_library(void)
          * on an empty 10 GB partition). The estimate: nominal size from the partition table minus the
          * files in it, minus a 3% margin for the filesystem. Real shortages are still caught when copying.
          */
-        vcd_bytes = list_dir("VCD", "__.POPS", "", FALSE);
-        if (hdl_partition_size(&tools, device, "__.POPS", &parts, &size, NULL)) {
+        vcd_bytes = list_vcds();
+        if (folder_is(device)) { /* a drive has one pool of space for everything */
+            guint64 used_mb;
+
+            if (folder_space(device, &size, &used_mb, &fr, NULL))
+                say("POPSSPACE\t%" G_GUINT64_FORMAT "\t%" G_GUINT64_FORMAT, size, fr);
+        } else if (hdl_partition_size(&tools, device, "__.POPS", &parts, &size, NULL)) {
             guint64 used = (vcd_bytes + 1024 * 1024 - 1) / (1024 * 1024), margin = size / 33;
 
             fr = size > used + margin ? size - used - margin : 0;
@@ -254,6 +296,17 @@ static void cmd_put(char **f, guint n)
                 return;
             }
         }
+    if (!g_strcmp0(f[1], "__common")) /* the game folders of POPStarter take settings files only */
+        for (i = 3; i < n; i++) {
+            gchar *base = g_path_get_basename(f[i]);
+            gboolean good = pops_file_ok(base);
+
+            g_free(base);
+            if (!good) {
+                fail("PUT: a PS1 game folder takes only VMCDIR.TXT, DISCS.TXT, CHEATS.TXT and TROJAN_#.BIN / PATCH_#.BIN files");
+                return;
+            }
+        }
     if (!g_strcmp0(f[1], "APPS")) /* programs only: .elf by name and by content */
         for (i = 3; i < n; i++) {
             gchar *base = g_path_get_basename(f[i]);
@@ -305,11 +358,168 @@ static void give_to_caller(const char *path)
     }
 }
 
-static void cmd_get(char **f, guint n)
+/* copies the named files of one folder into the helper's temporary folder and says where they are (GOT lines) */
+static void get_into_tmp(const char *partition, const char *dir, char **names, guint count, gboolean missing_folder_ok)
 {
     GError *err = NULL;
     guint i;
-    gboolean ok;
+
+    if (art_tmp == NULL) {
+        art_tmp = g_build_filename(g_get_tmp_dir(), "ps2gm-art-XXXXXX", NULL);
+        if (g_mkdtemp_full(art_tmp, 0700) == NULL) {
+            fail("GET: cannot create a temporary folder");
+            g_clear_pointer(&art_tmp, g_free);
+            return;
+        }
+        give_to_caller(art_tmp);
+    }
+    forget_art_tmp();
+    if (!pfs_get(&tools, device, partition, dir, names, art_tmp, &err)) {
+        if (missing_folder_ok && g_error_matches(err, PS2GM_ERROR, PS2GM_ERROR_IO)) { /* a game that has no folder yet has no file */
+            g_clear_error(&err);
+            say("END");
+            return;
+        }
+        fail(err->message);
+        g_clear_error(&err);
+        return;
+    }
+    for (i = 0; i < count; i++) {
+        gchar *p = g_build_filename(art_tmp, names[i], NULL);
+
+        if (g_file_test(p, G_FILE_TEST_IS_REGULAR)) {
+            give_to_caller(p);
+            say("GOT\t%s\t%s", names[i], p);
+        }
+        g_free(p);
+    }
+    say("END");
+}
+
+/* LIST_POPS <game folder>: the fix files (TROJAN_#.BIN, PATCH_#.BIN) in the game's folder, as FIXFILE lines */
+static void cmd_list_pops(char **f, guint n)
+{
+    char *dir;
+    GPtrArray *l;
+    guint i;
+
+    if (n != 2 || !ps2gm_arg_ok(f[1]) || strchr(f[1], '/')) {
+        fail("LIST_POPS: one game folder");
+        return;
+    }
+    dir = g_strdup_printf("POPS/%s", f[1]);
+    l = pfs_list(&tools, device, "__common", dir, NULL);
+    for (i = 0; l && i < l->len; i++) {
+        PfsEntry *e = g_ptr_array_index(l, i);
+
+        if (!e->is_dir && ps1fix_is_fix_file_name(e->name))
+            say("FIXFILE\t%s\t%" G_GUINT64_FORMAT, e->name, e->size);
+    }
+    if (l)
+        g_ptr_array_free(l, TRUE);
+    g_free(dir);
+    say("END");
+}
+
+/* REMOVE_POPS_DIR <game folder>: removes the folder of a PS1 game in __common/POPS, but only if it holds nothing but what Memento and
+ * POPStarter put there (the memory cards and the settings files); anything else and it is left alone */
+static void cmd_remove_pops_dir(char **f, guint n)
+{
+    GError *err = NULL;
+    char *dir;
+    GPtrArray *l;
+    guint i;
+
+    if (n != 2 || !ps2gm_arg_ok(f[1]) || strchr(f[1], '/')) {
+        fail("REMOVE_POPS_DIR: one game folder");
+        return;
+    }
+    dir = g_strdup_printf("POPS/%s", f[1]);
+    l = pfs_list(&tools, device, "__common", dir, NULL);
+    if (l == NULL) { /* there is no such folder: nothing to do */
+        g_free(dir);
+        say("END");
+        return;
+    }
+    for (i = 0; i < l->len; i++) {
+        PfsEntry *e = g_ptr_array_index(l, i);
+
+        if (e->is_dir || !(pops_file_ok(e->name) || !strcmp(e->name, "SLOT0.VMC") || !strcmp(e->name, "SLOT1.VMC"))) {
+            fail("REMOVE_POPS_DIR: the folder holds other files, so it was left alone");
+            goto out;
+        }
+    }
+    for (i = 0; i < l->len; i++)
+        if (!pfs_remove(&tools, device, "__common", dir, ((PfsEntry *)g_ptr_array_index(l, i))->name, &err)) {
+            fail(err->message);
+            g_clear_error(&err);
+            goto out;
+        }
+    if (!pfs_rmdir(&tools, device, "__common", "POPS", f[1], &err)) {
+        fail(err->message);
+        g_clear_error(&err);
+        goto out;
+    }
+    say("END");
+out:
+    g_ptr_array_free(l, TRUE);
+    g_free(dir);
+}
+
+/* REMOVE_LAUNCHER <VCD name without .VCD>: the launcher file POPStarter made for a game, +OPL/POPS/<name>.ELF */
+static void cmd_remove_launcher(char **f, guint n)
+{
+    GError *err = NULL;
+    char *file;
+
+    if (n != 2 || !ps2gm_arg_ok(f[1]) || strchr(f[1], '/') || !g_ascii_strcasecmp(f[1], "POPSTARTER") || !g_ascii_strcasecmp(f[1], "POPS")) {
+        fail("REMOVE_LAUNCHER: the name of one game");
+        return;
+    }
+    file = g_strdup_printf("%s.ELF", f[1]);
+    {
+        /* a game that was never started has no launcher file (and maybe no folder for it): nothing to do */
+        GPtrArray *l = pfs_list(&tools, device, "+OPL", "POPS", NULL);
+        gboolean there = FALSE;
+        guint i;
+
+        for (i = 0; l && i < l->len; i++)
+            if (!strcmp(((PfsEntry *)g_ptr_array_index(l, i))->name, file))
+                there = TRUE;
+        if (l)
+            g_ptr_array_free(l, TRUE);
+        if (!there)
+            say("END");
+        else if (!pfs_remove(&tools, device, "+OPL", "POPS", file, &err)) {
+            fail(err->message);
+            g_clear_error(&err);
+        } else
+            say("END");
+    }
+    g_free(file);
+}
+
+/* GET_POPS <game folder> CHEATS.TXT: the fixes file of a PS1 game, in __common/POPS/<folder> */
+static void cmd_get_pops(char **f, guint n)
+{
+    char *dir;
+    char *names[2];
+
+    if (n != 3 || !ps2gm_arg_ok(f[1]) || strchr(f[1], '/') ||
+        (g_strcmp0(f[2], "CHEATS.TXT") != 0 && g_strcmp0(f[2], "VMCDIR.TXT") != 0 && g_strcmp0(f[2], "DISCS.TXT") != 0)) {
+        fail("GET_POPS: only CHEATS.TXT, VMCDIR.TXT or DISCS.TXT of one game folder");
+        return;
+    }
+    dir = g_strdup_printf("POPS/%s", f[1]);
+    names[0] = f[2];
+    names[1] = NULL;
+    get_into_tmp("__common", dir, names, 1, TRUE);
+    g_free(dir);
+}
+
+static void cmd_get(char **f, guint n)
+{
+    guint i;
     const char *suffix = NULL;
 
     if (n < 3) {
@@ -333,32 +543,7 @@ static void cmd_get(char **f, guint n)
             fail("GET: only files of that folder with the matching ending");
             return;
         }
-    if (art_tmp == NULL) {
-        art_tmp = g_build_filename(g_get_tmp_dir(), "ps2gm-art-XXXXXX", NULL);
-        if (g_mkdtemp_full(art_tmp, 0700) == NULL) {
-            fail("GET: cannot create a temporary folder");
-            g_clear_pointer(&art_tmp, g_free);
-            return;
-        }
-        give_to_caller(art_tmp);
-    }
-    forget_art_tmp();
-    ok = pfs_get(&tools, device, "+OPL", f[1], &f[2], art_tmp, &err);
-    if (!ok) {
-        fail(err->message);
-        g_clear_error(&err);
-        return;
-    }
-    for (i = 2; i < n; i++) {
-        gchar *p = g_build_filename(art_tmp, f[i], NULL);
-
-        if (g_file_test(p, G_FILE_TEST_IS_REGULAR)) {
-            give_to_caller(p);
-            say("GOT\t%s\t%s", f[i], p);
-        }
-        g_free(p);
-    }
-    say("END");
+    get_into_tmp("+OPL", f[1], &f[2], n - 2, FALSE);
 }
 
 static void cmd_rename_file(char **f, guint n)
@@ -390,6 +575,10 @@ static void cmd_remove_file(char **f, guint n)
     }
     if (!g_strcmp0(f[1], "APPS") && !ps2gm_is_elf_name(f[3])) {
         fail("REMOVE_FILE: APPS: only .elf programs can be removed");
+        return;
+    }
+    if (!g_strcmp0(f[1], "__common") && !pops_file_ok(f[3])) {
+        fail("REMOVE_FILE: a PS1 game folder: only its settings files can be removed");
         return;
     }
     if (!g_strcmp0(f[2], "VMC") && !is_vmc_name(f[3])) {
@@ -480,6 +669,14 @@ int main(int argc, char **argv)
             cmd_rename_file(f, n);
         else if (!strcmp(f[0], "GET"))
             cmd_get(f, n);
+        else if (!strcmp(f[0], "GET_POPS"))
+            cmd_get_pops(f, n);
+        else if (!strcmp(f[0], "LIST_POPS"))
+            cmd_list_pops(f, n);
+        else if (!strcmp(f[0], "REMOVE_POPS_DIR"))
+            cmd_remove_pops_dir(f, n);
+        else if (!strcmp(f[0], "REMOVE_LAUNCHER"))
+            cmd_remove_launcher(f, n);
         else
             fail("unknown command");
         g_strfreev(f);

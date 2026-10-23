@@ -58,6 +58,12 @@ guint64 library_art_size(const Library *lib, const char *name);
 guint backend_cache_art(Backend *b, const Library *lib, char *const *names, const char *cache_dir, GError **error);
 /* ~/.cache/ps2gm/art/<short code of the device>: the pictures of one disk */
 /* GET one file of +OPL: *path is a temporary copy made for this user (valid until the next GET), free with g_free */
+/* CHEATS.TXT of a PS1 game folder (__common/POPS/<folder>): *text is NULL when the game has no such file */
+/* the TROJAN_#.BIN / PATCH_#.BIN files of a PS1 game folder: *files is a new array of LibFile (name, size), possibly empty */
+gboolean backend_list_fix_files(Backend *b, const char *folder, GPtrArray **files, GError **error);
+gboolean backend_read_pops_text(Backend *b, const char *folder, char **text, GError **error);
+/* the same for CHEATS.TXT, VMCDIR.TXT or DISCS.TXT */
+gboolean backend_read_pops_file(Backend *b, const char *folder, const char *name, char **text, GError **error);
 gboolean backend_get_file(Backend *b, const char *folder, const char *name, char **path, GError **error);
 char *backend_art_cache_dir(const char *device);
 

@@ -65,6 +65,16 @@ gboolean ops_set_art(OpsContext *ctx, const char *id, Ps2gmPlatform platform, co
 gboolean ops_vmc_fetch(OpsContext *ctx, const char *name, const char *dest_path, GError **error);
 gboolean ops_vmc_store(OpsContext *ctx, const char *name, const char *local_path, GError **error);
 
+/* The fixes file (CHEATS.TXT) of a PS1 game, by the name of its VCD in __.POPS. text NULL: no file / remove it. */
+gboolean ops_get_ps1_fixes(OpsContext *ctx, const char *vcd_name, char **text, GError **error);
+gboolean ops_set_ps1_fixes(OpsContext *ctx, const char *vcd_name, const char *text, GError **error);
+
+/* The fix files (TROJAN_#.BIN / PATCH_#.BIN) in the folder of a PS1 game: list them (*files: array of LibFile), add one from a file on
+ * this computer (its name must be of that kind, at most 2 MB), remove one. */
+gboolean ops_list_fix_files(OpsContext *ctx, const char *vcd_name, GPtrArray **files, GError **error);
+gboolean ops_add_fix_file(OpsContext *ctx, const char *vcd_name, const char *local_path, GError **error);
+gboolean ops_remove_fix_file(OpsContext *ctx, const char *vcd_name, const char *name, GError **error);
+
 gboolean ops_get_cheats(OpsContext *ctx, const char *id, char **text, GError **error);
 /*
  * Saves the cheat list (checked and cleaned up first) and, with turn_on, switches the cheat engine on for this
@@ -93,6 +103,11 @@ gboolean ops_set_settings(OpsContext *ctx, const char *id, const GameSettings *s
 gboolean ops_reset_settings(OpsContext *ctx, const char *id, GError **error);
 
 gboolean ops_remove_ps2(OpsContext *ctx, const char *id, const char *title, GError **error);
-gboolean ops_remove_ps1(OpsContext *ctx, const char *vcd_name, GError **error);
+/*
+ * Removes a PS1 game: its VCD, and the launcher file POPStarter made for it in +OPL/POPS. With with_folder, also the game's folder in
+ * __common/POPS (its memory cards, so the saves on them, and its settings and fix files) - unless another game uses that folder as its
+ * shared memory card, or it holds anything else; then the folder stays and a note (in notes, if given) says why.
+ */
+gboolean ops_remove_ps1(OpsContext *ctx, const char *vcd_name, gboolean with_folder, GPtrArray *notes, GError **error);
 
 #endif

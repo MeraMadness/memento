@@ -19,7 +19,7 @@ static int failures;
 static void p16(uint8_t *p, uint32_t v) { p[0] = v; p[1] = v >> 8; }
 static void p32(uint8_t *p, uint32_t v) { p[0] = v; p[1] = v >> 8; p[2] = v >> 16; p[3] = v >> 24; }
 
-/* a blank card, laid out the way openVMC makes them (same as savemgr's tests) */
+/* a blank card, laid out the way openVMC makes them (the layout openVMC uses) */
 static void dirent(uint8_t *e, uint16_t mode, uint32_t length, const char *name)
 {
     static const uint8_t stamp[8] = {0, 0, 0, 12, 1, 1, 0xe9, 0x07};

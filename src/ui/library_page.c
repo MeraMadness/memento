@@ -112,6 +112,8 @@ typedef struct {
     char *a, *b;
     Ps2gmPlatform platform;
     gboolean replace; /* art: overwrite files that already exist */
+    gboolean with_folder; /* removing a PS1 game: also its memory card folder */
+    GtkWidget *folder_check; /* the switch of the question; only valid while that dialog is open */
 } Target;
 
 static void target_free(gpointer p)
@@ -132,7 +134,7 @@ static void on_remove_response(AdwAlertDialog *d, const char *response, gpointer
         if (t->platform == PS2GM_PS2)
             do_remove_ps2(t->a, t->b);
         else
-            do_remove_ps1(t->a);
+            do_remove_ps1(t->a, t->folder_check && gtk_check_button_get_active(GTK_CHECK_BUTTON(t->folder_check)));
     }
     target_free(t);
 }
@@ -140,7 +142,7 @@ static void on_remove_response(AdwAlertDialog *d, const char *response, gpointer
 static void ask_remove(Ps2gmPlatform platform, const char *a, const char *b, const char *name)
 {
     Target *t = g_new0(Target, 1);
-    char *body = g_strdup_printf(platform == PS2GM_PS1 ? _("\"%s\" will be deleted from the PS2 disk. This cannot be undone.\nIts memory card and saves are kept.")
+    char *body = g_strdup_printf(platform == PS2GM_PS1 ? _("\"%s\" will be deleted from the PS2 disk. This cannot be undone.\nIts memory card and saves are kept, unless you tick the box.")
                                                          : _("\"%s\" will be deleted from the PS2 disk. This cannot be undone."),
                                  name);
     AdwDialog *d = adw_alert_dialog_new(_("Remove this game?"), body);
@@ -151,6 +153,10 @@ static void ask_remove(Ps2gmPlatform platform, const char *a, const char *b, con
     adw_alert_dialog_add_responses(ADW_ALERT_DIALOG(d), "cancel", _("Cancel"), "remove", _("Remove"), NULL);
     adw_alert_dialog_set_response_appearance(ADW_ALERT_DIALOG(d), "remove", ADW_RESPONSE_DESTRUCTIVE);
     adw_alert_dialog_set_default_response(ADW_ALERT_DIALOG(d), "cancel");
+    if (platform == PS2GM_PS1) { /* the memory card folder: off by default, because the saves on the card are lost with it */
+        t->folder_check = gtk_check_button_new_with_label(_("Also delete its memory card, settings and fix files (the saves on the card are lost)"));
+        adw_alert_dialog_set_extra_child(ADW_ALERT_DIALOG(d), t->folder_check);
+    }
     g_signal_connect(d, "response", G_CALLBACK(on_remove_response), t);
     adw_dialog_present(d, GTK_WIDGET(A.win));
     g_free(body);
@@ -393,6 +399,7 @@ static void update_details(void)
     gtk_widget_set_visible(A.det_empty, e == NULL);
     gtk_widget_set_visible(A.det_settings, e != NULL && e->platform == PS2GM_PS2); /* PS1 games run in POPStarter */
     gtk_widget_set_visible(A.det_cheats, e != NULL && e->platform == PS2GM_PS2);
+    gtk_widget_set_visible(A.det_fixes, e != NULL && e->platform == PS2GM_PS1 && e->vcd_name != NULL);
     gtk_widget_set_visible(A.det_share, group != NULL);
     g_strfreev(group);
     if (e == NULL) {
@@ -510,6 +517,16 @@ static void on_det_cheats(GtkButton *b, gpointer data)
     (void)data;
     if (e != NULL && e->platform == PS2GM_PS2 && e->id != NULL)
         show_cheats_dialog(e->id, e->title);
+}
+
+static void on_det_fixes(GtkButton *b, gpointer data)
+{
+    Entry *e = selected_entry();
+
+    (void)b;
+    (void)data;
+    if (e != NULL && e->platform == PS2GM_PS1 && e->vcd_name != NULL)
+        show_ps1fix_dialog(e->vcd_name, e->title);
 }
 
 static void on_det_settings(GtkButton *b, gpointer data)
@@ -912,7 +929,7 @@ static gboolean job_remove(gpointer data, Ps2gmProgress cb, gpointer pd, GPtrArr
 
     (void)notes;
     cb(0, 1, _("Removing"), pd);
-    return t->platform == PS2GM_PS2 ? ops_remove_ps2(A.ops, t->a, t->b, error) : ops_remove_ps1(A.ops, t->a, error);
+    return t->platform == PS2GM_PS2 ? ops_remove_ps2(A.ops, t->a, t->b, error) : ops_remove_ps1(A.ops, t->a, t->with_folder, notes, error);
 }
 
 void after_change(gboolean ok, gpointer data)
@@ -933,10 +950,11 @@ void do_remove_ps2(const char *id, const char *title)
     run_job(_("Removing the game"), job_remove, t, target_free, after_change);
 }
 
-void do_remove_ps1(const char *name)
+void do_remove_ps1(const char *name, gboolean with_folder)
 {
     Target *t = g_new0(Target, 1);
 
+    t->with_folder = with_folder;
     t->platform = PS2GM_PS1;
     t->a = g_strdup(name);
     run_job(_("Removing the game"), job_remove, t, target_free, after_change);
@@ -1134,6 +1152,7 @@ GtkWidget *build_library_page(void)
     A.det_settings = panel_button(_("Game settings"), G_CALLBACK(on_det_settings), "suggested-action");
     A.det_art = panel_button(_("Pictures..."), G_CALLBACK(on_det_art), "btn-secondary");
     A.det_cheats = panel_button(_("Cheats..."), G_CALLBACK(on_det_cheats), "btn-secondary");
+    A.det_fixes = panel_button(_("PS1 fixes..."), G_CALLBACK(on_det_fixes), "btn-secondary");
     A.det_share = panel_button(_("Share memory card"), G_CALLBACK(on_det_share), "btn-secondary");
     gtk_widget_set_tooltip_text(A.det_share, _("Make all the discs of this game use one memory card"));
     A.det_rm = panel_button(_("Remove"), G_CALLBACK(on_det_remove), "btn-danger");
@@ -1141,6 +1160,7 @@ GtkWidget *build_library_page(void)
     gtk_box_append(GTK_BOX(A.det_content), A.det_settings);
     gtk_box_append(GTK_BOX(A.det_content), A.det_art);
     gtk_box_append(GTK_BOX(A.det_content), A.det_cheats);
+    gtk_box_append(GTK_BOX(A.det_content), A.det_fixes);
     gtk_box_append(GTK_BOX(A.det_content), A.det_share);
     gtk_box_append(GTK_BOX(A.det_content), A.det_rm);
 

@@ -2,8 +2,7 @@
  * Saves: the virtual memory cards (OPL's VMC folder on the PS2 disk, or any raw card file on this computer, for example
  * the ones on a USB stick). List the saves of a card, export one as .psu, import .psu files, delete a save.
  *
- * A card of the disk is copied to this computer, changed there (card code in src/core/mcfs.c, shared with the console
- * app savemgr) and put back safely (ops_vmc_store). Before every change a backup of the card is kept.
+ * A card of the disk is copied to this computer, changed there (card code in src/core/mcfs.c) and put back safely (ops_vmc_store). Before every change a backup of the card is kept.
  */
 #include <glib/gstdio.h>
 

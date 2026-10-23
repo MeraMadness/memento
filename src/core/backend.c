@@ -328,6 +328,55 @@ gboolean backend_read_text(Backend *b, const char *folder, const char *name, cha
     return ok;
 }
 
+static void fix_file_line(const char *line, gpointer ud)
+{
+    GPtrArray *files = ud;
+    gchar **f = g_strsplit(line, "\t", -1);
+
+    if (g_strv_length(f) == 3 && !strcmp(f[0], "FIXFILE")) {
+        LibFile *a = g_new0(LibFile, 1);
+
+        a->name = g_strdup(f[1]);
+        a->size = g_ascii_strtoull(f[2], NULL, 10);
+        g_ptr_array_add(files, a);
+    }
+    g_strfreev(f);
+}
+
+gboolean backend_list_fix_files(Backend *b, const char *folder, GPtrArray **files, GError **error)
+{
+    char *cmd[] = {"LIST_POPS", (char *)folder, NULL};
+
+    *files = g_ptr_array_new_with_free_func(lib_file_free);
+    if (!backend_run(b, cmd, fix_file_line, *files, error)) {
+        g_ptr_array_free(*files, TRUE);
+        *files = NULL;
+        return FALSE;
+    }
+    return TRUE;
+}
+
+gboolean backend_read_pops_file(Backend *b, const char *folder, const char *name, char **text, GError **error)
+{
+    char *cmd[] = {"GET_POPS", (char *)folder, (char *)name, NULL};
+    GotPath got = {NULL};
+    gboolean ok = TRUE;
+
+    *text = NULL;
+    if (!backend_run(b, cmd, got_path_line, &got, error))
+        return FALSE;
+    if (got.path != NULL) {
+        ok = g_file_get_contents(got.path, text, NULL, error);
+        g_free(got.path);
+    }
+    return ok;
+}
+
+gboolean backend_read_pops_text(Backend *b, const char *folder, char **text, GError **error)
+{
+    return backend_read_pops_file(b, folder, "CHEATS.TXT", text, error);
+}
+
 gboolean backend_get_file(Backend *b, const char *folder, const char *name, char **path, GError **error)
 {
     char *cmd[] = {"GET", (char *)folder, (char *)name, NULL};

@@ -84,7 +84,7 @@ static gboolean script_tick(gpointer data)
         do_remove_ps2(v[0], v[1]);
         g_strfreev(v);
     } else if (!strcmp(step, "remove_ps1"))
-        do_remove_ps1(arg);
+        do_remove_ps1(arg, FALSE);
     else if (!strcmp(step, "art")) {
         char **v = g_strsplit(arg, "|", 3);
 
@@ -139,6 +139,8 @@ static gboolean script_tick(gpointer data)
         adw_switch_row_set_active(ADW_SWITCH_ROW(A.iso_pack_row), !strcmp(arg, "on"));
     } else if (!strcmp(step, "listview")) { /* listview=<on|off> */
         library_set_list_view(!strcmp(arg, "on"));
+    } else if (!strcmp(step, "ps1fix")) { /* ps1fix=<VCD name>: opens the PS1 fixes dialog */
+        show_ps1fix_dialog(arg, arg);
     } else if (!strcmp(step, "card")) { /* card=<name of a card on the disk> */
         saves_open_remote(arg);
     } else if (!strcmp(step, "cardfile")) { /* cardfile=<path of a card file> */

@@ -5,6 +5,52 @@
 
 /* ---- connect ----------------------------------------------------------------------------------- */
 
+/* does this folder look like the root of an OPL drive (an SD card in an MX4SIO adapter, a USB stick)? */
+static gboolean looks_like_opl_drive(const char *path)
+{
+    static const char *marks[] = {"DVD", "CD", "POPS", "ART", "CFG", "VMC", "APPS", "CHT", "OPL"};
+    guint i;
+
+    for (i = 0; i < G_N_ELEMENTS(marks); i++) {
+        char *p = g_build_filename(path, marks[i], NULL);
+        gboolean yes = g_file_test(p, G_FILE_TEST_IS_DIR);
+
+        g_free(p);
+        if (yes)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+/* the mounted drives of the desktop (under /run/media/<user>) that hold an OPL layout */
+static void add_mounted_drives(void)
+{
+    char *bases[2] = {g_build_filename("/run/media", g_get_user_name(), NULL), g_build_filename("/media", g_get_user_name(), NULL)};
+    guint b;
+
+    for (b = 0; b < 2; b++) {
+        GDir *d = g_dir_open(bases[b], 0, NULL);
+        const char *name;
+
+        while (d && (name = g_dir_read_name(d)) != NULL) {
+            char *path = g_build_filename(bases[b], name, NULL);
+
+            if (g_file_test(path, G_FILE_TEST_IS_DIR) && looks_like_opl_drive(path)) {
+                char *label = g_strdup_printf(_("SD card or USB drive: %s  (%s)"), name, path);
+
+                gtk_string_list_append(A.disk_model, label);
+                g_ptr_array_add(A.disk_paths, g_strdup(path));
+                g_ptr_array_add(A.disk_names, g_strdup(name));
+                g_free(label);
+            }
+            g_free(path);
+        }
+        if (d)
+            g_dir_close(d);
+        g_free(bases[b]);
+    }
+}
+
 static void fill_disks(void)
 {
     gchar *out = NULL;
@@ -91,13 +137,16 @@ static void fill_disks(void)
     g_free(out);
     g_hash_table_destroy(busy);
     g_regex_unref(kv);
+    add_mounted_drives();
     adw_action_row_set_subtitle(ADW_ACTION_ROW(A.disk_row), A.disk_paths->len ? NULL : _("No disks found. Plug in the PS2 drive, then press Refresh"));
     if (A.image_path) {
-        char *label = g_strdup_printf(_("Disk image: %s"), A.image_path);
+        gboolean folder = g_file_test(A.image_path, G_FILE_TEST_IS_DIR); /* a folder chosen by hand, or a disk image file */
+        char *label = g_strdup_printf(folder ? _("Folder: %s") : _("Disk image: %s"), A.image_path), *base = g_path_get_basename(A.image_path);
 
         gtk_string_list_append(A.disk_model, label);
         g_ptr_array_add(A.disk_paths, g_strdup(A.image_path));
-        g_ptr_array_add(A.disk_names, g_strdup(_("Disk image")));
+        g_ptr_array_add(A.disk_names, folder ? g_strdup(base) : g_strdup(_("Disk image")));
+        g_free(base);
         g_free(label);
         adw_combo_row_set_selected(A.disk_row, A.disk_paths->len - 1);
     }
@@ -182,8 +231,8 @@ void update_devices_page(void)
     } else {
         adw_status_page_set_title(ADW_STATUS_PAGE(A.conn_status), _("Connect your PS2 drive"));
         adw_status_page_set_description(ADW_STATUS_PAGE(A.conn_status),
-                                        _("Plug the PS2 hard drive or SSD into this computer, choose it below, and press Connect. "
-                                        "You will be asked for your administrator password once."));
+                                        _("Plug the PS2 hard drive or SSD into this computer, or an SD card or USB drive with your games (MX4SIO, USB), choose it below "
+                                        "and press Connect. A hard drive asks for your administrator password once; a card or USB drive does not."));
     }
 }
 
@@ -281,6 +330,30 @@ static void on_image_chosen(GObject *src, GAsyncResult *res, gpointer data)
     fill_disks();
 }
 
+static void on_folder_chosen(GObject *src, GAsyncResult *res, gpointer data)
+{
+    GFile *f = gtk_file_dialog_select_folder_finish(GTK_FILE_DIALOG(src), res, NULL);
+
+    (void)data;
+    if (f == NULL)
+        return;
+    g_free(A.image_path);
+    A.image_path = g_file_get_path(f);
+    g_object_unref(f);
+    fill_disks();
+}
+
+static void on_choose_folder(GtkButton *b, gpointer d)
+{
+    GtkFileDialog *dlg = gtk_file_dialog_new();
+
+    (void)b;
+    (void)d;
+    gtk_file_dialog_set_title(dlg, _("Choose the folder of an SD card or USB drive (the one with DVD, CD, ART...)"));
+    gtk_file_dialog_select_folder(dlg, GTK_WINDOW(A.win), NULL, on_folder_chosen, NULL);
+    g_object_unref(dlg);
+}
+
 static void on_choose_image(GtkButton *b, gpointer d)
 {
     GtkFileDialog *dlg = gtk_file_dialog_new();
@@ -308,8 +381,8 @@ GtkWidget *build_connect_page(void)
     }
     adw_status_page_set_title(ADW_STATUS_PAGE(status), _("Connect your PS2 drive"));
     adw_status_page_set_description(ADW_STATUS_PAGE(status),
-                                    _("Plug the PS2 hard drive or SSD into this computer, choose it below, and press Connect. "
-                                    "You will be asked for your administrator password once."));
+                                    _("Plug the PS2 hard drive or SSD into this computer, or an SD card or USB drive with your games (MX4SIO, USB), choose it below "
+                                    "and press Connect. A hard drive asks for your administrator password once; a card or USB drive does not."));
     A.disk_model = gtk_string_list_new(NULL);
     A.disk_paths = g_ptr_array_new_with_free_func(g_free);
     A.disk_names = g_ptr_array_new_with_free_func(g_free);
@@ -317,7 +390,14 @@ GtkWidget *build_connect_page(void)
     adw_preferences_row_set_title(ADW_PREFERENCES_ROW(A.disk_row), _("Disk"));
     adw_combo_row_set_model(A.disk_row, G_LIST_MODEL(A.disk_model));
     adw_preferences_group_add(ADW_PREFERENCES_GROUP(group), GTK_WIDGET(A.disk_row));
-    row2 = button_row(_("Not listed?"), _("Look again, or use a disk image file (for tests and backups)"), _("Refresh"), G_CALLBACK(on_rescan), NULL);
+    row2 = button_row(_("Not listed?"), _("Look again, or choose the folder of an SD card or USB drive, or a disk image file (for tests and backups)"), _("Refresh"), G_CALLBACK(on_rescan), NULL);
+    {
+        GtkWidget *bf = gtk_button_new_with_label(_("Choose folder..."));
+
+        gtk_widget_set_valign(bf, GTK_ALIGN_CENTER);
+        g_signal_connect(bf, "clicked", G_CALLBACK(on_choose_folder), NULL);
+        adw_action_row_add_suffix(ADW_ACTION_ROW(row2), bf);
+    }
     {
         GtkWidget *b = gtk_button_new_with_label(_("Choose image..."));
 

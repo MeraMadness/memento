@@ -99,6 +99,8 @@ gboolean ps2gm_elf_check(const char *path, GError **error);
 /* TRUE if name ends in .elf in any letter case */
 gboolean ps2gm_is_elf_name(const char *name);
 gboolean ps2gm_is_zso_name(const char *name);
+/* removes an empty folder <name> inside remote_dir */
+gboolean pfs_rmdir(const Ps2gmTools *t, const char *device, const char *partition, const char *remote_dir, const char *name, GError **error);
 gboolean pfs_remove(const Ps2gmTools *t, const char *device, const char *partition,
                     const char *remote_dir, const char *name, GError **error);
 

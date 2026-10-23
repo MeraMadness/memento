@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ps2gm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 20:07+0200\n"
+"POT-Creation-Date: 2026-10-20 22:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: src/ui/add_page.c:74 src/ui/add_page.c:1020 src/ui/add_page.c:1058
 #: src/ui/apps_page.c:332 src/ui/art_dialog.c:223 src/ui/cheats_dialog.c:226
-#: src/ui/cover_dialog.c:424
+#: src/ui/ps1fix_dialog.c:297 src/ui/cover_dialog.c:424
 msgid "Choose..."
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr ""
 msgid "Copying the program to the PS2 disk"
 msgstr ""
 
-#: src/ui/apps_page.c:49 src/ui/library_page.c:914
+#: src/ui/apps_page.c:49 src/ui/library_page.c:931
 msgid "Removing"
 msgstr ""
 
@@ -312,8 +312,8 @@ msgid "Replace, keep the old one as %s"
 msgstr ""
 
 #: src/ui/apps_page.c:96 src/ui/apps_page.c:136 src/ui/apps_page.c:185
-#: src/ui/library_page.c:151 src/ui/library_page.c:562 src/ui/transfers.c:330
-#: src/ui/saves_page.c:369
+#: src/ui/library_page.c:153 src/ui/library_page.c:579 src/ui/transfers.c:330
+#: src/ui/saves_page.c:368
 msgid "Cancel"
 msgstr ""
 
@@ -329,7 +329,7 @@ msgstr ""
 msgid "Renaming the program"
 msgstr ""
 
-#: src/ui/apps_page.c:132 src/ui/library_page.c:144
+#: src/ui/apps_page.c:132 src/ui/library_page.c:146
 #, c-format
 msgid "\"%s\" will be deleted from the PS2 disk. This cannot be undone."
 msgstr ""
@@ -338,8 +338,8 @@ msgstr ""
 msgid "Remove this program?"
 msgstr ""
 
-#: src/ui/apps_page.c:136 src/ui/cheats_dialog.c:239 src/ui/library_page.c:151
-#: src/ui/library_page.c:1139
+#: src/ui/apps_page.c:136 src/ui/cheats_dialog.c:239 src/ui/ps1fix_dialog.c:306
+#: src/ui/library_page.c:153 src/ui/library_page.c:1158
 msgid "Remove"
 msgstr ""
 
@@ -389,7 +389,7 @@ msgid ""
 "disk you can keep the old version."
 msgstr ""
 
-#: src/ui/apps_page.c:345 src/ui/library_page.c:1009
+#: src/ui/apps_page.c:345 src/ui/library_page.c:1027
 msgid "On the disk"
 msgstr ""
 
@@ -573,7 +573,8 @@ msgstr ""
 msgid "Sets the game's OPL settings: cheat engine on, all cheats active"
 msgstr ""
 
-#: src/ui/cheats_dialog.c:234 src/ui/settings_dialog.c:196
+#: src/ui/cheats_dialog.c:234 src/ui/ps1fix_dialog.c:301
+#: src/ui/settings_dialog.c:196
 msgid "Save"
 msgstr ""
 
@@ -581,7 +582,8 @@ msgstr ""
 msgid "Writes the list to the disk (+OPL/CHT)"
 msgstr ""
 
-#: src/ui/cheats_dialog.c:234 src/ui/settings_dialog.c:196
+#: src/ui/cheats_dialog.c:234 src/ui/ps1fix_dialog.c:301
+#: src/ui/settings_dialog.c:196
 msgid "Save to the disk"
 msgstr ""
 
@@ -606,138 +608,408 @@ msgstr ""
 msgid "Reading the cheats"
 msgstr ""
 
+#: src/ui/ps1fix_dialog.c:49 src/ui/ps1fix_dialog.c:103
+msgid "Saving the fixes"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:49 src/ui/ps1fix_dialog.c:103
+#: src/ui/ps1fix_dialog.c:114
+msgid "Removing the fixes"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:57 src/ui/ps1fix_dialog.c:149
+#: src/ui/library_page.c:939 src/ui/saves_page.c:267 src/core/ops.c:903
+#: src/core/ops.c:982 src/core/ops.c:1153
+msgid "Done"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:83
+msgid "These lines cannot be saved"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:139
+msgid "Copying the fix file to the disk"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:139 src/ui/ps1fix_dialog.c:162
+msgid "Removing the fix file"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:162
+msgid "Adding the fix file"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:190
+msgid "Choose a fix file (TROJAN_#.BIN or PATCH_#.BIN)"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:191
+msgid "Fix files (.BIN)"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:247
+msgid ""
+"POPStarter reads these settings from CHEATS.TXT in the game's own folder. "
+"They come from the community's documentation of POPStarter, not from the "
+"program's makers, and not every version supports all of them. Change one "
+"thing at a time and test the game after each change."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:251
+msgid "Workarounds"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:252
+msgid "Smaller read buffer"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:252
+msgid "a buffer of 1 sector instead of 16. May help video that hangs."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:253
+msgid "CD status workaround"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:253
+msgid "for hangs and timeouts."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:254
+msgid "Recompiler cache workaround"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:254
+msgid "for slowdowns and random hangs. Use it only for the game that needs it."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:255
+msgid "Turn off the built-in fixes"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:255
+msgid ""
+"finds out whether a fix that POPStarter applies by itself hurts this game."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:261
+msgid "Other lines"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:262
+msgid "One per line: other $ settings and raw cheat codes. Plain text only."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:276
+msgid "Fix files"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:278
+msgid ""
+"TROJAN_#.BIN and PATCH_#.BIN files from a fix pack go in the game's folder. "
+"Some of them change how the game behaves with its memory card, so keep a "
+"copy of the card first. Use one pack's files at a time."
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:288
+msgid "Remove from the game's folder"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:297
+msgid "Add a fix file"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:297
+msgid "Copies a file from this computer into the game's folder on the disk"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:301
+msgid "Writes CHEATS.TXT into the game's folder on the disk"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:306
+msgid "Deletes CHEATS.TXT, so the game runs without these settings"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:306
+msgid "Remove the file"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:327
+#, c-format
+msgid "PS1 fixes: %s"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:342
+msgid "Reading the fixes from the disk"
+msgstr ""
+
+#: src/ui/ps1fix_dialog.c:352
+msgid "Reading the fixes"
+msgstr ""
+
+#: src/core/ps1fix.c:73
+#, c-format
+msgid "A line is too long (at most %d characters)"
+msgstr ""
+
+#: src/core/ps1fix.c:78
+#, c-format
+msgid "Only plain letters, digits and symbols are allowed: %s"
+msgstr ""
+
+#: src/core/ps1fix.c:85
+msgid "The list is too long"
+msgstr ""
+
+#: src/core/folderfs.c:42
+msgid "That place does not exist on a drive of this kind"
+msgstr ""
+
+#: src/core/folderfs.c:53
+#, c-format
+msgid "Cannot read the size of %s: %s"
+msgstr ""
+
+#: src/core/folderfs.c:191 src/core/folderfs.c:239 src/core/redump.c:264
+#: src/core/redump.c:277 src/core/ziso.c:592 src/core/ziso.c:814
+#, c-format
+msgid "Cannot read %s"
+msgstr ""
+
+#: src/core/folderfs.c:202
+msgid ""
+"This drive uses FAT32, which cannot hold a file of 4 GiB or more. Use a "
+"compressed .zso, or format the card as exFAT."
+msgstr ""
+
+#: src/core/folderfs.c:210 src/core/folderfs.c:249
+#, c-format
+msgid "Cannot write %s: %s"
+msgstr ""
+
+#: src/core/folderfs.c:220 src/core/folderfs.c:244
+#, c-format
+msgid "Writing to the drive failed: %s"
+msgstr ""
+
+#: src/core/folderfs.c:232 src/ui/transfers.c:379 src/core/redump.c:272
+#: src/core/tools.c:409 src/core/vcd.c:364 src/core/ziso.c:310
+#: src/core/ziso.c:633 src/core/ziso.c:758
+msgid "Cancelled"
+msgstr ""
+
+#: src/core/folderfs.c:273 src/core/ops.c:408
+msgid "Bad game name"
+msgstr ""
+
+#: src/core/folderfs.c:277 src/core/ops.c:952
+#, c-format
+msgid "%s (%s) is already installed"
+msgstr ""
+
+#: src/core/folderfs.c:283 src/core/ops.c:926 src/core/ops.c:965
+#: src/core/tools.c:407
+msgid "Installing to the PS2 disk"
+msgstr ""
+
+#: src/core/folderfs.c:296
+#, c-format
+msgid "No installed game matches %s (%s)"
+msgstr ""
+
+#: src/core/folderfs.c:301
+#, c-format
+msgid "Could not remove %s: %s"
+msgstr ""
+
+#: src/core/folderfs.c:321 src/core/folderfs.c:382 src/core/tools.c:728
+#: src/core/tools.c:857 src/core/tools.c:956 src/core/tools.c:1041
+#: src/core/tools.c:1078
+#, c-format
+msgid "Folder %s/%s does not exist"
+msgstr ""
+
+#: src/core/folderfs.c:356
+#, c-format
+msgid "Cannot create the folder %s: %s"
+msgstr ""
+
+#: src/core/folderfs.c:409 src/core/tools.c:1051
+#, c-format
+msgid "Could not remove %s"
+msgstr ""
+
+#: src/core/folderfs.c:428 src/core/tools.c:1088
+#, c-format
+msgid "Could not remove the folder %s"
+msgstr ""
+
+#: src/core/folderfs.c:448
+#, c-format
+msgid "%s already exists"
+msgstr ""
+
+#: src/core/folderfs.c:450 src/core/tools.c:972
+#, c-format
+msgid "Could not rename %s"
+msgstr ""
+
 #: src/ui/common.c:38
 msgid "OK"
 msgstr ""
 
-#: src/ui/connect_page.c:73 src/ui/connect_page.c:78 src/ui/connect_page.c:317
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:39
+#, c-format
+msgid "SD card or USB drive: %s  (%s)"
+msgstr ""
+
+#: src/ui/connect_page.c:119 src/ui/connect_page.c:124
+#: src/ui/connect_page.c:390 src/ui/connect_page.c:433
 msgid "Disk"
 msgstr ""
 
-#: src/ui/connect_page.c:94
+#: src/ui/connect_page.c:141
 msgid "No disks found. Plug in the PS2 drive, then press Refresh"
 msgstr ""
 
-#: src/ui/connect_page.c:96
+#: src/ui/connect_page.c:144
+#, c-format
+msgid "Folder: %s"
+msgstr ""
+
+#: src/ui/connect_page.c:144
 #, c-format
 msgid "Disk image: %s"
 msgstr ""
 
-#: src/ui/connect_page.c:100
+#: src/ui/connect_page.c:148
 msgid "Disk image"
 msgstr ""
 
-#: src/ui/connect_page.c:134 src/ui/connect_page.c:171 src/ui/topbar.c:32
+#: src/ui/connect_page.c:183 src/ui/connect_page.c:220 src/ui/topbar.c:32
 msgid "PS2 disk"
 msgstr ""
 
-#: src/ui/connect_page.c:142
+#: src/ui/connect_page.c:191
 #, c-format
 msgid "%s used, %s free"
 msgstr ""
 
-#: src/ui/connect_page.c:171
+#: src/ui/connect_page.c:220
 #, c-format
 msgid "Connected: %s"
 msgstr ""
 
-#: src/ui/connect_page.c:172
+#: src/ui/connect_page.c:221
 #, c-format
 msgid "%s used of %s, %s free. %u game on the disk."
 msgid_plural "%s used of %s, %s free. %u games on the disk."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ui/connect_page.c:183 src/ui/connect_page.c:309
+#: src/ui/connect_page.c:232 src/ui/connect_page.c:382
 msgid "Connect your PS2 drive"
 msgstr ""
 
-#: src/ui/connect_page.c:185 src/ui/connect_page.c:311
+#: src/ui/connect_page.c:234 src/ui/connect_page.c:384
 msgid ""
-"Plug the PS2 hard drive or SSD into this computer, choose it below, and "
-"press Connect. You will be asked for your administrator password once."
+"Plug the PS2 hard drive or SSD into this computer, or an SD card or USB "
+"drive with your games (MX4SIO, USB), choose it below and press Connect. A "
+"hard drive asks for your administrator password once; a card or USB drive "
+"does not."
 msgstr ""
 
-#: src/ui/connect_page.c:207
+#: src/ui/connect_page.c:256
 msgid "Waiting for the administrator password"
 msgstr ""
 
-#: src/ui/connect_page.c:207
+#: src/ui/connect_page.c:256
 msgid "Opening the disk"
 msgstr ""
 
-#: src/ui/connect_page.c:239
+#: src/ui/connect_page.c:288
 msgid "No disk selected"
 msgstr ""
 
-#: src/ui/connect_page.c:239
+#: src/ui/connect_page.c:288
 msgid ""
 "Plug in the PS2 hard drive (or SSD) and press Refresh, or choose a disk "
 "image file."
 msgstr ""
 
-#: src/ui/connect_page.c:244
+#: src/ui/connect_page.c:293
 msgid "Connecting to the PS2 disk"
 msgstr ""
 
-#: src/ui/connect_page.c:252 src/ui/jobs.c:106
+#: src/ui/connect_page.c:301 src/ui/jobs.c:106
 msgid "Wait for the transfers to finish first"
 msgstr ""
 
-#: src/ui/connect_page.c:290
+#: src/ui/connect_page.c:352
+msgid ""
+"Choose the folder of an SD card or USB drive (the one with DVD, CD, ART...)"
+msgstr ""
+
+#: src/ui/connect_page.c:363
 msgid "Choose a PS2 disk image file"
 msgstr ""
 
-#: src/ui/connect_page.c:298
+#: src/ui/connect_page.c:371
 msgid "Connect"
 msgstr ""
 
-#: src/ui/connect_page.c:320
+#: src/ui/connect_page.c:393
 msgid "Not listed?"
 msgstr ""
 
-#: src/ui/connect_page.c:320
-msgid "Look again, or use a disk image file (for tests and backups)"
+#: src/ui/connect_page.c:393
+msgid ""
+"Look again, or choose the folder of an SD card or USB drive, or a disk image "
+"file (for tests and backups)"
 msgstr ""
 
-#: src/ui/connect_page.c:320
+#: src/ui/connect_page.c:393
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/connect_page.c:322
+#: src/ui/connect_page.c:395
+msgid "Choose folder..."
+msgstr ""
+
+#: src/ui/connect_page.c:402
 msgid "Choose image..."
 msgstr ""
 
-#: src/ui/connect_page.c:341 src/ui/topbar.c:84
+#: src/ui/connect_page.c:421 src/ui/topbar.c:84
 msgid "Read the disk again"
 msgstr ""
 
-#: src/ui/connect_page.c:343
+#: src/ui/connect_page.c:423
 msgid "Disconnect"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "Device"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "Capacity"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "Space"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "PS2 games"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "PS1 games"
 msgstr ""
 
-#: src/ui/connect_page.c:353
+#: src/ui/connect_page.c:433
 msgid "Programs"
 msgstr ""
 
@@ -858,66 +1130,72 @@ msgstr ""
 msgid "Reading the PS2 disk"
 msgstr ""
 
-#: src/ui/library_page.c:143
+#: src/ui/library_page.c:145
 #, c-format
 msgid ""
 "\"%s\" will be deleted from the PS2 disk. This cannot be undone.\n"
-"Its memory card and saves are kept."
+"Its memory card and saves are kept, unless you tick the box."
 msgstr ""
 
-#: src/ui/library_page.c:146
+#: src/ui/library_page.c:148
 msgid "Remove this game?"
 msgstr ""
 
-#: src/ui/library_page.c:400
+#: src/ui/library_page.c:157
+msgid ""
+"Also delete its memory card, settings and fix files (the saves on the card "
+"are lost)"
+msgstr ""
+
+#: src/ui/library_page.c:407
 msgid "Nothing matches"
 msgstr ""
 
-#: src/ui/library_page.c:400
+#: src/ui/library_page.c:407
 msgid "No games yet"
 msgstr ""
 
-#: src/ui/library_page.c:401
+#: src/ui/library_page.c:408
 msgid "Change the search or the filter."
 msgstr ""
 
-#: src/ui/library_page.c:401
+#: src/ui/library_page.c:408
 msgid "Use Add game to install your first one."
 msgstr ""
 
-#: src/ui/library_page.c:411
+#: src/ui/library_page.c:418
 msgid "No game ID in the file name"
 msgstr ""
 
-#: src/ui/library_page.c:413
+#: src/ui/library_page.c:420
 msgid "Unknown"
 msgstr ""
 
-#: src/ui/library_page.c:414
+#: src/ui/library_page.c:421
 msgid "POPStarter image"
 msgstr ""
 
-#: src/ui/library_page.c:417
+#: src/ui/library_page.c:424
 msgid "cheats"
 msgstr ""
 
-#: src/ui/library_page.c:419
+#: src/ui/library_page.c:426
 msgid "no cover"
 msgstr ""
 
-#: src/ui/library_page.c:421
+#: src/ui/library_page.c:428
 msgid "no background"
 msgstr ""
 
-#: src/ui/library_page.c:544 src/ui/library_page.c:575
+#: src/ui/library_page.c:561 src/ui/library_page.c:592
 msgid "Sharing the memory card"
 msgstr ""
 
-#: src/ui/library_page.c:558
+#: src/ui/library_page.c:575
 msgid "Share one memory card?"
 msgstr ""
 
-#: src/ui/library_page.c:559
+#: src/ui/library_page.c:576
 msgid ""
 "All the discs of this game will use the memory card of the first disc, so a "
 "save made on one disc is there on the others.\n"
@@ -926,119 +1204,118 @@ msgid ""
 "disk, but the game stops using them."
 msgstr ""
 
-#: src/ui/library_page.c:562
+#: src/ui/library_page.c:579
 msgid "Share"
 msgstr ""
 
-#: src/ui/library_page.c:688
+#: src/ui/library_page.c:705
 #, c-format
 msgid "%u title"
 msgid_plural "%u titles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ui/library_page.c:922 src/ui/saves_page.c:268 src/core/ops.c:760
-#: src/core/ops.c:839 src/core/ops.c:1010
-msgid "Done"
-msgstr ""
-
-#: src/ui/library_page.c:933 src/ui/library_page.c:942
+#: src/ui/library_page.c:950 src/ui/library_page.c:960
 msgid "Removing the game"
 msgstr ""
 
-#: src/ui/library_page.c:960 src/core/ops.c:829 src/core/ops.c:1005
+#: src/ui/library_page.c:978 src/core/ops.c:972 src/core/ops.c:1148
 msgid "Downloading the art"
 msgstr ""
 
-#: src/ui/library_page.c:1004
+#: src/ui/library_page.c:1022
 msgid "Game library"
 msgstr ""
 
-#: src/ui/library_page.c:1026
+#: src/ui/library_page.c:1044
 msgid "Add game"
 msgstr ""
 
-#: src/ui/library_page.c:1037
+#: src/ui/library_page.c:1055
 msgid "Search games or serial..."
 msgstr ""
 
-#: src/ui/library_page.c:1042
+#: src/ui/library_page.c:1060
 msgid "All platforms"
 msgstr ""
 
-#: src/ui/library_page.c:1043
+#: src/ui/library_page.c:1061
 msgid "All games"
 msgstr ""
 
-#: src/ui/library_page.c:1043
+#: src/ui/library_page.c:1061
 msgid "With cheats"
 msgstr ""
 
-#: src/ui/library_page.c:1043
+#: src/ui/library_page.c:1061
 msgid "Missing cover"
 msgstr ""
 
-#: src/ui/library_page.c:1044
+#: src/ui/library_page.c:1062
 msgid "Name A-Z"
 msgstr ""
 
-#: src/ui/library_page.c:1044
+#: src/ui/library_page.c:1062
 msgid "Name Z-A"
 msgstr ""
 
-#: src/ui/library_page.c:1044
+#: src/ui/library_page.c:1062
 msgid "Largest first"
 msgstr ""
 
-#: src/ui/library_page.c:1044
+#: src/ui/library_page.c:1062
 msgid "Smallest first"
 msgstr ""
 
-#: src/ui/library_page.c:1049
+#: src/ui/library_page.c:1067
 msgid "Covers"
 msgstr ""
 
-#: src/ui/library_page.c:1050
+#: src/ui/library_page.c:1068
 msgid "List"
 msgstr ""
 
-#: src/ui/library_page.c:1092
+#: src/ui/library_page.c:1110
 msgid "No game matches the search or the filters."
 msgstr ""
 
-#: src/ui/library_page.c:1130
+#: src/ui/library_page.c:1148
 msgid "Platform"
 msgstr ""
 
-#: src/ui/library_page.c:1131
+#: src/ui/library_page.c:1149
 msgid "Region"
 msgstr ""
 
-#: src/ui/library_page.c:1132
+#: src/ui/library_page.c:1150
 msgid "Disc"
 msgstr ""
 
-#: src/ui/library_page.c:1133
+#: src/ui/library_page.c:1151
 msgid "Size"
 msgstr ""
 
-#: src/ui/library_page.c:1134
+#: src/ui/library_page.c:1152
 msgid "Game settings"
 msgstr ""
 
-#: src/ui/library_page.c:1135
+#: src/ui/library_page.c:1153
 msgid "Pictures..."
 msgstr ""
 
-#: src/ui/library_page.c:1136
+#: src/ui/library_page.c:1154
 msgid "Cheats..."
 msgstr ""
 
-#: src/ui/library_page.c:1137
+#: src/ui/library_page.c:1155
+msgid "PS1 fixes..."
+msgstr ""
+
+#: src/ui/library_page.c:1156
 msgid "Share memory card"
 msgstr ""
 
-#: src/ui/library_page.c:1138
+#: src/ui/library_page.c:1157
 msgid "Make all the discs of this game use one memory card"
 msgstr ""
 
@@ -1251,7 +1528,7 @@ msgstr ""
 msgid "Transfers"
 msgstr ""
 
-#: src/ui/topbar.c:12 src/ui/saves_page.c:625
+#: src/ui/topbar.c:12 src/ui/saves_page.c:624
 msgid "Saves"
 msgstr ""
 
@@ -1296,7 +1573,7 @@ msgstr ""
 msgid "%u waiting"
 msgstr ""
 
-#: src/ui/transfers.c:100 src/core/ops.c:797 src/core/ops.c:884
+#: src/ui/transfers.c:100 src/core/ops.c:940 src/core/ops.c:1027
 msgid "Checking the disk"
 msgstr ""
 
@@ -1356,12 +1633,6 @@ msgstr ""
 #: src/ui/transfers.c:376
 #, c-format
 msgid "Done at %s"
-msgstr ""
-
-#: src/ui/transfers.c:379 src/core/redump.c:272 src/core/tools.c:402
-#: src/core/vcd.c:364 src/core/ziso.c:310 src/core/ziso.c:633
-#: src/core/ziso.c:758
-msgid "Cancelled"
 msgstr ""
 
 #: src/ui/transfers.c:382
@@ -1473,180 +1744,180 @@ msgid ""
 "installing it. Downloaded once, then used offline."
 msgstr ""
 
-#: src/ui/saves_page.c:43
+#: src/ui/saves_page.c:42
 msgid "The card file could not be read or written"
 msgstr ""
 
-#: src/ui/saves_page.c:44
+#: src/ui/saves_page.c:43
 msgid "That is not a PS2 memory card image"
 msgstr ""
 
-#: src/ui/saves_page.c:45
+#: src/ui/saves_page.c:44
 msgid ""
 "That card image has ECC data; only raw images (like the ones OPL makes) are "
 "supported"
 msgstr ""
 
-#: src/ui/saves_page.c:46
+#: src/ui/saves_page.c:45
 msgid "The save is not on the card"
 msgstr ""
 
-#: src/ui/saves_page.c:47
+#: src/ui/saves_page.c:46
 msgid "A save with that name is already on the card"
 msgstr ""
 
-#: src/ui/saves_page.c:48
+#: src/ui/saves_page.c:47
 msgid "There is not enough room on the card"
 msgstr ""
 
-#: src/ui/saves_page.c:49
+#: src/ui/saves_page.c:48
 msgid "That is not a usable .psu save file"
 msgstr ""
 
-#: src/ui/saves_page.c:50
+#: src/ui/saves_page.c:49
 msgid "The card is read only"
 msgstr ""
 
-#: src/ui/saves_page.c:51
+#: src/ui/saves_page.c:50
 msgid "The card could not be changed"
 msgstr ""
 
-#: src/ui/saves_page.c:139
+#: src/ui/saves_page.c:138
 #, c-format
 msgid "%s card · %s free · %u save"
 msgid_plural "%s card · %s free · %u saves"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ui/saves_page.c:149
+#: src/ui/saves_page.c:148
 #, c-format
 msgid "%s · %u KB · %u file"
 msgid_plural "%s · %u KB · %u files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ui/saves_page.c:154
+#: src/ui/saves_page.c:153
 msgid "Export as .psu"
 msgstr ""
 
-#: src/ui/saves_page.c:155
+#: src/ui/saves_page.c:154
 msgid "Delete from the card"
 msgstr ""
 
-#: src/ui/saves_page.c:280
+#: src/ui/saves_page.c:279
 msgid "Importing saves"
 msgstr ""
 
-#: src/ui/saves_page.c:280
+#: src/ui/saves_page.c:279
 msgid "Deleting the save"
 msgstr ""
 
-#: src/ui/saves_page.c:330
+#: src/ui/saves_page.c:329
 msgid "Choose the saves to put on the card (.psu)"
 msgstr ""
 
-#: src/ui/saves_page.c:331
+#: src/ui/saves_page.c:330
 msgid "PS2 saves (.psu)"
 msgstr ""
 
-#: src/ui/saves_page.c:367
+#: src/ui/saves_page.c:366
 #, c-format
 msgid "%s will be removed from the card. A backup of the card is kept first."
 msgstr ""
 
-#: src/ui/saves_page.c:368
+#: src/ui/saves_page.c:367
 msgid "Delete this save?"
 msgstr ""
 
-#: src/ui/saves_page.c:369
+#: src/ui/saves_page.c:368
 msgid "Delete"
 msgstr ""
 
-#: src/ui/saves_page.c:398
+#: src/ui/saves_page.c:397
 msgid "Save exported"
 msgstr ""
 
-#: src/ui/saves_page.c:400
+#: src/ui/saves_page.c:399
 msgid "The save could not be exported"
 msgstr ""
 
-#: src/ui/saves_page.c:415
+#: src/ui/saves_page.c:414
 msgid "Export the save"
 msgstr ""
 
-#: src/ui/saves_page.c:432
+#: src/ui/saves_page.c:431
 msgid "Card copied"
 msgstr ""
 
-#: src/ui/saves_page.c:434
+#: src/ui/saves_page.c:433
 msgid "The card could not be copied"
 msgstr ""
 
-#: src/ui/saves_page.c:450
+#: src/ui/saves_page.c:449
 msgid "Save a copy of the card"
 msgstr ""
 
-#: src/ui/saves_page.c:530
+#: src/ui/saves_page.c:529
 msgid "Reading the memory card"
 msgstr ""
 
-#: src/ui/saves_page.c:575
+#: src/ui/saves_page.c:574
 msgid "Choose a memory card file"
 msgstr ""
 
-#: src/ui/saves_page.c:576
+#: src/ui/saves_page.c:575
 msgid "Memory cards (.bin)"
 msgstr ""
 
-#: src/ui/saves_page.c:594
+#: src/ui/saves_page.c:593
 msgid "Choose a card on the disk..."
 msgstr ""
 
-#: src/ui/saves_page.c:594 src/ui/saves_page.c:644
+#: src/ui/saves_page.c:593 src/ui/saves_page.c:643
 msgid "No cards on the disk"
 msgstr ""
 
-#: src/ui/saves_page.c:625
+#: src/ui/saves_page.c:624
 msgid "Game saves on your virtual memory cards."
 msgstr ""
 
-#: src/ui/saves_page.c:627
+#: src/ui/saves_page.c:626
 msgid "Open a card file..."
 msgstr ""
 
-#: src/ui/saves_page.c:628
+#: src/ui/saves_page.c:627
 msgid "Memory cards"
 msgstr ""
 
-#: src/ui/saves_page.c:642
+#: src/ui/saves_page.c:641
 msgid "Card"
 msgstr ""
 
-#: src/ui/saves_page.c:650
+#: src/ui/saves_page.c:649
 msgid "Another card file"
 msgstr ""
 
-#: src/ui/saves_page.c:651
+#: src/ui/saves_page.c:650
 msgid "For example a card on a USB stick connected to this computer"
 msgstr ""
 
-#: src/ui/saves_page.c:663
+#: src/ui/saves_page.c:662
 msgid "Import saves..."
 msgstr ""
 
-#: src/ui/saves_page.c:667
+#: src/ui/saves_page.c:666
 msgid "Save a copy of the card..."
 msgstr ""
 
-#: src/ui/saves_page.c:671
+#: src/ui/saves_page.c:670
 msgid "Backups"
 msgstr ""
 
-#: src/ui/saves_page.c:672
+#: src/ui/saves_page.c:671
 msgid "Before every change a copy of the card is kept here (the last five)"
 msgstr ""
 
-#: src/ui/saves_page.c:685
+#: src/ui/saves_page.c:684
 msgid "This card has no saves yet."
 msgstr ""
 
@@ -1661,12 +1932,6 @@ msgstr ""
 #: src/core/redump.c:244
 #, c-format
 msgid "%u images, downloaded %s"
-msgstr ""
-
-#: src/core/redump.c:264 src/core/redump.c:277 src/core/ziso.c:592
-#: src/core/ziso.c:814
-#, c-format
-msgid "Cannot read %s"
 msgstr ""
 
 #: src/core/redump.c:271
@@ -1770,7 +2035,7 @@ msgstr ""
 msgid "The disk helper stopped unexpectedly"
 msgstr ""
 
-#: src/core/backend.c:323 src/core/backend.c:340
+#: src/core/backend.c:323 src/core/backend.c:389
 #, c-format
 msgid "%s/%s is not on the disk"
 msgstr ""
@@ -1811,307 +2076,313 @@ msgstr ""
 msgid "The alternative startup file has characters that are not allowed"
 msgstr ""
 
-#: src/core/ops.c:101
+#: src/core/ops.c:102
 #, c-format
 msgid "Cannot create %s"
 msgstr ""
 
-#: src/core/ops.c:107
+#: src/core/ops.c:108
 #, c-format
 msgid "Cannot create a work folder in %s"
 msgstr ""
 
-#: src/core/ops.c:186
+#: src/core/ops.c:187
 #, c-format
 msgid "Art for %s could not be downloaded: %s"
 msgstr ""
 
-#: src/core/ops.c:196
+#: src/core/ops.c:197
 #, c-format
 msgid "No art was found for %s"
 msgstr ""
 
-#: src/core/ops.c:198
+#: src/core/ops.c:199
 #, c-format
 msgid ""
 "Art for %s was not copied: not enough free space on the +OPL partition (%lu "
 "MB free, %lu MB needed)"
 msgstr ""
 
-#: src/core/ops.c:201
+#: src/core/ops.c:202
 #, c-format
 msgid "Art for %s could not be copied: %s"
 msgstr ""
 
-#: src/core/ops.c:218
+#: src/core/ops.c:219
 #, c-format
 msgid "The info file for %s could not be copied: %s"
 msgstr ""
 
-#: src/core/ops.c:263
+#: src/core/ops.c:264
 msgid "A shared memory card needs 2 to 4 discs"
 msgstr ""
 
-#: src/core/ops.c:268
+#: src/core/ops.c:269
 msgid "Bad disc name"
 msgstr ""
 
-#: src/core/ops.c:274
+#: src/core/ops.c:275
 msgid "The name of the first disc is too long for POPStarter's VMCDIR.TXT"
 msgstr ""
 
-#: src/core/ops.c:350 src/core/ops.c:367 src/core/ops.c:387 src/core/ops.c:520
-#: src/core/ops.c:570
+#: src/core/ops.c:351 src/core/ops.c:368 src/core/ops.c:388 src/core/ops.c:663
+#: src/core/ops.c:713
 msgid "Bad game ID"
-msgstr ""
-
-#: src/core/ops.c:424 src/core/ops.c:449
-msgid "Bad memory card name"
-msgstr ""
-
-#: src/core/ops.c:459
-#, c-format
-msgid "The card %s is not on the disk any more"
-msgstr ""
-
-#: src/core/ops.c:481
-msgid ""
-"The card was not copied completely to the disk; the old card was not touched"
 msgstr ""
 
 #: src/core/ops.c:488
 #, c-format
+msgid "%s is not a fix file: its name must be like TROJAN_2.BIN or PATCH_4.BIN"
+msgstr ""
+
+#: src/core/ops.c:492
+#, c-format
+msgid "%s does not look like a fix file (empty or very large)"
+msgstr ""
+
+#: src/core/ops.c:531
+#, c-format
+msgid "%s is not a fix file"
+msgstr ""
+
+#: src/core/ops.c:567 src/core/ops.c:592
+msgid "Bad memory card name"
+msgstr ""
+
+#: src/core/ops.c:602
+#, c-format
+msgid "The card %s is not on the disk any more"
+msgstr ""
+
+#: src/core/ops.c:624
+msgid ""
+"The card was not copied completely to the disk; the old card was not touched"
+msgstr ""
+
+#: src/core/ops.c:631
+#, c-format
 msgid "The new card is on the disk as %s but could not take the place of %s"
 msgstr ""
 
-#: src/core/ops.c:661
+#: src/core/ops.c:804
 msgid "Bad characters in the name of the program"
 msgstr ""
 
-#: src/core/ops.c:687
+#: src/core/ops.c:830
 #, c-format
 msgid "The old %s could not be put back and is saved as %s"
 msgstr ""
 
-#: src/core/ops.c:691
+#: src/core/ops.c:834
 #, c-format
 msgid "The old version was kept as %s"
 msgstr ""
 
-#: src/core/ops.c:701
+#: src/core/ops.c:844
 msgid "Only programs (.elf) can be removed here"
 msgstr ""
 
-#: src/core/ops.c:710
+#: src/core/ops.c:853
 msgid "The new name must end in .elf and have no special characters"
 msgstr ""
 
-#: src/core/ops.c:725
+#: src/core/ops.c:868
 msgid "Bad game ID or kind of picture"
 msgstr ""
 
-#: src/core/ops.c:737
+#: src/core/ops.c:880
 msgid "Preparing the picture"
 msgstr ""
 
-#: src/core/ops.c:737
+#: src/core/ops.c:880
 msgid "Downloading the picture"
 msgstr ""
 
-#: src/core/ops.c:748
+#: src/core/ops.c:891
 #, c-format
 msgid ""
 "Not enough free space on the +OPL partition for this picture (%lu MB free)"
 msgstr ""
 
-#: src/core/ops.c:752
+#: src/core/ops.c:895
 msgid "Copying to the PS2 disk"
 msgstr ""
 
-#: src/core/ops.c:783 src/core/ops.c:822 src/core/tools.c:400
-msgid "Installing to the PS2 disk"
-msgstr ""
-
-#: src/core/ops.c:802 src/core/ops.c:881
+#: src/core/ops.c:945 src/core/ops.c:1024
 msgid "The game needs a title"
 msgstr ""
 
-#: src/core/ops.c:809
-#, c-format
-msgid "%s (%s) is already installed"
-msgstr ""
-
-#: src/core/ops.c:814
+#: src/core/ops.c:957
 #, c-format
 msgid "Not enough free space on the PS2 disk (%lu MB free, %lu MB needed)"
 msgstr ""
 
-#: src/core/ops.c:877
+#: src/core/ops.c:1020
 msgid "A game can have 1 to 4 discs"
 msgstr ""
 
-#: src/core/ops.c:895
+#: src/core/ops.c:1038
 msgid "The title is too long (POPStarter limits the file name)"
 msgstr ""
 
-#: src/core/ops.c:901
+#: src/core/ops.c:1044
 #, c-format
 msgid "%s is already installed"
 msgstr ""
 
-#: src/core/ops.c:909
+#: src/core/ops.c:1052
 msgid "Cannot read the disc images"
 msgstr ""
 
-#: src/core/ops.c:914
+#: src/core/ops.c:1057
 #, c-format
 msgid ""
 "Not enough free space in the PS1 partition (__.POPS): %lu MB free, %lu MB "
 "needed"
 msgstr ""
 
-#: src/core/ops.c:933
+#: src/core/ops.c:1076
 msgid "Copying to the PS2 disk (this takes a few minutes)"
 msgstr ""
 
-#: src/core/tools.c:23
+#: src/core/ops.c:1215
+#, c-format
+msgid "The launcher file of the game could not be removed: %s"
+msgstr ""
+
+#: src/core/ops.c:1224
+msgid ""
+"The memory card folder was kept: another disc of this game uses its card."
+msgstr ""
+
+#: src/core/ops.c:1230
+#, c-format
+msgid "The game's folder was kept: %s"
+msgstr ""
+
+#: src/core/tools.c:24
 #, c-format
 msgid "%s cannot be found"
 msgstr ""
 
-#: src/core/tools.c:33
+#: src/core/tools.c:34
 #, c-format
 msgid "%s is not owned by root or can be changed by other users"
 msgstr ""
 
-#: src/core/tools.c:66
+#: src/core/tools.c:67
 #, c-format
 msgid "hdl_dump and pfsshell were not found in %s"
 msgstr ""
 
-#: src/core/tools.c:227
+#: src/core/tools.c:230
 msgid "Bad device name"
 msgstr ""
 
-#: src/core/tools.c:231
+#: src/core/tools.c:234
 #, c-format
 msgid "hdl_dump failed (%d): %s"
 msgstr ""
 
-#: src/core/tools.c:287
+#: src/core/tools.c:292
 msgid "Cannot read the disk size from hdl_dump"
 msgstr ""
 
-#: src/core/tools.c:331 src/core/ziso.c:342
+#: src/core/tools.c:336 src/core/ziso.c:342
 #, c-format
 msgid "Not a PlayStation 2 disc image: %s"
 msgstr ""
 
-#: src/core/tools.c:358
+#: src/core/tools.c:365
 msgid "Bad characters in the title or path"
 msgstr ""
 
-#: src/core/tools.c:414
+#: src/core/tools.c:421
 #, c-format
 msgid "hdl_dump failed: %s"
 msgstr ""
 
-#: src/core/tools.c:439
+#: src/core/tools.c:446
 msgid "hdl_dump toc failed"
 msgstr ""
 
-#: src/core/tools.c:494
+#: src/core/tools.c:508
 #, c-format
 msgid "Partition %s not found"
 msgstr ""
 
-#: src/core/tools.c:515
+#: src/core/tools.c:531
 msgid "Bad characters in the game name"
 msgstr ""
 
-#: src/core/tools.c:545
+#: src/core/tools.c:561
 #, c-format
 msgid "No installed game matches %s \"%s\""
 msgstr ""
 
-#: src/core/tools.c:545
+#: src/core/tools.c:561
 #, c-format
 msgid "Several installed games match %s \"%s\"; nothing was deleted"
 msgstr ""
 
-#: src/core/tools.c:571
+#: src/core/tools.c:587
 #, c-format
 msgid "The partition %s could not be removed"
 msgstr ""
 
-#: src/core/tools.c:632
+#: src/core/tools.c:648
 msgid "Bad device or partition name"
 msgstr ""
 
-#: src/core/tools.c:702 src/core/tools.c:727 src/core/tools.c:820
+#: src/core/tools.c:720 src/core/tools.c:747 src/core/tools.c:842
 msgid "Bad folder name"
 msgstr ""
 
-#: src/core/tools.c:710 src/core/tools.c:835 src/core/tools.c:926
-#: src/core/tools.c:1009
-#, c-format
-msgid "Folder %s/%s does not exist"
-msgstr ""
-
-#: src/core/tools.c:737
+#: src/core/tools.c:757
 #, c-format
 msgid "Cannot use file %s"
 msgstr ""
 
-#: src/core/tools.c:753
+#: src/core/tools.c:773
 #, c-format
 msgid "Cannot create or enter %s/%s"
 msgstr ""
 
-#: src/core/tools.c:793
+#: src/core/tools.c:813
 #, c-format
 msgid ""
 "%s was not written completely to %s (disk full?). The files of this copy "
 "were removed again."
 msgstr ""
 
-#: src/core/tools.c:825 src/core/tools.c:910 src/core/tools.c:1001
+#: src/core/tools.c:847 src/core/tools.c:940 src/core/tools.c:1033
+#: src/core/tools.c:1070
 msgid "Bad file name"
 msgstr ""
 
-#: src/core/tools.c:893
+#: src/core/tools.c:921
 #, c-format
 msgid "Cannot read the free space of %s"
 msgstr ""
 
-#: src/core/tools.c:918
+#: src/core/tools.c:948
 #, c-format
 msgid "A file named %s is already there"
 msgstr ""
 
-#: src/core/tools.c:942
-#, c-format
-msgid "Could not rename %s"
-msgstr ""
-
-#: src/core/tools.c:973 src/core/vcd.c:341 src/core/ziso.c:144
+#: src/core/tools.c:1003 src/core/vcd.c:341 src/core/ziso.c:144
 #: src/core/ziso.c:185 src/core/ziso.c:535 src/core/ziso.c:731
 #: src/core/ziso.c:798
 #, c-format
 msgid "Cannot open %s: %s"
 msgstr ""
 
-#: src/core/tools.c:981
+#: src/core/tools.c:1011
 msgid "That is not a PS2 program (a PS2 .ELF file)"
 msgstr ""
 
-#: src/core/tools.c:985
+#: src/core/tools.c:1015
 msgid "That file is too big to be a PS2 program"
-msgstr ""
-
-#: src/core/tools.c:1019
-#, c-format
-msgid "Could not remove %s"
 msgstr ""
 
 #: src/core/vcd.c:142

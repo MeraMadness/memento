@@ -71,7 +71,7 @@ typedef struct {
     GtkWidget *search, *flow, *list, *view_stack, *count_label, *empty_label;
     /* the details panel of the selected game */
     GtkWidget *det_content, *det_empty, *det_empty_title, *det_empty_sub, *det_cover_box, *det_tags, *det_title, *det_id;
-    GtkWidget *det_backdrop, *win_backdrop, *win_scrim, *det_vals[4], *det_settings, *det_art, *det_cheats, *det_share, *det_rm;
+    GtkWidget *det_backdrop, *win_backdrop, *win_scrim, *det_vals[4], *det_settings, *det_art, *det_cheats, *det_fixes, *det_share, *det_rm;
 
     /* add page: PS2 */
     char *iso_path;
@@ -170,7 +170,7 @@ void refresh_library(void);
 void rebuild_library(void);
 void after_change(gboolean ok, gpointer data); /* job finished: toast and read the disk again */
 void do_remove_ps2(const char *id, const char *title);
-void do_remove_ps1(const char *name);
+void do_remove_ps1(const char *name, gboolean with_folder); /* with_folder: also its memory card folder */
 void do_update_art(const char *id, Ps2gmPlatform platform, const char *title, gboolean replace);
 void on_refresh(GtkButton *b, gpointer d);
 gboolean select_game_by_title(const char *title);
@@ -211,6 +211,7 @@ void show_cover_picker(Ps2gmPlatform platform, const char *id, const char *title
 void show_settings_dialog(const char *id, const char *title); /* PS2 games: compatibility modes, DMA, video mode */
 
 /* ---- cheats_dialog.c --------------------------------------------------------------------------- */
+void show_ps1fix_dialog(const char *vcd_name, const char *title); /* ps1fix_dialog.c: CHEATS.TXT of a PS1 game */
 void show_cheats_dialog(const char *id, const char *title); /* PS2 games: edit the OPL cheat list */
 
 /* ---- script.c ---------------------------------------------------------------------------------- */

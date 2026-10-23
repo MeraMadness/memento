@@ -413,9 +413,39 @@ int main(void)
     }
 
     printf("== remove\n");
-    CHECK(ops_remove_ps1(ops, "SLES_026.98.Resident Evil 3 Nemesis.VCD", &err));
-    CHECK(ops_remove_ps1(ops, "SLES_999.93.Two Disc Game (Disc 1).VCD", &err));
-    CHECK(ops_remove_ps1(ops, "SLES_999.94.Two Disc Game (Disc 2).VCD", &err));
+    {
+        GPtrArray *rn = g_ptr_array_new_with_free_func(g_free);
+        char *t1 = NULL, *t2 = NULL;
+
+        CHECK(ops_remove_ps1(ops, "SLES_026.98.Resident Evil 3 Nemesis.VCD", FALSE, rn, &err));
+        {
+            char *group[] = {"SLES_999.93.Two Disc Game (Disc 1).VCD", "SLES_999.94.Two Disc Game (Disc 2).VCD", NULL};
+
+            CHECK(ops_share_memcard(ops, group, &err)); /* disc 2 now takes its card from disc 1's folder */
+            g_clear_error(&err);
+        }
+        /* disc 1 with its folder: disc 2 takes its card from it (VMCDIR.TXT), so the folder must stay, with a note saying why */
+        CHECK(backend_read_pops_file(b, "SLES_999.93.Two Disc Game (Disc 1)", "DISCS.TXT", &t1, &err) && t1 != NULL);
+        g_free(t1);
+        CHECK(ops_remove_ps1(ops, "SLES_999.93.Two Disc Game (Disc 1).VCD", TRUE, rn, &err));
+        CHECK(rn->len == 1 && strstr(g_ptr_array_index(rn, 0), "another disc") != NULL);
+        t1 = NULL;
+        CHECK(backend_read_pops_file(b, "SLES_999.93.Two Disc Game (Disc 1)", "DISCS.TXT", &t1, &err) && t1 != NULL); /* still there */
+        g_free(t1);
+        /* disc 2 with its folder: nothing uses its folder, so it goes away */
+        CHECK(ops_remove_ps1(ops, "SLES_999.94.Two Disc Game (Disc 2).VCD", TRUE, rn, &err));
+        CHECK(backend_read_pops_file(b, "SLES_999.94.Two Disc Game (Disc 2)", "DISCS.TXT", &t2, &err) && t2 == NULL);
+        /* now disc 1's folder is free: cleaning it up works (the VCD is already gone, which is fine) */
+        CHECK(ops_remove_ps1(ops, "SLES_999.93.Two Disc Game (Disc 1).VCD", TRUE, rn, &err));
+        t1 = NULL;
+        CHECK(backend_read_pops_file(b, "SLES_999.93.Two Disc Game (Disc 1)", "DISCS.TXT", &t1, &err) && t1 == NULL);
+        g_free(t1);
+        CHECK(rn->len == 1); /* no further notes */
+        /* the helper refuses folders with other files and the master launcher */
+        CHECK(!backend_run(b, (char *[]){"REMOVE_LAUNCHER", "POPSTARTER", NULL}, NULL, NULL, &err));
+        g_clear_error(&err);
+        g_ptr_array_free(rn, TRUE);
+    }
     CHECK(ops_remove_ps2(ops, "SLES_999.91", "Ops Test PS2 Game", &err));
     g_clear_error(&err);
     lib = backend_library(b, &err);
