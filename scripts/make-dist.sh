@@ -9,7 +9,7 @@ NAME="memento-$VERSION"
 TMP=$(mktemp -d)
 mkdir "$TMP/$NAME"
 ( cd "$HERE" && tar --exclude='./build*' --exclude='./tools/bin' --exclude='./tools/test' --exclude='./docs/opl-ref' \
-    --exclude='./.git' --exclude='*.pyc' --exclude='__pycache__' -cf - . ) | tar -xf - -C "$TMP/$NAME"
+    --exclude='./.git' --exclude='./.cache' --exclude='./.clangd' --exclude='*.pyc' --exclude='__pycache__' -cf - . ) | tar -xf - -C "$TMP/$NAME"
 tar -C "$TMP" -czf "$OUT/$NAME.tar.gz" "$NAME"
 rm -rf "$TMP"
 echo "$OUT/$NAME.tar.gz"

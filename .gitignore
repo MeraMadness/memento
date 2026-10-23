@@ -7,3 +7,5 @@ docs/opl-ref/
 __pycache__/
 *.pyc
 *.o
+.cache/
+.clangd

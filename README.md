@@ -16,7 +16,8 @@ Memento contains no games and does not help find any. You need your own, legally
   `/run/media` that look like one are listed, or press **Choose folder...**). Everything works as on the disk (install, remove, art,
   cheats, settings, memory cards, PS1 games, homebrew) on plain files, with no administrator password. Games are named the way OPL
   expects (`SLUS_123.45.Title.iso`, `.zso` too). A FAT32 card cannot hold a file of 4 GiB or more (Memento says so; use a `.zso` or
-  an exFAT card); OPL's split `ul.cfg` format is not supported. Not tried on a real MX4SIO yet.
+  an exFAT card); OPL's split `ul.cfg` format is not supported. Tried on a real MX4SIO with an exFAT microSD: OPL lists the games (set OPL's
+  "BDM Start Mode" to Auto and leave Settings with OK so it is saved).
 - **Library**: the covers (or a list) of what is on the disk, with search, filters (platform, with cheats, missing cover),
   sorting, and a details panel for the selected game: platform, region, disc, size, game settings, pictures, cheats, remove.
 - **Add game**: install a PS2 `.iso` or `.zso` (HDL game for OPL), or PS1 BIN/CUE (converted to a POPStarter `.VCD`;

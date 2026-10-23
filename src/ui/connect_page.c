@@ -113,8 +113,9 @@ static void fill_disks(void)
                 g_free(v);
                 g_match_info_next(mi, NULL);
             }
+            /* size 0: a card reader with no card in it (there is nothing to open); the card shows up when it is recognised */
             if (path && type && !strcmp(type, "disk") && !g_str_has_prefix(path, "/dev/zram") &&
-                !g_hash_table_contains(busy, path + 5)) {
+                !g_hash_table_contains(busy, path + 5) && size && g_ascii_strtoull(size, NULL, 10) > 0) {
                 char *gb = g_strdup_printf("%.0f GB", g_ascii_strtod(size ? size : "0", NULL) / 1e9);
                 char *label = g_strdup_printf("%s  (%s%s%s)  %s", model && *model ? model : _("Disk"), gb, tran && *tran ? ", " : "",
                                               tran ? tran : "", path);
