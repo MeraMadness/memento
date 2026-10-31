@@ -90,7 +90,7 @@ Download `Memento-<version>.flatpak` from the [Releases](https://github.com/Mera
 Flathub remote must be set up, as on a Steam Deck; the bundle fetches the GNOME runtime from there):
 
 ```sh
-flatpak install --user Memento-0.1.1.flatpak
+flatpak install --user Memento-0.1.2.flatpak
 flatpak run io.github.meramadness.Memento
 ```
 

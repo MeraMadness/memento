@@ -1,7 +1,7 @@
 # Maintainer: meramadness
 # NOT TESTED on Arch (written on Gentoo): build it in a clean chroot (extra-x86_64-build) and fix what it says.
 pkgname=memento
-pkgver=0.1.1
+pkgver=0.1.2
 pkgrel=1
 pkgdesc='Manage the games on a PS2 hard disk or SSD (OPL and POPStarter)'
 arch=('x86_64')

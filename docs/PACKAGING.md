@@ -49,12 +49,12 @@ scripts/make-dist.sh [folder]      # memento-<version>.tar.gz: sources only, no 
 
 | | file | state |
 |---|---|---|
-| Gentoo | `gentoo/games-util/memento/memento-0.1.1.ebuild` | the build steps were replayed by hand on Gentoo (tools from the pinned commits, Memento from the tarball with `-Dtools_dir`, staged install, the staged program starts and finds fonts, images and translations). Portage itself could not be run without root: do `ebuild memento-0.1.1.ebuild manifest` and a real `emerge` once |
+| Gentoo | `gentoo/games-util/memento/memento-0.1.2.ebuild` | the build steps were replayed by hand on Gentoo (tools from the pinned commits, Memento from the tarball with `-Dtools_dir`, staged install, the staged program starts and finds fonts, images and translations). Portage itself could not be run without root: do `ebuild memento-0.1.2.ebuild manifest` and a real `emerge` once |
 | Arch / AUR | `arch/PKGBUILD` | **not tested** |
 | Nix | `nix/package.nix` | **not tested**; the three `lib.fakeHash` values must be filled in |
 | Flatpak | `flatpak/io.github.meramadness.Memento.yml` | see below; **not built yet** |
 
-The recipes point at `github.com/meramadness/memento`: before using them, publish the code there, tag `v0.1.1`, and fill in
+The recipes point at `github.com/meramadness/memento`: before using them, publish the code there, tag `v0.1.2`, and fill in
 the tarball checksums. An AppImage cannot install a root-owned helper, so it would only work with the `setfacl` way.
 
 ### Flatpak (Flathub, Steam Deck)
@@ -90,6 +90,6 @@ module's `dir` source becomes the release tag (`type: git`, `url`, `tag`, `commi
 scripts/make-dist.sh /var/cache/distfiles            # needs write access there (portage group)
 sudo mkdir -p /var/db/repos/local/games-util/memento
 sudo cp packaging/gentoo/games-util/memento/* /var/db/repos/local/games-util/memento/
-cd /var/db/repos/local/games-util/memento && sudo ebuild memento-0.1.1.ebuild manifest
+cd /var/db/repos/local/games-util/memento && sudo ebuild memento-0.1.2.ebuild manifest
 sudo emerge -av games-util/memento
 ```

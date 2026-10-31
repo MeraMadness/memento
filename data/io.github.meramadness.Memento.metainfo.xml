@@ -44,6 +44,11 @@
     <binary>memento</binary>
   </provides>
   <releases>
+    <release version="0.1.2" date="2026-10-31">
+      <description>
+        <p>In the Flatpak, a PS2 hard disk or SSD is opened through the system's disk service: no terminal command is needed any more.</p>
+      </description>
+    </release>
     <release version="0.1.1" date="2026-10-31">
       <description>
         <p>The application ID is now io.github.meramadness.Memento, for the Flatpak.</p>
