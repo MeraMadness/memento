@@ -1,0 +1,18 @@
+diff --git a/subprojects/fakeps2sdk/atad.c b/subprojects/fakeps2sdk/atad.c
+index 765ecf4..c6ed22f 100644
+--- a/subprojects/fakeps2sdk/atad.c
++++ b/subprojects/fakeps2sdk/atad.c
+@@ -95,7 +95,12 @@ int set_atad_device_handle(int fd)
+ void set_atad_device_path(const char *path)
+ {
+     int fd;
+-    fd = open(path, O_RDWR | O_BINARY);
++    if (strncmp(path, "fd:", 3) == 0) { /* a disk that the caller has already opened: fd:N */
++        char *end = NULL;
++        long n = strtol(path + 3, &end, 10);
++        fd = (*end == '\0' && n >= 3) ? dup((int)n) : -1;
++    } else
++        fd = open(path, O_RDWR | O_BINARY);
+     if (fd == -1 || set_atad_device_handle(fd)) {
+         perror(path), exit(1);
+     }

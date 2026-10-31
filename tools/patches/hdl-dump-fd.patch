@@ -1,0 +1,32 @@
+diff --git a/osal_unix.c b/osal_unix.c
+index 1298b9f..f90e6d5 100644
+--- a/osal_unix.c
++++ b/osal_unix.c
+@@ -95,6 +95,12 @@ int /* OSAL_OK, OSAL_ERR */
+ osal_open_device_for_writing(const char *device_name,
+                              osal_handle_t *handle)
+ {
++    if (strncmp(device_name, "fd:", 3) == 0) { /* a disk that the caller has already opened: fd:N */
++        char *end = NULL;
++        long fd = strtol(device_name + 3, &end, 10);
++        handle->desc = (*end == '\0' && fd >= 3) ? dup((int)fd) : -1;
++        return (handle->desc == -1 ? OSAL_ERR : OSAL_OK);
++    }
+     handle->desc = open(device_name, O_RDWR | O_LARGEFILE | O_DSYNC, S_IRUSR | S_IWUSR);
+     return (handle->desc == -1 ? OSAL_ERR : OSAL_OK);
+ }
+@@ -401,7 +407,13 @@ osal_map_device_name(const char *input,
+                      char output[MAX_PATH])
+ {
+     struct stat64 st;
+-    int result = stat64(input, &st) == 0 ? RET_OK : RET_ERR;
++    int result;
++    if (strncmp(input, "fd:", 3) == 0) { /* an already opened disk: fd:N */
++        char *end = NULL;
++        long fd = strtol(input + 3, &end, 10);
++        result = (*end == '\0' && fd >= 3 && fstat64((int)fd, &st) == 0) ? RET_OK : RET_ERR;
++    } else
++        result = stat64(input, &st) == 0 ? RET_OK : RET_ERR;
+     if (result == RET_OK) { /* accept the input, only if it is a block device */
+ #if !defined(_DEBUG)        /* in debug mode treat files as devices */
+         result = st.st_mode & S_IFBLK ? RET_OK : RET_BAD_DEVICE;

@@ -5,6 +5,8 @@
 
 #include "backend.h"
 
+#define HELPER_DISK_FD 3
+
 struct _Backend {
     GSubprocess *proc;
     GOutputStream *in;
@@ -12,13 +14,14 @@ struct _Backend {
     GMutex lock;
 };
 
-Backend *backend_start(const char *device, gboolean use_pkexec, const char *helper_path, GError **error)
+static Backend *start_helper(const char *device, gboolean use_pkexec, const char *helper_path, int disk_fd, GError **error)
 {
     Backend *b;
     gchar *self = NULL, *dir = NULL, *helper;
     const char *argv[5];
     int n = 0;
     gchar *line;
+    GSubprocessLauncher *launcher;
 
     signal(SIGPIPE, SIG_IGN); /* a helper that died must not take the application with it */
     if (helper_path == NULL) {
@@ -35,7 +38,11 @@ Backend *backend_start(const char *device, gboolean use_pkexec, const char *help
 
     b = g_new0(Backend, 1);
     g_mutex_init(&b->lock);
-    b->proc = g_subprocess_newv(argv, G_SUBPROCESS_FLAGS_STDIN_PIPE | G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_PIPE, error);
+    launcher = g_subprocess_launcher_new(G_SUBPROCESS_FLAGS_STDIN_PIPE | G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_PIPE);
+    if (disk_fd >= 0)
+        g_subprocess_launcher_take_fd(launcher, disk_fd, HELPER_DISK_FD); /* the helper finds the opened disk at this number */
+    b->proc = g_subprocess_launcher_spawnv(launcher, argv, error);
+    g_object_unref(launcher);
     g_free(self);
     g_free(dir);
     g_free(helper);
@@ -73,6 +80,19 @@ Backend *backend_start(const char *device, gboolean use_pkexec, const char *help
     }
     g_free(line);
     return b;
+}
+
+Backend *backend_start(const char *device, gboolean use_pkexec, const char *helper_path, GError **error)
+{
+    return start_helper(device, use_pkexec, helper_path, -1, error);
+}
+
+Backend *backend_start_fd(int disk_fd, const char *helper_path, GError **error)
+{
+    gchar name[16];
+
+    g_snprintf(name, sizeof(name), "fd:%d", HELPER_DISK_FD);
+    return start_helper(name, FALSE, helper_path, disk_fd, error); /* takes the descriptor */
 }
 
 void backend_stop(Backend *b)

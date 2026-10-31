@@ -20,9 +20,9 @@ finish-args:
   - --filesystem=home
   # SD cards and USB drives (MX4SIO, Steam Deck SD slot) are mounted here
   - --filesystem=/run/media
-  # the PS2 hard disk or SSD is a block device, /dev/sdX. A Flatpak cannot use pkexec, so the user gives their user access
-  # to it once from a terminal (sudo setfacl -m u:$USER:rw /dev/sdX); the app says so when it cannot open the disk
-  - --device=all
+  # the PS2 hard disk or SSD: the app asks UDisks (the system's disk service) to open /dev/sdX; polkit shows the password
+  # window and UDisks hands back the open disk, so the app never needs /dev or root
+  - --system-talk-name=org.freedesktop.UDisks2
 
 modules:
   - name: hdl-dump
@@ -34,6 +34,9 @@ modules:
       - type: git
         url: https://github.com/ps2homebrew/hdl-dump.git
         commit: 32c296c69cf9c263fcbe035004aa28c345b3b279
+      # accept a disk that is already open ("fd:3"), the way UDisks hands it over
+      - type: patch
+        path: ../../tools/patches/hdl-dump-fd.patch
 
   - name: pfsshell
     buildsystem: simple
@@ -45,6 +48,8 @@ modules:
       - type: git
         url: https://github.com/ps2homebrew/pfsshell.git
         commit: 8c92467b3d715c3698f1f8ce63a8a07e214d6c73
+      - type: patch
+        path: ../../tools/patches/pfsshell-fd.patch
 
   - name: memento
     buildsystem: meson

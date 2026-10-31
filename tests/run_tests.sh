@@ -26,6 +26,8 @@ step "folder mode (SD card / USB drive)" "$HERE/build/test_folder"
 step "PS1 fixes (CHEATS.TXT)" "$HERE/build/test_ps1fix"
 "$HERE/tests/make_disk.sh" "$W" "$HERE/tools/bin/pfsshell" >/dev/null
 step "memory cards (VMC)" "$HERE/build/test_vmc"
+"$HERE/tests/make_disk.sh" "$W" "$HERE/tools/bin/pfsshell" >/dev/null
+step "disk handed over as fd:N (Flatpak/UDisks)" "$HERE/tests/test_fd.sh" "$W-tools" "$W/disk.img"
 step "Redump lists (zip, DAT, hashes)" "$HERE/build/test_redump"
 if [ -n "$1" ]; then step "VCD converter vs the reference tool" "$HERE/tests/test_vcd.sh" "$HERE/build/ps2gm-vcd" "$1" "$W-vcd"; fi
 echo; echo "ALL TESTS PASSED"

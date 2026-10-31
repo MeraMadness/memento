@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "app.h"
+#include "udisks.h"
 
 /* ---- connect ----------------------------------------------------------------------------------- */
 
@@ -255,16 +256,29 @@ gboolean job_connect(gpointer data, Ps2gmProgress cb, gpointer pd, GPtrArray *no
 
     (void)notes;
     if (root && g_file_test("/.flatpak-info", G_FILE_TEST_EXISTS)) {
-        /* inside a Flatpak there is no pkexec: the disk must already be readable and writable for this user */
-        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_TOOL,
-                    _("Memento cannot ask for the administrator password from inside Flatpak. Give your user access to the disk once, "
-                    "in a terminal on your computer (not inside Flatpak):\n    sudo setfacl -m u:%s:rw %s\nthen press Connect again. "
-                    "The access ends when you unplug the drive."),
-                    g_get_user_name(), device);
-        return FALSE;
+        /* inside a Flatpak there is no pkexec: ask the system (UDisks) to open the disk for us; it shows the password window */
+        GError *uerr = NULL;
+        int fd;
+
+        cb(0, 1, _("Waiting for the administrator password"), pd);
+        fd = udisks_open_device(device, &uerr);
+        if (fd < 0) {
+            if (g_file_test(device, G_FILE_TEST_EXISTS))
+                g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_TOOL,
+                            _("Memento could not get access to the disk: %s\n\nAlternative: give your user access to the disk once, in a "
+                            "terminal on your computer (not inside Flatpak):\n    sudo setfacl -m u:%s:rw %s\nthen press Connect again. "
+                            "The access ends when you unplug the drive."),
+                            uerr->message, g_get_user_name(), device);
+            else
+                g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_TOOL, _("Memento could not get access to the disk: %s"), uerr->message);
+            g_clear_error(&uerr);
+            return FALSE;
+        }
+        A.backend = backend_start_fd(fd, NULL, error);
+    } else {
+        cb(0, 1, root ? _("Waiting for the administrator password") : _("Opening the disk"), pd);
+        A.backend = backend_start(device, root, NULL, error);
     }
-    cb(0, 1, root ? _("Waiting for the administrator password") : _("Opening the disk"), pd);
-    A.backend = backend_start(device, root, NULL, error);
     if (A.backend == NULL)
         return FALSE;
     g_free(A.device);

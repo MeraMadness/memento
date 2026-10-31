@@ -16,6 +16,7 @@ add_project_arguments('-DGETTEXT_PACKAGE="ps2gm"', '-DAPP_VERSION="' + meson.pro
 
 glib = dependency('glib-2.0', version: '>=2.70')
 gio = dependency('gio-2.0')
+gio_unix = dependency('gio-unix-2.0') # the descriptor UDisks hands over
 adw = dependency('libadwaita-1', version: '>=1.7') # AdwWrapBox
 curl = dependency('libcurl')
 pixbuf = dependency('gdk-pixbuf-2.0')
@@ -34,18 +35,19 @@ core_sources = files(
   'src/core/ps1fix.c',
   'src/core/folderfs.c',
   'src/core/redump.c',
+  'src/core/udisks.c',
   'src/core/backend.c',
   'src/core/ops.c',
 )
 
 core = static_library('ps2gm-core', core_sources,
   include_directories: include_directories('src/core'),
-  dependencies: [glib, gio, curl, pixbuf, lz4, zlib])
+  dependencies: [glib, gio, gio_unix, curl, pixbuf, lz4, zlib])
 
 core_dep = declare_dependency(
   link_with: core,
   include_directories: include_directories('src/core'),
-  dependencies: [glib, gio, curl, pixbuf, lz4, zlib])
+  dependencies: [glib, gio, gio_unix, curl, pixbuf, lz4, zlib])
 
 executable('ps2gm-art', 'src/tools/arttool.c', dependencies: core_dep)
 executable('ps2gm-vcd', 'src/tools/vcdtool.c', dependencies: core_dep)

@@ -39,6 +39,8 @@ typedef void (*BackendLineFn)(const char *line, gpointer user_data);
 
 /* helper_path: NULL = the ps2gm-helper next to this executable. use_pkexec: ask for the admin password. */
 Backend *backend_start(const char *device, gboolean use_pkexec, const char *helper_path, GError **error);
+/* An already opened disk (from udisks_open_device): the helper runs as this user and uses the descriptor. Takes disk_fd. */
+Backend *backend_start_fd(int disk_fd, const char *helper_path, GError **error);
 void backend_stop(Backend *b);
 
 /* One command (fields are joined with tabs). Blocks until the helper answers END/ERR; data lines go to cb. */

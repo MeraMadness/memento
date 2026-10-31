@@ -62,10 +62,17 @@ the tarball checksums. An AppImage cannot install a root-owned helper, so it wou
 The application ID is `io.github.meramadness.Memento` (Flathub's rule for GitHub-hosted apps), which is why the desktop file,
 the icons, the polkit rule and `APP_ID` carry that name; the program, folders and command are still `ps2gm` / `memento`.
 
-A Flatpak has no `pkexec`, so a PS2 hard disk (`/dev/sdX`) cannot be opened with the password window. The manifest gives the
-app `--device=all`, and the app tells the user to run `sudo setfacl -m u:$USER:rw /dev/sdX` once in a terminal on the host
-(`job_connect` in `src/ui/connect_page.c`: when `/.flatpak-info` exists it never starts `pkexec`). SD cards, USB drives and
-MX4SIO cards (folder mode) need no extra step: the manifest allows `/run/media` and the home folder.
+A Flatpak has no `pkexec`, so a PS2 hard disk (`/dev/sdX`) is opened another way: the app asks **UDisks** (the system's disk
+service, `--system-talk-name=org.freedesktop.UDisks2`) to open the disk. Polkit shows the password window (`auth_admin_keep`:
+once per session) and UDisks hands back the open file descriptor (`src/core/udisks.c`). The app starts the helper with that
+descriptor as `fd:3` (`backend_start_fd`), the helper checks the first sector for the APA header and passes the same descriptor
+on to `hdl_dump` and `pfsshell` (`ps2gm_tools_inherit_fd`). The two tools accept `fd:N` as a disk name through the patches in
+`tools/patches/` (one function each: `osal_open_device_for_writing` / `osal_map_device_name` in hdl_dump, `set_atad_device_path`
+in pfsshell); `scripts/build-tools.sh` and the Flatpak manifest apply them, the other recipes do not need them. The helper
+refuses `fd:N` when it runs as root, and `tests/test_fd.sh` checks it (skipped when the tools are not patched). Inside the sandbox
+the program never sees `/dev`, so no `--device=all` is requested. `job_connect` in `src/ui/connect_page.c` does this when
+`/.flatpak-info` exists; if UDisks refuses, the message says why (and, when the device node is visible, the `setfacl` alternative).
+SD cards, USB drives and MX4SIO cards (folder mode) need no extra step: the manifest allows `/run/media` and the home folder.
 
 ```sh
 # needs flatpak-builder (from your package manager) and: flatpak install flathub org.gnome.Platform//50 org.gnome.Sdk//50

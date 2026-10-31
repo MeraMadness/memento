@@ -24,8 +24,8 @@
       <li>Also works on a mounted SD card or USB drive laid out like an OPL drive (for example in an MX4SIO adapter)</li>
     </ul>
     <p>
-      A PS2 hard disk needs access to the disk device, which a Flatpak cannot ask for by itself: give your user access once
-      with a terminal command (the app shows it). SD cards and USB drives need nothing.
+      A PS2 hard disk or SSD is opened through the system's disk service: the system asks for your password once. SD cards and
+      USB drives need no password.
     </p>
   </description>
   <screenshots>

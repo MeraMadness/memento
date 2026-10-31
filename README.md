@@ -95,10 +95,10 @@ flatpak run io.github.meramadness.Memento
 ```
 
 - **SD cards, USB drives and MX4SIO cards** work directly: they are mounted under `/run/media` and the Flatpak may use that folder.
-- **A PS2 hard disk or SSD** is a raw disk, and a Flatpak cannot show the administrator password window. Give your user access once, in a
-  terminal on the computer (not inside Flatpak): `sudo setfacl -m u:$USER:rw /dev/sdX` (`sdX` is the disk; `lsblk` shows it), then press
-  Connect. The access ends when you unplug the drive. On a Steam Deck this needs a password set for the `deck` user (`passwd`).
-- The Flatpak is allowed to see your home folder (the `.iso`, `.bin` and `.cue` files of a game sit next to each other) and `/dev`.
+- **A PS2 hard disk or SSD**: press Connect and the system asks for your password once (the polkit window of UDisks, the same
+  service the file manager uses to open drives); no terminal step. On a Steam Deck this needs a password set for the `deck` user
+  (`passwd`). Memento gets the opened disk from the system and never needs `/dev` or root.
+- The Flatpak is allowed to see your home folder (the `.iso`, `.bin` and `.cue` files of a game sit next to each other) and `/run/media`.
 - It is **not on Flathub yet**; this file is for testing. Please report what works and what does not.
 
 `tools/bin` holds `hdl_dump` and `pfsshell` (versions in `tools/VERSIONS.txt`; `scripts/build-tools.sh` rebuilds them).

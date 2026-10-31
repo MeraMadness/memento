@@ -25,6 +25,7 @@
 #include <errno.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -108,6 +109,18 @@ static gboolean looks_like_vmc(const char *path)
 
 /* ---- disk check -------------------------------------------------------------------------------- */
 
+/* "fd:N" (N >= 3, nothing after it) -> N; -1 for anything else. Never as root: a user could hand a root helper any descriptor. */
+static int disk_fd_number(const char *name)
+{
+    char *end = NULL;
+    long n;
+
+    if (geteuid() == 0 || !g_str_has_prefix(name, "fd:"))
+        return -1;
+    n = strtol(name + 3, &end, 10);
+    return (end != name + 3 && *end == '\0' && n >= 3 && n < 1024) ? (int)n : -1;
+}
+
 /* A PS2 (APA) disk has "APA" at byte 4 of its first sector. Anything else is refused. */
 static gboolean device_is_ps2_disk(const char *path, GError **error)
 {
@@ -119,15 +132,29 @@ static gboolean device_is_ps2_disk(const char *path, GError **error)
         return TRUE;
     }
     guint8 sector[512];
-    int fd = g_open(path, O_RDONLY, 0);
+    int fd;
     gssize n;
 
-    if (fd < 0) {
-        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, "Cannot open %s: %s", path, g_strerror(errno));
-        return FALSE;
+    if (g_str_has_prefix(path, "fd:")) { /* a disk the application opened for us (UDisks, inside a Flatpak) */
+        int given = disk_fd_number(path);
+
+        if (given < 0) {
+            g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED, "%s is not a usable disk handle", path);
+            return FALSE;
+        }
+        n = pread(given, sector, sizeof(sector), 0);
+        if (n == (gssize)sizeof(sector) && memcmp(sector + 4, "APA", 3) == 0)
+            ps2gm_tools_inherit_fd(given); /* hdl_dump and pfsshell get the same descriptor */
+        fd = -1;
+    } else {
+        fd = g_open(path, O_RDONLY, 0);
+        if (fd < 0) {
+            g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, "Cannot open %s: %s", path, g_strerror(errno));
+            return FALSE;
+        }
+        n = read(fd, sector, sizeof(sector));
+        close(fd);
     }
-    n = read(fd, sector, sizeof(sector));
-    close(fd);
     if (n != (gssize)sizeof(sector) || memcmp(sector + 4, "APA", 3) != 0) {
         g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_REFUSED,
                     "%s is not a PS2 hard disk (no APA partition table); nothing was touched", path);

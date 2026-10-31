@@ -25,6 +25,9 @@ typedef struct {
  */
 gboolean ps2gm_path_root_safe(const char *path, char **why);
 
+/* Every tool started from now on keeps descriptor fd open at the same number (the disk, named "fd:N" in its arguments). */
+void ps2gm_tools_inherit_fd(int fd);
+
 gboolean ps2gm_tools_init(Ps2gmTools *t, const char *dir, GError **error);
 void ps2gm_tools_clear(Ps2gmTools *t);
 

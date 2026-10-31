@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ps2gm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 23:09+0100\n"
+"POT-Creation-Date: 2026-10-31 23:41+0100\n"
 "PO-Revision-Date: 2026-10-20 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
@@ -793,7 +793,7 @@ msgid "Writing to the drive failed: %s"
 msgstr "Das Schreiben auf das Laufwerk ist fehlgeschlagen: %s"
 
 #: src/core/folderfs.c:232 src/ui/transfers.c:379 src/core/redump.c:272
-#: src/core/tools.c:409 src/core/vcd.c:364 src/core/ziso.c:310
+#: src/core/tools.c:437 src/core/vcd.c:364 src/core/ziso.c:310
 #: src/core/ziso.c:633 src/core/ziso.c:758
 msgid "Cancelled"
 msgstr "Abgebrochen"
@@ -808,7 +808,7 @@ msgid "%s (%s) is already installed"
 msgstr "%s (%s) ist bereits installiert"
 
 #: src/core/folderfs.c:283 src/core/ops.c:926 src/core/ops.c:965
-#: src/core/tools.c:407
+#: src/core/tools.c:435
 msgid "Installing to the PS2 disk"
 msgstr "Wird auf der PS2-Festplatte installiert"
 
@@ -822,9 +822,9 @@ msgstr "Kein installiertes Spiel passt zu %s (%s)"
 msgid "Could not remove %s: %s"
 msgstr "%s konnte nicht entfernt werden: %s"
 
-#: src/core/folderfs.c:321 src/core/folderfs.c:382 src/core/tools.c:728
-#: src/core/tools.c:857 src/core/tools.c:956 src/core/tools.c:1041
-#: src/core/tools.c:1078
+#: src/core/folderfs.c:321 src/core/folderfs.c:382 src/core/tools.c:756
+#: src/core/tools.c:885 src/core/tools.c:984 src/core/tools.c:1069
+#: src/core/tools.c:1106
 #, c-format
 msgid "Folder %s/%s does not exist"
 msgstr "Der Ordner %s/%s existiert nicht"
@@ -834,12 +834,12 @@ msgstr "Der Ordner %s/%s existiert nicht"
 msgid "Cannot create the folder %s: %s"
 msgstr "Der Ordner %s konnte nicht erstellt werden: %s"
 
-#: src/core/folderfs.c:409 src/core/tools.c:1051
+#: src/core/folderfs.c:409 src/core/tools.c:1079
 #, c-format
 msgid "Could not remove %s"
 msgstr "%s konnte nicht entfernt werden"
 
-#: src/core/folderfs.c:428 src/core/tools.c:1088
+#: src/core/folderfs.c:428 src/core/tools.c:1116
 #, c-format
 msgid "Could not remove the folder %s"
 msgstr "Der Ordner %s konnte nicht entfernt werden"
@@ -849,7 +849,7 @@ msgstr "Der Ordner %s konnte nicht entfernt werden"
 msgid "%s already exists"
 msgstr "%s existiert bereits"
 
-#: src/core/folderfs.c:450 src/core/tools.c:972
+#: src/core/folderfs.c:450 src/core/tools.c:1000
 #, c-format
 msgid "Could not rename %s"
 msgstr "%s konnte nicht umbenannt werden"
@@ -858,60 +858,60 @@ msgstr "%s konnte nicht umbenannt werden"
 msgid "OK"
 msgstr "OK"
 
-#: src/ui/connect_page.c:39
+#: src/ui/connect_page.c:40
 #, c-format
 msgid "SD card or USB drive: %s  (%s)"
 msgstr "SD-Karte oder USB-Laufwerk: %s  (%s)"
 
-#: src/ui/connect_page.c:120 src/ui/connect_page.c:125
-#: src/ui/connect_page.c:400 src/ui/connect_page.c:443
+#: src/ui/connect_page.c:121 src/ui/connect_page.c:126
+#: src/ui/connect_page.c:414 src/ui/connect_page.c:457
 msgid "Disk"
 msgstr "Festplatte"
 
-#: src/ui/connect_page.c:142
+#: src/ui/connect_page.c:143
 msgid "No disks found. Plug in the PS2 drive, then press Refresh"
 msgstr "Keine Festplatte gefunden. Schließen Sie die PS2-Festplatte an und drücken Sie Aktualisieren"
 
-#: src/ui/connect_page.c:145
+#: src/ui/connect_page.c:146
 #, c-format
 msgid "Folder: %s"
 msgstr "Ordner: %s"
 
-#: src/ui/connect_page.c:145
+#: src/ui/connect_page.c:146
 #, c-format
 msgid "Disk image: %s"
 msgstr "Festplattenabbild: %s"
 
-#: src/ui/connect_page.c:149
+#: src/ui/connect_page.c:150
 msgid "Disk image"
 msgstr "Festplattenabbild"
 
-#: src/ui/connect_page.c:184 src/ui/connect_page.c:221 src/ui/topbar.c:32
+#: src/ui/connect_page.c:185 src/ui/connect_page.c:222 src/ui/topbar.c:32
 msgid "PS2 disk"
 msgstr "PS2-Festplatte"
 
-#: src/ui/connect_page.c:192
+#: src/ui/connect_page.c:193
 #, c-format
 msgid "%s used, %s free"
 msgstr "%s belegt, %s frei"
 
-#: src/ui/connect_page.c:221
+#: src/ui/connect_page.c:222
 #, c-format
 msgid "Connected: %s"
 msgstr "Verbunden: %s"
 
-#: src/ui/connect_page.c:222
+#: src/ui/connect_page.c:223
 #, c-format
 msgid "%s used of %s, %s free. %u game on the disk."
 msgid_plural "%s used of %s, %s free. %u games on the disk."
 msgstr[0] "%s belegt von %s, %s frei. %u Spiel auf der Festplatte."
 msgstr[1] "%s belegt von %s, %s frei. %u Spiele auf der Festplatte."
 
-#: src/ui/connect_page.c:233 src/ui/connect_page.c:392
+#: src/ui/connect_page.c:234 src/ui/connect_page.c:406
 msgid "Connect your PS2 drive"
 msgstr "PS2-Festplatte verbinden"
 
-#: src/ui/connect_page.c:235 src/ui/connect_page.c:394
+#: src/ui/connect_page.c:236 src/ui/connect_page.c:408
 msgid ""
 "Plug the PS2 hard drive or SSD into this computer, or an SD card or USB "
 "drive with your games (MX4SIO, USB), choose it below and press Connect. A "
@@ -919,106 +919,112 @@ msgid ""
 "does not."
 msgstr "Schließen Sie die Festplatte oder SSD der PS2 an diesen Computer an, oder eine SD-Karte oder ein USB-Laufwerk mit Ihren Spielen (MX4SIO, USB), wählen Sie sie unten aus und drücken Sie Verbinden. Eine Festplatte fragt einmal nach dem Administratorpasswort; eine Karte oder ein USB-Laufwerk nicht."
 
-#: src/ui/connect_page.c:260
-#, c-format
-msgid ""
-"Memento cannot ask for the administrator password from inside Flatpak. Give "
-"your user access to the disk once, in a terminal on your computer (not "
-"inside Flatpak):\n"
-"    sudo setfacl -m u:%s:rw %s\n"
-"then press Connect again. The access ends when you unplug the drive."
-msgstr "Memento kann innerhalb von Flatpak nicht nach dem Administratorpasswort fragen. Geben Sie Ihrem Benutzer einmalig Zugriff auf die Platte, in einem Terminal Ihres Computers (nicht in Flatpak):\n    sudo setfacl -m u:%s:rw %s\nund drücken Sie dann erneut auf Verbinden. Der Zugriff endet, wenn Sie das Laufwerk abziehen."
-
-#: src/ui/connect_page.c:266
+#: src/ui/connect_page.c:263 src/ui/connect_page.c:279
 msgid "Waiting for the administrator password"
 msgstr "Warten auf das Administratorpasswort"
 
-#: src/ui/connect_page.c:266
+#: src/ui/connect_page.c:268
+#, c-format
+msgid ""
+"Memento could not get access to the disk: %s\n"
+"\n"
+"Alternative: give your user access to the disk once, in a terminal on your "
+"computer (not inside Flatpak):\n"
+"    sudo setfacl -m u:%s:rw %s\n"
+"then press Connect again. The access ends when you unplug the drive."
+msgstr "Memento konnte nicht auf die Platte zugreifen: %s\n\nAlternative: Geben Sie Ihrem Benutzer einmalig Zugriff auf die Platte, in einem Terminal Ihres Computers (nicht in Flatpak):\n    sudo setfacl -m u:%s:rw %s\nund drücken Sie dann erneut auf Verbinden. Der Zugriff endet, wenn Sie das Laufwerk abziehen."
+
+#: src/ui/connect_page.c:273
+#, c-format
+msgid "Memento could not get access to the disk: %s"
+msgstr "Memento konnte nicht auf die Platte zugreifen: %s"
+
+#: src/ui/connect_page.c:279
 msgid "Opening the disk"
 msgstr "Festplatte wird geöffnet"
 
-#: src/ui/connect_page.c:298
+#: src/ui/connect_page.c:312
 msgid "No disk selected"
 msgstr "Keine Festplatte ausgewählt"
 
-#: src/ui/connect_page.c:298
+#: src/ui/connect_page.c:312
 msgid ""
 "Plug in the PS2 hard drive (or SSD) and press Refresh, or choose a disk "
 "image file."
 msgstr "Schließen Sie die PS2-Festplatte (oder SSD) an und drücken Sie Aktualisieren, oder wählen Sie eine Festplattenabbild-Datei."
 
-#: src/ui/connect_page.c:303
+#: src/ui/connect_page.c:317
 msgid "Connecting to the PS2 disk"
 msgstr "Verbindung zur PS2-Festplatte wird hergestellt"
 
-#: src/ui/connect_page.c:311 src/ui/jobs.c:106
+#: src/ui/connect_page.c:325 src/ui/jobs.c:106
 msgid "Wait for the transfers to finish first"
 msgstr "Warten Sie, bis die Übertragungen fertig sind"
 
-#: src/ui/connect_page.c:362
+#: src/ui/connect_page.c:376
 msgid ""
 "Choose the folder of an SD card or USB drive (the one with DVD, CD, ART...)"
 msgstr "Wählen Sie den Ordner einer SD-Karte oder eines USB-Laufwerks (den mit DVD, CD, ART ...)"
 
-#: src/ui/connect_page.c:373
+#: src/ui/connect_page.c:387
 msgid "Choose a PS2 disk image file"
 msgstr "Festplattenabbild der PS2 auswählen"
 
-#: src/ui/connect_page.c:381
+#: src/ui/connect_page.c:395
 msgid "Connect"
 msgstr "Verbinden"
 
-#: src/ui/connect_page.c:403
+#: src/ui/connect_page.c:417
 msgid "Not listed?"
 msgstr "Nicht aufgeführt?"
 
-#: src/ui/connect_page.c:403
+#: src/ui/connect_page.c:417
 msgid ""
 "Look again, or choose the folder of an SD card or USB drive, or a disk image "
 "file (for tests and backups)"
 msgstr "Erneut suchen, oder den Ordner einer SD-Karte oder eines USB-Laufwerks bzw. eine Festplatten-Abbilddatei wählen (für Tests und Sicherungen)"
 
-#: src/ui/connect_page.c:403
+#: src/ui/connect_page.c:417
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: src/ui/connect_page.c:405
+#: src/ui/connect_page.c:419
 msgid "Choose folder..."
 msgstr "Ordner wählen ..."
 
-#: src/ui/connect_page.c:412
+#: src/ui/connect_page.c:426
 msgid "Choose image..."
 msgstr "Abbild auswählen …"
 
-#: src/ui/connect_page.c:431 src/ui/topbar.c:84
+#: src/ui/connect_page.c:445 src/ui/topbar.c:84
 msgid "Read the disk again"
 msgstr "Festplatte erneut lesen"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:447
 msgid "Disconnect"
 msgstr "Trennen"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "Device"
 msgstr "Gerät"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "Capacity"
 msgstr "Kapazität"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "Space"
 msgstr "Speicherplatz"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "PS2 games"
 msgstr "PS2-Spiele"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "PS1 games"
 msgstr "PS1-Spiele"
 
-#: src/ui/connect_page.c:443
+#: src/ui/connect_page.c:457
 msgid "Programs"
 msgstr "Programme"
 
@@ -2018,12 +2024,12 @@ msgstr "3D-Box"
 msgid "OPL Manager archive"
 msgstr "OPL-Manager-Archiv"
 
-#: src/core/backend.c:51 src/core/backend.c:124
+#: src/core/backend.c:58 src/core/backend.c:144
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: src/core/backend.c:62
+#: src/core/backend.c:69
 #, c-format
 msgid ""
 "The disk helper did not start%s%s.\n"
@@ -2035,16 +2041,16 @@ msgid ""
 "and press Connect again (no password is needed after that)."
 msgstr "Der Festplatten-Helfer wurde nicht gestartet%s%s.\n\nFalls kein Passwortfenster erschienen ist, hat diese Desktop-Sitzung keinen polkit-Authentifizierungsdienst. Alternative: Geben Sie Ihrem Benutzer einmalig Zugriff auf die Festplatte mit\n    sudo setfacl -m u:%s:rw %s\nund drücken Sie erneut auf Verbinden (danach ist kein Passwort mehr nötig)."
 
-#: src/core/backend.c:67
+#: src/core/backend.c:74
 #, c-format
 msgid "The disk helper did not start%s%s"
 msgstr "Der Festplatten-Helfer wurde nicht gestartet%s%s"
 
-#: src/core/backend.c:115
+#: src/core/backend.c:135
 msgid "The disk helper stopped unexpectedly"
 msgstr "Der Festplatten-Helfer wurde unerwartet beendet"
 
-#: src/core/backend.c:323 src/core/backend.c:389
+#: src/core/backend.c:343 src/core/backend.c:409
 #, c-format
 msgid "%s/%s is not on the disk"
 msgstr "%s/%s ist nicht auf der Festplatte"
@@ -2284,113 +2290,113 @@ msgstr "%s gehört nicht root oder kann von anderen Benutzern geändert werden"
 msgid "hdl_dump and pfsshell were not found in %s"
 msgstr "hdl_dump und pfsshell wurden in %s nicht gefunden"
 
-#: src/core/tools.c:230
+#: src/core/tools.c:258
 msgid "Bad device name"
 msgstr "Ungültiger Gerätename"
 
-#: src/core/tools.c:234
+#: src/core/tools.c:262
 #, c-format
 msgid "hdl_dump failed (%d): %s"
 msgstr "hdl_dump ist fehlgeschlagen (%d): %s"
 
-#: src/core/tools.c:292
+#: src/core/tools.c:320
 msgid "Cannot read the disk size from hdl_dump"
 msgstr "Die Festplattengröße kann nicht von hdl_dump gelesen werden"
 
-#: src/core/tools.c:336 src/core/ziso.c:342
+#: src/core/tools.c:364 src/core/ziso.c:342
 #, c-format
 msgid "Not a PlayStation 2 disc image: %s"
 msgstr "Kein PlayStation-2-Disc-Abbild: %s"
 
-#: src/core/tools.c:365
+#: src/core/tools.c:393
 msgid "Bad characters in the title or path"
 msgstr "Ungültige Zeichen im Titel oder Pfad"
 
-#: src/core/tools.c:421
+#: src/core/tools.c:449
 #, c-format
 msgid "hdl_dump failed: %s"
 msgstr "hdl_dump ist fehlgeschlagen: %s"
 
-#: src/core/tools.c:446
+#: src/core/tools.c:474
 msgid "hdl_dump toc failed"
 msgstr "hdl_dump toc ist fehlgeschlagen"
 
-#: src/core/tools.c:508
+#: src/core/tools.c:536
 #, c-format
 msgid "Partition %s not found"
 msgstr "Partition %s nicht gefunden"
 
-#: src/core/tools.c:531
+#: src/core/tools.c:559
 msgid "Bad characters in the game name"
 msgstr "Ungültige Zeichen im Spielnamen"
 
-#: src/core/tools.c:561
+#: src/core/tools.c:589
 #, c-format
 msgid "No installed game matches %s \"%s\""
 msgstr "Kein installiertes Spiel passt zu %s „%s“"
 
-#: src/core/tools.c:561
+#: src/core/tools.c:589
 #, c-format
 msgid "Several installed games match %s \"%s\"; nothing was deleted"
 msgstr "Mehrere installierte Spiele passen zu %s „%s“; es wurde nichts gelöscht"
 
-#: src/core/tools.c:587
+#: src/core/tools.c:615
 #, c-format
 msgid "The partition %s could not be removed"
 msgstr "Die Partition %s konnte nicht entfernt werden"
 
-#: src/core/tools.c:648
+#: src/core/tools.c:676
 msgid "Bad device or partition name"
 msgstr "Ungültiger Geräte- oder Partitionsname"
 
-#: src/core/tools.c:720 src/core/tools.c:747 src/core/tools.c:842
+#: src/core/tools.c:748 src/core/tools.c:775 src/core/tools.c:870
 msgid "Bad folder name"
 msgstr "Ungültiger Ordnername"
 
-#: src/core/tools.c:757
+#: src/core/tools.c:785
 #, c-format
 msgid "Cannot use file %s"
 msgstr "Die Datei %s kann nicht verwendet werden"
 
-#: src/core/tools.c:773
+#: src/core/tools.c:801
 #, c-format
 msgid "Cannot create or enter %s/%s"
 msgstr "%s/%s kann nicht erstellt oder geöffnet werden"
 
-#: src/core/tools.c:813
+#: src/core/tools.c:841
 #, c-format
 msgid ""
 "%s was not written completely to %s (disk full?). The files of this copy "
 "were removed again."
 msgstr "%s wurde nicht vollständig nach %s geschrieben (Festplatte voll?). Die Dateien dieser Kopie wurden wieder entfernt."
 
-#: src/core/tools.c:847 src/core/tools.c:940 src/core/tools.c:1033
-#: src/core/tools.c:1070
+#: src/core/tools.c:875 src/core/tools.c:968 src/core/tools.c:1061
+#: src/core/tools.c:1098
 msgid "Bad file name"
 msgstr "Ungültiger Dateiname"
 
-#: src/core/tools.c:921
+#: src/core/tools.c:949
 #, c-format
 msgid "Cannot read the free space of %s"
 msgstr "Der freie Platz von %s kann nicht gelesen werden"
 
-#: src/core/tools.c:948
+#: src/core/tools.c:976
 #, c-format
 msgid "A file named %s is already there"
 msgstr "Eine Datei namens %s ist bereits vorhanden"
 
-#: src/core/tools.c:1003 src/core/vcd.c:341 src/core/ziso.c:144
+#: src/core/tools.c:1031 src/core/vcd.c:341 src/core/ziso.c:144
 #: src/core/ziso.c:185 src/core/ziso.c:535 src/core/ziso.c:731
 #: src/core/ziso.c:798
 #, c-format
 msgid "Cannot open %s: %s"
 msgstr "%s kann nicht geöffnet werden: %s"
 
-#: src/core/tools.c:1011
+#: src/core/tools.c:1039
 msgid "That is not a PS2 program (a PS2 .ELF file)"
 msgstr "Das ist kein PS2-Programm (eine PS2-.ELF-Datei)"
 
-#: src/core/tools.c:1015
+#: src/core/tools.c:1043
 msgid "That file is too big to be a PS2 program"
 msgstr "Diese Datei ist zu groß für ein PS2-Programm"
 

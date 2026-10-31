@@ -144,6 +144,34 @@ static char *find_stdbuf(void)
     return geteuid() == 0 ? NULL : g_find_program_in_path("stdbuf");
 }
 
+/* A disk that was opened for us (device name "fd:N") must stay open in the tools at the same number. */
+static int inherit_fd = -1;
+
+void ps2gm_tools_inherit_fd(int fd)
+{
+    inherit_fd = fd;
+}
+
+static GSubprocess *spawn_tool(const char *const *argv, GSubprocessFlags flags, GError **error)
+{
+    GSubprocessLauncher *l = g_subprocess_launcher_new(flags);
+    GSubprocess *p;
+
+    if (inherit_fd >= 0) {
+        int copy = dup(inherit_fd);
+
+        if (copy < 0) {
+            g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_IO, "Cannot pass the disk to the tool: %s", g_strerror(errno));
+            g_object_unref(l);
+            return NULL;
+        }
+        g_subprocess_launcher_take_fd(l, copy, inherit_fd);
+    }
+    p = g_subprocess_launcher_spawnv(l, argv, error);
+    g_object_unref(l);
+    return p;
+}
+
 static gboolean run_capture(const char *const *argv, const char *stdin_text, gchar **out, int *status,
                             GError **error)
 {
@@ -163,7 +191,7 @@ static gboolean run_capture(const char *const *argv, const char *stdin_text, gch
     g_ptr_array_add(full, NULL);
     if (stdin_text != NULL)
         flags |= G_SUBPROCESS_FLAGS_STDIN_PIPE;
-    p = g_subprocess_newv((const gchar *const *)full->pdata, flags, error);
+    p = spawn_tool((const gchar *const *)full->pdata, flags, error);
     g_ptr_array_free(full, TRUE);
     g_free(stdbuf);
     if (p == NULL)
@@ -381,7 +409,7 @@ gboolean hdl_install(const Ps2gmTools *t, const char *device, const char *media,
     argv[4] = use;
     argv[5] = id;
     argv[6] = NULL;
-    p = g_subprocess_newv(argv, G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE, error);
+    p = spawn_tool((const gchar *const *)argv, G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE, error);
     if (p == NULL)
         goto out;
     in = g_subprocess_get_stdout_pipe(p);
