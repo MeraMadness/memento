@@ -71,7 +71,7 @@ reviewed by native speakers (the author reads Italian), so corrections are very 
 ## Build and run
 
 Needs: a C compiler, meson, ninja, libadwaita (>= 1.7, which brings GTK 4), libcurl, gdk-pixbuf, liblz4, zlib, fontconfig,
-gettext (`msgfmt`), and `pkexec` (polkit) at run time.
+gettext (`msgfmt`), and `pkexec` (polkit) at run time (not needed in the Flatpak).
 
 ```sh
 scripts/dev-run.sh        # builds, links the tools next to the app, starts it
@@ -83,6 +83,23 @@ scripts/uninstall.sh      # removes it again
 For the password window to work, install for all users: `scripts/install.sh --system` (or a distribution package, see
 `docs/PACKAGING.md`: Gentoo, Arch and Nix recipes are in `packaging/`). The disk helper runs as root **only** from files that
 belong to root; a copy in your home folder is refused, and then needs the `setfacl` way below.
+
+### Flatpak (Steam Deck and other distributions)
+
+Download `Memento-<version>.flatpak` from the [Releases](https://github.com/MeraMadness/memento/releases) page and install it (the
+Flathub remote must be set up, as on a Steam Deck; the bundle fetches the GNOME runtime from there):
+
+```sh
+flatpak install --user Memento-0.1.1.flatpak
+flatpak run io.github.meramadness.Memento
+```
+
+- **SD cards, USB drives and MX4SIO cards** work directly: they are mounted under `/run/media` and the Flatpak may use that folder.
+- **A PS2 hard disk or SSD** is a raw disk, and a Flatpak cannot show the administrator password window. Give your user access once, in a
+  terminal on the computer (not inside Flatpak): `sudo setfacl -m u:$USER:rw /dev/sdX` (`sdX` is the disk; `lsblk` shows it), then press
+  Connect. The access ends when you unplug the drive. On a Steam Deck this needs a password set for the `deck` user (`passwd`).
+- The Flatpak is allowed to see your home folder (the `.iso`, `.bin` and `.cue` files of a game sit next to each other) and `/dev`.
+- It is **not on Flathub yet**; this file is for testing. Please report what works and what does not.
 
 `tools/bin` holds `hdl_dump` and `pfsshell` (versions in `tools/VERSIONS.txt`; `scripts/build-tools.sh` rebuilds them).
 Plug the PS2 drive into the PC, press **Connect** on the Devices tab, and give your administrator password once: the disk
