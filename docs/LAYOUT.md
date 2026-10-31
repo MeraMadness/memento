@@ -41,7 +41,7 @@ ps2gm/
       cheats_dialog.c  edit the cheat list of a PS2 game (OPL's .cht), switch the cheat engine on
       script.c         test-only: PS2GM_SCRIPT=... drives the window without a person
     tools/             small command line programs (ps2gm-vcd, ps2gm-art) for testing the core
-  data/                the icon (data/icons), the Cinzel font (data/fonts, OFL), the pixel-art pictures (data/images) and the menu entry template (io.github.memento.desktop.in)
+  data/                the icon (data/icons), the Cinzel font (data/fonts, OFL), the pixel-art pictures (data/images) and the menu entry template (io.github.meramadness.Memento.desktop.in)
   po/                  translations: ps2gm.pot (all texts), <lang>.po (it, es, fr, de, pt_BR)
   tests/               run_tests.sh runs everything; make_disk.sh builds a fake PS2 disk file
   scripts/             build-tools.sh (hdl_dump/pfsshell), dev-run.sh (build and start), install.sh / uninstall.sh

@@ -11,7 +11,7 @@ PREFIX=$(meson introspect "$BUILD" --buildoptions 2>/dev/null | python3 -c 'impo
 grep -v '^#' "$LOG" | while read -r f; do [ -n "$f" ] && $SUDO rm -f "$f"; done
 # the program's own folder (also holds the translations, which are not in the list)
 # the rule copied to /usr/share by install.sh --system; leave it alone if a package installed its own (it names another helper)
-RULE=/usr/share/polkit-1/actions/io.github.memento.policy
+RULE=/usr/share/polkit-1/actions/io.github.meramadness.Memento.policy
 if [ -n "$SUDO" ] && [ -f "$RULE" ] && grep -q "$PREFIX/lib/memento/" "$RULE"; then $SUDO rm -f "$RULE"; fi
 [ -d "$PREFIX/lib/memento" ] && $SUDO rm -rf "$PREFIX/lib/memento"
 update-desktop-database "$PREFIX/share/applications" 2>/dev/null || true

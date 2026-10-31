@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ps2gm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 22:34+0200\n"
+"POT-Creation-Date: 2026-10-31 23:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -864,55 +864,55 @@ msgstr ""
 msgid "SD card or USB drive: %s  (%s)"
 msgstr ""
 
-#: src/ui/connect_page.c:119 src/ui/connect_page.c:124
-#: src/ui/connect_page.c:390 src/ui/connect_page.c:433
+#: src/ui/connect_page.c:120 src/ui/connect_page.c:125
+#: src/ui/connect_page.c:400 src/ui/connect_page.c:443
 msgid "Disk"
 msgstr ""
 
-#: src/ui/connect_page.c:141
+#: src/ui/connect_page.c:142
 msgid "No disks found. Plug in the PS2 drive, then press Refresh"
 msgstr ""
 
-#: src/ui/connect_page.c:144
+#: src/ui/connect_page.c:145
 #, c-format
 msgid "Folder: %s"
 msgstr ""
 
-#: src/ui/connect_page.c:144
+#: src/ui/connect_page.c:145
 #, c-format
 msgid "Disk image: %s"
 msgstr ""
 
-#: src/ui/connect_page.c:148
+#: src/ui/connect_page.c:149
 msgid "Disk image"
 msgstr ""
 
-#: src/ui/connect_page.c:183 src/ui/connect_page.c:220 src/ui/topbar.c:32
+#: src/ui/connect_page.c:184 src/ui/connect_page.c:221 src/ui/topbar.c:32
 msgid "PS2 disk"
 msgstr ""
 
-#: src/ui/connect_page.c:191
+#: src/ui/connect_page.c:192
 #, c-format
 msgid "%s used, %s free"
 msgstr ""
 
-#: src/ui/connect_page.c:220
+#: src/ui/connect_page.c:221
 #, c-format
 msgid "Connected: %s"
 msgstr ""
 
-#: src/ui/connect_page.c:221
+#: src/ui/connect_page.c:222
 #, c-format
 msgid "%s used of %s, %s free. %u game on the disk."
 msgid_plural "%s used of %s, %s free. %u games on the disk."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ui/connect_page.c:232 src/ui/connect_page.c:382
+#: src/ui/connect_page.c:233 src/ui/connect_page.c:392
 msgid "Connect your PS2 drive"
 msgstr ""
 
-#: src/ui/connect_page.c:234 src/ui/connect_page.c:384
+#: src/ui/connect_page.c:235 src/ui/connect_page.c:394
 msgid ""
 "Plug the PS2 hard drive or SSD into this computer, or an SD card or USB "
 "drive with your games (MX4SIO, USB), choose it below and press Connect. A "
@@ -920,96 +920,106 @@ msgid ""
 "does not."
 msgstr ""
 
-#: src/ui/connect_page.c:256
+#: src/ui/connect_page.c:260
+#, c-format
+msgid ""
+"Memento cannot ask for the administrator password from inside Flatpak. Give "
+"your user access to the disk once, in a terminal on your computer (not "
+"inside Flatpak):\n"
+"    sudo setfacl -m u:%s:rw %s\n"
+"then press Connect again. The access ends when you unplug the drive."
+msgstr ""
+
+#: src/ui/connect_page.c:266
 msgid "Waiting for the administrator password"
 msgstr ""
 
-#: src/ui/connect_page.c:256
+#: src/ui/connect_page.c:266
 msgid "Opening the disk"
 msgstr ""
 
-#: src/ui/connect_page.c:288
+#: src/ui/connect_page.c:298
 msgid "No disk selected"
 msgstr ""
 
-#: src/ui/connect_page.c:288
+#: src/ui/connect_page.c:298
 msgid ""
 "Plug in the PS2 hard drive (or SSD) and press Refresh, or choose a disk "
 "image file."
 msgstr ""
 
-#: src/ui/connect_page.c:293
+#: src/ui/connect_page.c:303
 msgid "Connecting to the PS2 disk"
 msgstr ""
 
-#: src/ui/connect_page.c:301 src/ui/jobs.c:106
+#: src/ui/connect_page.c:311 src/ui/jobs.c:106
 msgid "Wait for the transfers to finish first"
 msgstr ""
 
-#: src/ui/connect_page.c:352
+#: src/ui/connect_page.c:362
 msgid ""
 "Choose the folder of an SD card or USB drive (the one with DVD, CD, ART...)"
 msgstr ""
 
-#: src/ui/connect_page.c:363
+#: src/ui/connect_page.c:373
 msgid "Choose a PS2 disk image file"
 msgstr ""
 
-#: src/ui/connect_page.c:371
+#: src/ui/connect_page.c:381
 msgid "Connect"
 msgstr ""
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid "Not listed?"
 msgstr ""
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid ""
 "Look again, or choose the folder of an SD card or USB drive, or a disk image "
 "file (for tests and backups)"
 msgstr ""
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/connect_page.c:395
+#: src/ui/connect_page.c:405
 msgid "Choose folder..."
 msgstr ""
 
-#: src/ui/connect_page.c:402
+#: src/ui/connect_page.c:412
 msgid "Choose image..."
 msgstr ""
 
-#: src/ui/connect_page.c:421 src/ui/topbar.c:84
+#: src/ui/connect_page.c:431 src/ui/topbar.c:84
 msgid "Read the disk again"
 msgstr ""
 
-#: src/ui/connect_page.c:423
+#: src/ui/connect_page.c:433
 msgid "Disconnect"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Device"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Capacity"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Space"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "PS2 games"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "PS1 games"
 msgstr ""
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Programs"
 msgstr ""
 

@@ -254,6 +254,15 @@ gboolean job_connect(gpointer data, Ps2gmProgress cb, gpointer pd, GPtrArray *no
     gboolean root = access(device, R_OK | W_OK) != 0;
 
     (void)notes;
+    if (root && g_file_test("/.flatpak-info", G_FILE_TEST_EXISTS)) {
+        /* inside a Flatpak there is no pkexec: the disk must already be readable and writable for this user */
+        g_set_error(error, PS2GM_ERROR, PS2GM_ERROR_TOOL,
+                    _("Memento cannot ask for the administrator password from inside Flatpak. Give your user access to the disk once, "
+                    "in a terminal on your computer (not inside Flatpak):\n    sudo setfacl -m u:%s:rw %s\nthen press Connect again. "
+                    "The access ends when you unplug the drive."),
+                    g_get_user_name(), device);
+        return FALSE;
+    }
     cb(0, 1, root ? _("Waiting for the administrator password") : _("Opening the disk"), pd);
     A.backend = backend_start(device, root, NULL, error);
     if (A.backend == NULL)

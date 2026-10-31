@@ -114,10 +114,11 @@ meson.add_install_script('scripts/install-locale.sh', libdir / 'memento' / 'loca
 install_data('data/images/ps2-console.png', 'data/images/ps2-controller.png', 'data/images/ps2-disc.png', install_dir: appdir / 'images')
 install_data('data/fonts/Cinzel[wght].ttf', 'data/fonts/OFL.txt', install_dir: appdir / 'fonts')
 install_subdir('data/icons/hicolor', install_dir: prefix / 'share' / 'icons')
+install_data('data/io.github.meramadness.Memento.metainfo.xml', install_dir: prefix / get_option('datadir') / 'metainfo')
 
 desktop_conf = configuration_data()
 desktop_conf.set('BINDIR', bindir)
-configure_file(input: 'data/io.github.memento.desktop.in', output: 'io.github.memento.desktop',
+configure_file(input: 'data/io.github.meramadness.Memento.desktop.in', output: 'io.github.meramadness.Memento.desktop',
   configuration: desktop_conf, install: true, install_dir: prefix / 'share' / 'applications')
 
 # the polkit rule: the password window says what Memento wants, and one password lasts for the session. Only for a system
@@ -126,6 +127,6 @@ use_policy = get_option('polkit_policy').enabled() or (get_option('polkit_policy
 if use_policy
   policy_conf = configuration_data()
   policy_conf.set('HELPER', appdir / 'ps2gm-helper')
-  configure_file(input: 'data/io.github.memento.policy.in', output: 'io.github.memento.policy',
+  configure_file(input: 'data/io.github.meramadness.Memento.policy.in', output: 'io.github.meramadness.Memento.policy',
     configuration: policy_conf, install: true, install_dir: prefix / get_option('datadir') / 'polkit-1' / 'actions')
 endif

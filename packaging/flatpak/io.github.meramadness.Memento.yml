@@ -1,0 +1,68 @@
+# Flatpak manifest. Local build and test (from this folder):
+#   flatpak-builder --user --install --force-clean build-dir io.github.meramadness.Memento.yml
+#   flatpak run io.github.meramadness.Memento
+# For Flathub, replace the "dir" source of the last module with the release tag (type: git, url, tag, commit).
+app-id: io.github.meramadness.Memento
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+command: memento
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  # covers, art and the Redump lists are downloaded
+  - --share=network
+  # ISO and BIN/CUE files sit next to each other in the user's folders (a .cue file needs its .bin files), and a working
+  # folder for a card can be anywhere in the home folder
+  - --filesystem=home
+  # SD cards and USB drives (MX4SIO, Steam Deck SD slot) are mounted here
+  - --filesystem=/run/media
+  # the PS2 hard disk or SSD is a block device, /dev/sdX. A Flatpak cannot use pkexec, so the user gives their user access
+  # to it once from a terminal (sudo setfacl -m u:$USER:rw /dev/sdX); the app says so when it cannot open the disk
+  - --device=all
+
+modules:
+  - name: hdl-dump
+    buildsystem: simple
+    build-commands:
+      - make RELEASE=yes IIN_OPTICAL_MMAP=no
+      - install -Dm755 hdl_dump /app/tools/hdl_dump
+    sources:
+      - type: git
+        url: https://github.com/ps2homebrew/hdl-dump.git
+        commit: 32c296c69cf9c263fcbe035004aa28c345b3b279
+
+  - name: pfsshell
+    buildsystem: simple
+    build-commands:
+      - meson setup --buildtype=release _build
+      - meson compile -C _build
+      - install -Dm755 _build/pfsshell /app/tools/pfsshell
+    sources:
+      - type: git
+        url: https://github.com/ps2homebrew/pfsshell.git
+        commit: 8c92467b3d715c3698f1f8ce63a8a07e214d6c73
+
+  - name: memento
+    buildsystem: meson
+    config-opts:
+      - -Dtools_dir=/app/tools
+      - -Dpolkit_policy=disabled
+    post-install:
+      # the two disk tools were copied next to the program by "meson install"; the staging folder is not needed any more
+      - rm -rf /app/tools
+    sources:
+      - type: dir
+        path: ../..
+        skip:
+          - build
+          - build-install
+          - build-system
+          - tools/bin
+          - tools/test
+          - docs/opl-ref
+          - .cache
+          - .git

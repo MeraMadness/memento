@@ -15,7 +15,7 @@ if [ "$1" = "--system" ]; then
   echo "Installing in $PREFIX (needs your password)..."
   sudo meson install -C "$BUILD" --no-rebuild >/dev/null
   # polkit reads its rules only from /usr/share/polkit-1/actions, not from /usr/local/share
-  sudo install -D -m 644 "$BUILD/io.github.memento.policy" /usr/share/polkit-1/actions/io.github.memento.policy
+  sudo install -D -m 644 "$BUILD/io.github.meramadness.Memento.policy" /usr/share/polkit-1/actions/io.github.meramadness.Memento.policy
   command -v update-desktop-database >/dev/null && sudo update-desktop-database "$PREFIX/share/applications" 2>/dev/null || true
   command -v gtk-update-icon-cache >/dev/null && sudo gtk-update-icon-cache -f -t "$PREFIX/share/icons/hicolor" 2>/dev/null || true
   echo "Memento is installed for all users in $PREFIX (run: $PREFIX/bin/memento, or find it in the application menu)"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ps2gm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 22:34+0200\n"
+"POT-Creation-Date: 2026-10-31 23:09+0100\n"
 "PO-Revision-Date: 2026-10-20 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Brazilian Portuguese\n"
@@ -863,55 +863,55 @@ msgstr "OK"
 msgid "SD card or USB drive: %s  (%s)"
 msgstr "Cartão SD ou unidade USB: %s  (%s)"
 
-#: src/ui/connect_page.c:119 src/ui/connect_page.c:124
-#: src/ui/connect_page.c:390 src/ui/connect_page.c:433
+#: src/ui/connect_page.c:120 src/ui/connect_page.c:125
+#: src/ui/connect_page.c:400 src/ui/connect_page.c:443
 msgid "Disk"
 msgstr "Disco"
 
-#: src/ui/connect_page.c:141
+#: src/ui/connect_page.c:142
 msgid "No disks found. Plug in the PS2 drive, then press Refresh"
 msgstr "Nenhum disco encontrado. Conecte o disco do PS2 e pressione Atualizar"
 
-#: src/ui/connect_page.c:144
+#: src/ui/connect_page.c:145
 #, c-format
 msgid "Folder: %s"
 msgstr "Pasta: %s"
 
-#: src/ui/connect_page.c:144
+#: src/ui/connect_page.c:145
 #, c-format
 msgid "Disk image: %s"
 msgstr "Imagem de disco: %s"
 
-#: src/ui/connect_page.c:148
+#: src/ui/connect_page.c:149
 msgid "Disk image"
 msgstr "Imagem de disco"
 
-#: src/ui/connect_page.c:183 src/ui/connect_page.c:220 src/ui/topbar.c:32
+#: src/ui/connect_page.c:184 src/ui/connect_page.c:221 src/ui/topbar.c:32
 msgid "PS2 disk"
 msgstr "Disco do PS2"
 
-#: src/ui/connect_page.c:191
+#: src/ui/connect_page.c:192
 #, c-format
 msgid "%s used, %s free"
 msgstr "%s usados, %s livres"
 
-#: src/ui/connect_page.c:220
+#: src/ui/connect_page.c:221
 #, c-format
 msgid "Connected: %s"
 msgstr "Conectado: %s"
 
-#: src/ui/connect_page.c:221
+#: src/ui/connect_page.c:222
 #, c-format
 msgid "%s used of %s, %s free. %u game on the disk."
 msgid_plural "%s used of %s, %s free. %u games on the disk."
 msgstr[0] "%s usados de %s, %s livres. %u jogo no disco."
 msgstr[1] "%s usados de %s, %s livres. %u jogos no disco."
 
-#: src/ui/connect_page.c:232 src/ui/connect_page.c:382
+#: src/ui/connect_page.c:233 src/ui/connect_page.c:392
 msgid "Connect your PS2 drive"
 msgstr "Conecte o disco do seu PS2"
 
-#: src/ui/connect_page.c:234 src/ui/connect_page.c:384
+#: src/ui/connect_page.c:235 src/ui/connect_page.c:394
 msgid ""
 "Plug the PS2 hard drive or SSD into this computer, or an SD card or USB "
 "drive with your games (MX4SIO, USB), choose it below and press Connect. A "
@@ -919,96 +919,106 @@ msgid ""
 "does not."
 msgstr "Ligue ao computador o disco rígido ou SSD do PS2, ou um cartão SD ou unidade USB com seus jogos (MX4SIO, USB), escolha abaixo e pressione Conectar. Um disco rígido pede a senha de administrador uma vez; um cartão ou unidade USB não."
 
-#: src/ui/connect_page.c:256
+#: src/ui/connect_page.c:260
+#, c-format
+msgid ""
+"Memento cannot ask for the administrator password from inside Flatpak. Give "
+"your user access to the disk once, in a terminal on your computer (not "
+"inside Flatpak):\n"
+"    sudo setfacl -m u:%s:rw %s\n"
+"then press Connect again. The access ends when you unplug the drive."
+msgstr "O Memento não consegue pedir a senha de administrador de dentro do Flatpak. Dê ao seu usuário acesso ao disco uma vez, em um terminal do seu computador (não dentro do Flatpak):\n    sudo setfacl -m u:%s:rw %s\ne pressione Conectar novamente. O acesso termina quando você desconecta a unidade."
+
+#: src/ui/connect_page.c:266
 msgid "Waiting for the administrator password"
 msgstr "Aguardando a senha de administrador"
 
-#: src/ui/connect_page.c:256
+#: src/ui/connect_page.c:266
 msgid "Opening the disk"
 msgstr "Abrindo o disco"
 
-#: src/ui/connect_page.c:288
+#: src/ui/connect_page.c:298
 msgid "No disk selected"
 msgstr "Nenhum disco selecionado"
 
-#: src/ui/connect_page.c:288
+#: src/ui/connect_page.c:298
 msgid ""
 "Plug in the PS2 hard drive (or SSD) and press Refresh, or choose a disk "
 "image file."
 msgstr "Conecte o disco rígido (ou SSD) do PS2 e pressione Atualizar, ou escolha um arquivo de imagem de disco."
 
-#: src/ui/connect_page.c:293
+#: src/ui/connect_page.c:303
 msgid "Connecting to the PS2 disk"
 msgstr "Conectando ao disco do PS2"
 
-#: src/ui/connect_page.c:301 src/ui/jobs.c:106
+#: src/ui/connect_page.c:311 src/ui/jobs.c:106
 msgid "Wait for the transfers to finish first"
 msgstr "Espere as transferências terminarem"
 
-#: src/ui/connect_page.c:352
+#: src/ui/connect_page.c:362
 msgid ""
 "Choose the folder of an SD card or USB drive (the one with DVD, CD, ART...)"
 msgstr "Escolha a pasta de um cartão SD ou unidade USB (a que tem DVD, CD, ART...)"
 
-#: src/ui/connect_page.c:363
+#: src/ui/connect_page.c:373
 msgid "Choose a PS2 disk image file"
 msgstr "Escolher um arquivo de imagem do disco do PS2"
 
-#: src/ui/connect_page.c:371
+#: src/ui/connect_page.c:381
 msgid "Connect"
 msgstr "Conectar"
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid "Not listed?"
 msgstr "Não aparece?"
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid ""
 "Look again, or choose the folder of an SD card or USB drive, or a disk image "
 "file (for tests and backups)"
 msgstr "Procurar de novo, ou escolher a pasta de um cartão SD ou unidade USB, ou um arquivo de imagem de disco (para testes e cópias)"
 
-#: src/ui/connect_page.c:393
+#: src/ui/connect_page.c:403
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: src/ui/connect_page.c:395
+#: src/ui/connect_page.c:405
 msgid "Choose folder..."
 msgstr "Escolher pasta..."
 
-#: src/ui/connect_page.c:402
+#: src/ui/connect_page.c:412
 msgid "Choose image..."
 msgstr "Escolher imagem..."
 
-#: src/ui/connect_page.c:421 src/ui/topbar.c:84
+#: src/ui/connect_page.c:431 src/ui/topbar.c:84
 msgid "Read the disk again"
 msgstr "Ler o disco de novo"
 
-#: src/ui/connect_page.c:423
+#: src/ui/connect_page.c:433
 msgid "Disconnect"
 msgstr "Desconectar"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Device"
 msgstr "Dispositivo"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Capacity"
 msgstr "Capacidade"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Space"
 msgstr "Espaço"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "PS2 games"
 msgstr "Jogos de PS2"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "PS1 games"
 msgstr "Jogos de PS1"
 
-#: src/ui/connect_page.c:433
+#: src/ui/connect_page.c:443
 msgid "Programs"
 msgstr "Programas"
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.meramadness.Memento</id>
+  <name>Memento</name>
+  <summary>Manage the games on a PS2 disk</summary>
+  <developer id="io.github.meramadness">
+    <name>meramadness</name>
+  </developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <launchable type="desktop-id">io.github.meramadness.Memento.desktop</launchable>
+  <description>
+    <p>
+      Memento manages the games on a PlayStation 2 hard disk, SSD, SD card or USB drive from your computer, for the OPL and
+      POPStarter way of playing. It contains no games and does not help find any: you need your own disc images.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Install and remove PS2 games (ISO or ZSO) and PS1 games (BIN/CUE converted for POPStarter), one by one or in batches</li>
+      <li>Covers and other art, cheats, per-game settings and PS1 fixes</li>
+      <li>Virtual memory cards: list the saves, export and import them</li>
+      <li>Check a disc image against the Redump lists of good dumps</li>
+      <li>Homebrew programs on the disk</li>
+      <li>Also works on a mounted SD card or USB drive laid out like an OPL drive (for example in an MX4SIO adapter)</li>
+    </ul>
+    <p>
+      A PS2 hard disk needs access to the disk device, which a Flatpak cannot ask for by itself: give your user access once
+      with a terminal command (the app shows it). SD cards and USB drives need nothing.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/MeraMadness/memento/main/docs/screenshots/library.png</image>
+      <caption>The library: covers of the games on the disk and the details of the selected game</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/MeraMadness/memento</url>
+  <url type="bugtracker">https://github.com/MeraMadness/memento/issues</url>
+  <content_rating type="oars-1.1"/>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <provides>
+    <binary>memento</binary>
+  </provides>
+  <releases>
+    <release version="0.1.1" date="2026-10-31">
+      <description>
+        <p>The application ID is now io.github.meramadness.Memento, for the Flatpak.</p>
+      </description>
+    </release>
+    <release version="0.1.0" date="2026-10-23">
+      <description>
+        <p>First release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

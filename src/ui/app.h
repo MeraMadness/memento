@@ -27,7 +27,7 @@
 #include "ops.h"
 #include "tools.h"
 
-#define APP_ID "io.github.memento"
+#define APP_ID "io.github.meramadness.Memento"
 #define APP_NAME "Memento" /* shown in the window; the one place to rename the program */
 
 /* the cover chosen in the carousel for the game about to be installed, and its row on the Add games page */
